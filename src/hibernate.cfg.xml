@@ -13,5 +13,7 @@
 			<mapping resource="web/entity/User.hbm.xml"/>
 			<mapping resource="web/entity/Items.hbm.xml"/>
 			<mapping resource="web/entity/Cart.hbm.xml"/>
+			<mapping resource="web/entity/Orders.hbm.xml"/>
+			<mapping resource="web/entity/ShippingAddress.hbm.xml"/>
 		</session-factory>
 	</hibernate-configuration>

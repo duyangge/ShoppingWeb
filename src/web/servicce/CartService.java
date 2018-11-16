@@ -9,10 +9,11 @@ import web.entity.User;
 
 public interface CartService {
 		void addCart(Cart cart);
-		List<CartItems> lookCart(User user,Integer firstResult,Integer maxResult);
+		List<CartItems> lookCart(User user,Integer currentPage,Integer maxResult);
 		List<Cart> checkExistItems(Integer uid, Integer gid);
 		void saveCart(Cart listCart);
 		void deleCart(Integer uid, Integer gid);
 		Integer statisticalCarts(Integer uid);
+		Long countAllCarts(Integer uid);
 		
 }

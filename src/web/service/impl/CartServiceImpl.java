@@ -25,8 +25,8 @@ public class CartServiceImpl implements CartService {
 	}
 
 	//查看购物车
-	public List<CartItems> lookCart(User user,Integer firstResult,Integer maxResult) {
-		return cartDao.lookCart(user,firstResult,maxResult);
+	public List<CartItems> lookCart(User user,Integer currentPage,Integer maxResult) {
+		return cartDao.lookCart(user,currentPage,maxResult);
 	}
 
 	//检查购物车中是否有重复商品
@@ -48,7 +48,11 @@ public class CartServiceImpl implements CartService {
 
 	//统计用户购物车总记录数
 	public Integer statisticalCarts(Integer uid) {
-		
 		return cartDao.statisticalCarts(uid);
+	}
+
+	@Override
+	public Long countAllCarts(Integer uid) {
+		return cartDao.countAllCarts(uid);
 	}
 }

@@ -17,39 +17,36 @@
 </style>
 </head>
 <body>
-	<form action="DetailOrderAddressServlet" method="post" class="form" id="detailtable">
+	<form action="${pageContext.request.contextPath }/orders_saveShippingAddress" method="post" class="form" id="detailtable">
 			<table>
-			<caption><span style="color:red;text-align: center;">${sessionScope.name}先生请填写好以下信息</span></caption>
+			<caption><span style="color:red;text-align:center;">请填写好以下信息</span></caption>
 				<tr>
 					<td><span>收货人：</span></td>
-					<td><input type="text" name="name" id="name" placeholder="收货人"  value="<c:out value='${name }'/>"/></td>
+					<td><input type="text" name="shippingAddress.consignee" id="name" placeholder="收货人"  value="<c:out value='${name }'/>"/></td>
 				</tr>
 				<tr>
 					<td><span>联系电话：</span></td>
-					<td><input type="text" name="phone" id="phone" placeholder="联系电话电话" /></td>
+					<td><input type="text" name="shippingAddress.phone" id="phone" placeholder="联系电话电话" /></td>
+				</tr>
 				</tr>
 				<tr>
-					<td><span>身份证号：</span></td>
-					<td><input type="password" name="idcard" id="idcard" placeholder="身份证号" />
+					<td><span>邮政编号：</span></td>
+					<td><input type="password" name="shippingAddress.postcode" id="postoffice" placeholder="邮政编号" />
 				</td>
-				</tr>
-				<tr>
-					<td><span>邮箱:</span></td>
-					<td><input type="text" name="email" id="email" placeholder="邮箱" /></td>
-				</tr>
 				<tr>
 					<td><span>商品备注:</span></td>
-					<td><input type="text" name="note" id="note" placeholder="商品备注" /></td>
+					<td><input type="text" name="shippingAddress.remark" id="note" placeholder="商品备注" /></td>
 				</tr>
 				<tr>
 					<td><span>收货地址：</span></td>
-					<td><input type="text" name="address" id="address" placeholder="收货地址" /></td>
+					<td><input type="text" name="shippingAddress.shippingaddress" id="address" placeholder="收货地址" /></td>
 				</tr>
 				<tr>
 					<td><span>订单编号</span></td>
-					<td><input type="text" name="orderno" id="orderno" value="${requestScope.ordernumber}" readonly="true"/></td>
+					<td><input type="text" name="orderno" id="orderno" value="${orders.getRid()}" readonly="true"/></td>
 				</tr>
 			</table>
+			<input type="hidden" name="shippingAddress.uid" value="${user.getUid() }"/>
 			<input type="button" value="提交" class="submit" onclick="return check();"/>
 			<input type="reset" value="重置" class="submit" />
 	</form>
@@ -85,26 +82,26 @@ function check(){
 				return false;
 			}
 		}
-		var idcard = document.getElementById('idcard');
-		if(idcard.value==''){
-			alert('亲\n\n您还没有填写身份证号呢！');
-			idcard.focus();
+		var postoffice = document.getElementById('postoffice');
+		if(postoffice.value==''){
+			alert('亲\n\n您还没有填写邮政编号呢！');
+			postoffice.focus();
 			return false;
 		}else{
 			var vpwd = /^[A-Za-z0-9]+$/;
-			if(!vpwd.test(idcard.value)){
+			if(!vpwd.test(postoffice.value)){
 				alert('亲\n\n您输入格式有误！');
-				idcard.focus();
+				postoffice.focus();
 				return false;
 			}else{
-				if(idcard.value.length<10){
+				if(postoffice.value.length<10){
 					alert('亲\n\n您输入长度的不能少于10位哦！');
-					idcard.focus();
+					postoffice.focus();
 					return false;
 				}
 			}
 		}
-		var email = document.getElementById('email');
+		/* var email = document.getElementById('email');
 		if(email.value==''){
 			alert('亲\n\n您还没有输入邮箱呢！');
 			email.focus();
@@ -116,7 +113,7 @@ function check(){
 				email.focus();
 				return false;
 			}
-		}
+		} */
 		var address = document.getElementById('address');
 		if(address.value==''){
 			alert('亲\n\n输入的地址不能为空哦');
@@ -128,7 +125,7 @@ function check(){
 				address.focus();
 				return false;
 			}else{
-				alert("亲\n\n您的信息已提交成功！");
+				alert("亲\n\n您的收货信息已提交成功！");
 				document.getElementById("detailtable").submit();
 				return true;
 			}

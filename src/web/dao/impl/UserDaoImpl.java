@@ -14,7 +14,8 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao{
 	//登录
 	public User login(User user) {
 		List<User> list=(List<User>)this.getHibernateTemplate().find("from User where username=? and password=?", user.getUsername(),user.getPassword());
-		return list.get(0);
+		if(list!=null&&list.size()>0) return list.get(0);
+		return null;
 	}
 
 }

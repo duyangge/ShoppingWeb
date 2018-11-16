@@ -27,7 +27,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	public String login(){
 		if(userService.login(user)!=null){
 			con.getSession().put("user", userService.login(user));
-			return SUCCESS;
+			return "load";
 		}else{
 			con.getSession().put("loginerror", "用户名或密码错误");
 			return "login";
@@ -43,6 +43,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 			String uid=userService.register(user).getUid().toString();
 			con.getSession().put("user", user);
 			return SUCCESS;
+	}
+	//加载
+	public String pageLoad(){
+		//加载首页图片与信息
+		return SUCCESS;
 	}
 	
 	/*//保存对象到session

@@ -4,8 +4,6 @@ import web.entity.Cart;
 import web.entity.Items;
 @SuppressWarnings("all")
 public class CartItems {
-	//select c.cid,c.gid,i.gname,i.gbrand,i.gintroduce,i.gprice,
-	//i.imgsrc,c.gnum from Cart c,Item i where i.gid=c.gid and c.uid=20
 	private Integer cuid;
 	private Integer cid;
 	private Integer gid;

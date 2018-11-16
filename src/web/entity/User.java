@@ -1,15 +1,28 @@
 package web.entity;
+
+import java.util.Set;
+
 @SuppressWarnings("all")
 public class User {
 	private Integer uid;
 	private String username;//用户名
 	private String password;//密码
-	private String address;
-	public String getAddress() {
-		return address;
+	private String mail;//邮箱
+	/*private String phone;//联系电话
+	private String postcode;//
+	private String shippingmail;//收货地址
+*/	private Set<Orders> orders;
+	public Set<Orders> getOrders() {
+		return orders;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setOrders(Set<Orders> orders) {
+		this.orders = orders;
+	}
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 	public Integer getUid() {
 		return uid;
@@ -32,7 +45,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [uid=" + uid + ", username=" + username + ", password="
-				+ password + ", address=" + address + "]";
+				+ password + ", mail=" + mail + "]";
 	} 
 	
 }

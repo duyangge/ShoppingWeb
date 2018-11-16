@@ -10,13 +10,6 @@ public class Cart {
 	private Integer uid;//购物人
 	private Integer gnum;//商品数量
 	private Date date;//加入时间
-/*	private Set<Items> setitems;//加入商品
-	public Set<Items> getSetitems() {
-		return setitems;
-	}
-	public void setSetitems(Set<Items> setitems) {
-		this.setitems = setitems;
-	}*/
 	public Integer getCid() {
 		return cid;
 	}

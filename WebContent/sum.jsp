@@ -10,7 +10,7 @@
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
 <script type="text/javascript">
  window.onload=function(){
-	setTimeout( "alert('Hi,${user.getUsername()}欢迎你')",1000)//2s钟后关闭 
+	setTimeout( "alert('Hi,欢迎你')",1000)//2s钟后关闭 
 } 
 </script>  -->
 </head>
@@ -30,8 +30,6 @@
 			</div>	
 		</div><!-- content -->
 		<jsp:include page="foot.jsp"/>
-		<c:if test="${ not empty tablename }">
-			<c:remove var="tablename" />
-		</c:if>
+		
 </body>
 </html>

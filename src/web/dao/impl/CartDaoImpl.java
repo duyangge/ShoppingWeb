@@ -8,22 +8,21 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import web.Intermediate.CartItems;
 import web.dao.CartDao;
 import web.entity.Cart;
-import web.entity.ShowPage;
 import web.entity.User;
 @SuppressWarnings("all")
 public class CartDaoImpl extends HibernateDaoSupport implements CartDao {
 
 	//添加到购物车
-	public void addCart(Cart cart) {
+	public void addCart(Cart cart){
 		this.getHibernateTemplate().save(cart);
 	}
 
 	//查看购物车
-	public List<CartItems> lookCart(User user,Integer firstResult,Integer maxResult) {
+	public List<CartItems> lookCart(User user, Integer currentPage, Integer maxResult) {
 		Query query=this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("select new web.Intermediate.CartItems(c.cid,c.gid,c.uid,c.gnum,i.gname,i.gbrand,i.gintroduce,i.gprice,i.imgsrc)"
 				+ " from Cart c,Items i where i.gid=c.gid and c.uid=:uid");
 		query.setParameter("uid",user.getUid() );
-		query.setFirstResult(firstResult);
+		query.setFirstResult((currentPage-1)*maxResult);
 		query.setMaxResults(maxResult);
 		return query.list();	
 	}
@@ -48,6 +47,15 @@ public class CartDaoImpl extends HibernateDaoSupport implements CartDao {
 	//统计用户购物车总记录数
 	public Integer statisticalCarts(Integer uid) {
 		return (Integer) this.getHibernateTemplate().find("from Cart where uid=?",uid ).size();
+	}
+
+	@Override
+	public Long countAllCarts(Integer uid) {
+		Query query=this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("select sum(gnum) from Cart where uid=:uid order by gid asc");
+		query.setParameter("uid",uid );
+		System.out.println("long1:\t"+(Long)query.uniqueResult());
+		return (Long)query.uniqueResult();
+		
 	}
 
 	
