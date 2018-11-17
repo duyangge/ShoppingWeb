@@ -23,7 +23,7 @@ public class ItemsDaoImpl extends HibernateDaoSupport implements ItemsDao{
 
 	//点击显示商品详细页面
 	public Items goDetailItems(String tablename, Integer gid) {
-		List<Items> list=(List<Items>) this.getHibernateTemplate().find("from "+tablename+" where gid=?",gid);
+		List<Items> list = (List<Items>) this.getHibernateTemplate().find("from "+tablename+" where gid=?", gid);
 		return list.get(0);
 	}
 

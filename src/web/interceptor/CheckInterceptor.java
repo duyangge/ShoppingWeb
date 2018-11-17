@@ -15,13 +15,11 @@ public class CheckInterceptor extends AbstractInterceptor {
 		ActionContext ac = ai.getInvocationContext();
 		Map session = ac.getSession();
 		Locale locale = (Locale)session.get("WW_TRANS_I18N_LOCALE");
-		if(locale==null){
+		if (locale == null){
 			locale = new Locale("zh","CN");
-			session.put("WW_TRANS_I18N_LOCALE",locale);
+			session.put("WW_TRANS_I18N_LOCALE", locale);
 		}
 		return ai.invoke();
-
-
 	}
 
 }

@@ -10,6 +10,10 @@ import web.entity.Cart;
 import web.entity.ShowPage;
 import web.entity.User;
 import web.servicce.CartService;
+/**
+ * @author 黄信胜
+ * @date 2018/11/16
+ */
 @Transactional
 @SuppressWarnings("all")
 public class CartServiceImpl implements CartService {
@@ -25,8 +29,8 @@ public class CartServiceImpl implements CartService {
 	}
 
 	//查看购物车
-	public List<CartItems> lookCart(User user,Integer currentPage,Integer maxResult) {
-		return cartDao.lookCart(user,currentPage,maxResult);
+	public List<CartItems> lookCart(User user, Integer currentPage, Integer maxResult) {
+		return cartDao.lookCart(user, currentPage, maxResult);
 	}
 
 	//检查购物车中是否有重复商品
@@ -37,22 +41,20 @@ public class CartServiceImpl implements CartService {
 	//修改商品数量
 	public void saveCart(Cart cart) {
 		 cartDao.SaveCart(cart);
-		
 	}
 
 	//删除购物车中的商品
 	public void deleCart(Integer uid, Integer gid) {
 		cartDao.deleCart(uid,gid);
-		
-	}
-
-	//统计用户购物车总记录数
-	public Integer statisticalCarts(Integer uid) {
-		return cartDao.statisticalCarts(uid);
 	}
 
 	@Override
 	public Long countAllCarts(Integer uid) {
 		return cartDao.countAllCarts(uid);
+	}
+
+	@Override
+	public Integer statisticalCarts(Integer uid) {
+		return cartDao.statisticalCarts(uid);
 	}
 }

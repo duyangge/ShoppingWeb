@@ -8,10 +8,7 @@ public class User {
 	private String username;//用户名
 	private String password;//密码
 	private String mail;//邮箱
-	/*private String phone;//联系电话
-	private String postcode;//
-	private String shippingmail;//收货地址
-*/	private Set<Orders> orders;
+	private Set<Orders> orders;
 	public Set<Orders> getOrders() {
 		return orders;
 	}

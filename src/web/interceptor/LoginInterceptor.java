@@ -13,10 +13,10 @@ public class LoginInterceptor extends MethodFilterInterceptor {
 	 * 3.
 	 * */
 	protected String doIntercept(ActionInvocation invocation) throws Exception {
-		User user=(User) ActionContext.getContext().getSession().get("user");
-		if(user!=null){
+		User user = (User) ActionContext.getContext().getSession().get("user");
+		if (user!=null) {
 			return invocation.invoke();
-		}else{
+		} else {
 			return "login";
 		}
 		

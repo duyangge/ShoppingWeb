@@ -29,7 +29,6 @@ public class ItemsServiceImpl implements ItemsService{
 
 	//进入物品详细页面
 	public Items goDetailItems(String tablename, Integer gid) {
-		
 		return itemsDao.goDetailItems(tablename,gid);
 	}
 
