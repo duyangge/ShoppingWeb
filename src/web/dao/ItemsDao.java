@@ -3,6 +3,7 @@ package web.dao;
 import java.util.List;
 
 import web.entity.Items;
+import web.entity.ItemsImgBrand;
 
 /**
  * @author 黄信胜
@@ -31,4 +32,10 @@ public interface ItemsDao {
 	 * @return 商品实体类对象
 	 */
 	Items goDetailItems(String tablename, Integer gid);
+	
+	/**加载商品类型的图标
+	 * @param itemsImgBrand  商标实体类对象
+	 * @return  商标实体类对象集合
+	 */
+	List<ItemsImgBrand> loadItemsImgBrand(ItemsImgBrand itemsImgBrand);
 }

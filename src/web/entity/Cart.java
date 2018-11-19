@@ -3,6 +3,10 @@ package web.entity;
 
 import java.util.Date;
 import java.util.Set;
+/**
+ * @author 黄信胜
+ * 
+ */
 @SuppressWarnings("all")
 public class Cart {
 	private Integer cid;//购物车id

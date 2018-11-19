@@ -3,6 +3,7 @@ package web.action;
 import java.util.List;
 
 import web.entity.Items;
+import web.entity.ItemsImgBrand;
 import web.servicce.ItemsService;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -49,6 +50,32 @@ public class ItemsAction extends ActionSupport implements ModelDriven<Items>{
 		con.getSession().put("detailItems", detailItems);
 		return "detailitems";
 	}
-
+	/**
+	 * 加载商标
+	 * @return 
+	 */
+	public String loadItemsImgBrand() {
+		ItemsImgBrand itemsImgBrand = new ItemsImgBrand();
+		itemsService.loadItemsImgBrand(itemsImgBrand);
+		return "loadItemsImgBrand";
+	}
+	
+	/**
+	 * 加载各类商品新货标识
+	 * @return 
+	 */
+	public String loadItemsImgtext(){
+		
+		return "loadItemsImgtext";
+	}
+	
+	/**
+	 * 加载商品类型的标题
+	 * @return 
+	 */
+	public String loadItemsTypeTitle() {
+		
+		return "loadItemsTypeTitle";
+	}
 		
 }

@@ -65,13 +65,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	public String pageLoad() {
 		//加载首页图片与信息
 		return SUCCESS;
-	}
-	
-	/*//保存对象到session
-	public void saveUserSession(String name,User user){
-		con.getSession().put(name, user);
-	}*/
-
+	}	
 	
 	//判断验证码
 /*	public String checkCode(){

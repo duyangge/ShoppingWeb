@@ -56,8 +56,9 @@ function SeacherGood(){
 					<button class="btn_search" onclick="SeacherGood()">搜索</button>
 			</div>	
 			<div class="logo_car">
-					<a href="${pageContext.request.contextPath }/cart_lookCart.action" class="shoppingcar_logo"><image class="" src="images/background/shoppingcar.png"/>
-					<font class="logo_car_buttle">我的购物车(<font>${countAllCarts }</font>)</font></a>
+					<a href="${pageContext.request.contextPath }/cart_lookCart.action" class="shoppingcar_logo">
+					<image class="" src="images/background/shoppingcar.png"/>
+					<font class="logo_car_buttle">我的购物车(<font size="5px" color="black">${countAllCartItems }</font>)</font></a>
 			</div>	
 			</div>
 			<div class="logo_list">

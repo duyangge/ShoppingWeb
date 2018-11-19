@@ -12,7 +12,7 @@
 <body>
 <c:if test="${not empty cartlist}">
 	<form action="${pageContext.request.contextPath }/cart_deleCart.action" method="post">
-	<h4 align="left"><font size="4px" color="blue">${user.getUsername()}先生</font>,商品数量总共<font  size="4px" color="red">${allCartCount}</font>件，详情如下：</h4>
+	<h4 align="left"><font size="4px" color="blue">${user.getUsername()}先生</font>,商品数量总共<font  size="4px" color="red">${countAllCartItems}</font>件，详情如下：</h4>
 	<table border="1" cellspacing="0" class="tablecart" align="center" width="90%" style="border-left:none;border-right:none;border-buttom:none;">
 		<tr style="background:red">
 			<td align="center"><span class="showMesstitle">选择</span></td>

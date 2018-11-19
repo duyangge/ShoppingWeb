@@ -1,4 +1,9 @@
-package web.entity;
+package web.Intermediate;
+/**
+ * 分页的实体类
+ * @author 黄信胜
+ *
+ */
 @SuppressWarnings("all")
 public class ShowPage {
 	private Integer currentpage=1;//当前页

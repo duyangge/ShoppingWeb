@@ -3,8 +3,8 @@ package web.servicce;
 import java.util.List;
 
 import web.Intermediate.CartItems;
+import web.Intermediate.ShowPage;
 import web.entity.Cart;
-import web.entity.ShowPage;
 import web.entity.User;
 
 /**
@@ -53,13 +53,13 @@ public interface CartService {
 	 * @param uid 用户id
 	 * @return  购物车商品总数
 	 */
-	Long countAllCarts(Integer uid);
+	Long countAllCartItems(Integer uid);
 	
 	/**
-	 * 统计购物车商品总数
+	 * 统计用户在购物车表中的记录数
 	 * @param uid 用户id
-	 * @return 购物车商品总数
+	 * @return 用户在购物车表中的记录数
 	 */
-	Integer statisticalCarts(Integer uid);
+	Long statisticalCarts(Integer uid);
 		
 }

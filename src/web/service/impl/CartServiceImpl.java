@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import web.Intermediate.CartItems;
+import web.Intermediate.ShowPage;
 import web.dao.CartDao;
 import web.entity.Cart;
-import web.entity.ShowPage;
 import web.entity.User;
 import web.servicce.CartService;
 /**
@@ -49,12 +49,12 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public Long countAllCarts(Integer uid) {
-		return cartDao.countAllCarts(uid);
+	public Long countAllCartItems(Integer uid) {
+		return cartDao.countAllCartItems(uid);
 	}
 
 	@Override
-	public Integer statisticalCarts(Integer uid) {
+	public Long statisticalCarts(Integer uid) {
 		return cartDao.statisticalCarts(uid);
 	}
 }

@@ -12,8 +12,8 @@ import com.opensymphony.xwork2.ModelDriven;
 
 import web.Intermediate.CartItems;
 import web.Intermediate.RecordPriceAndNum;
+import web.Intermediate.ShowPage;
 import web.entity.Cart;
-import web.entity.ShowPage;
 import web.entity.User;
 import web.servicce.CartService;
 
@@ -117,7 +117,7 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	 */
 	public String lookCart() {
 		System.out.println("showpage:\t"+showPage.getCurrentpage());
-		this.PagingProcess(cartService.statisticalCarts(((User)con.getSession().get("user")).getUid()));//总记录数
+		this.PagingProcess(cartService.statisticalCarts(((User)con.getSession().get("user")).getUid()).intValue());//总记录数
 		List<CartItems> cartlist = cartService.lookCart((User)con.getSession().get("user"),showPage.getCurrentpage(), showPage.getPageSize());//购物表
 		con.getSession().put("cartlist", cartlist);
 		return "lookCart";
@@ -128,11 +128,11 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	 * 统计用户购物车总数
 	 * @return 返回 ”success"
 	 */
-	public String countAllCarts() {
-		if (cartService.countAllCarts(cartService.statisticalCarts(((User)con.getSession().get("user")).getUid()))!=null)
-			con.getSession().put("countAllCarts", cartService.countAllCarts(cartService.statisticalCarts(((User)con.getSession().get("user")).getUid())));
+	public String countAllCartItems(){
+		if (cartService.countAllCartItems(((User) con.getSession().get("user")).getUid()) != null)
+			con.getSession().put("countAllCartItems", cartService.countAllCartItems(((User) con.getSession().get("user")).getUid()));
 		else
-			con.getSession().put("countAllCarts", 0);
+			con.getSession().put("countAllCartItems", 0);
 		return SUCCESS;
 	}
 	

@@ -27,14 +27,14 @@
 		
 		<global-results>
 			<result name="success">/sum.jsp</result>
-			<result name="input">/login.jsp</result>
+			<result name="login">/login.jsp</result>
 		</global-results>
 		
 		<!--用户  -->
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="login">/login.jsp</result>
 			<result name="register">/resign.jsp</result>
-			<result name="load" type="redirectAction">cart_countAllCarts</result>
+			<result name="load" type="redirectAction">cart_countAllCartItems</result>
 			<allowed-methods>login,register,loginout</allowed-methods>
 		</action>
 		
@@ -50,7 +50,7 @@
 			<interceptor-ref name="loginStack"></interceptor-ref>
 			<result name="addCart">/addCart.jsp</result>
 			<result name="lookCart">/mycart.jsp</result>
-			<allowed-methods>countAllCarts,checkExistItems,saveCart,addCart,lookCart,deleCart,addCartNum,decCartNum,selSumCart,decSumCart</allowed-methods>
+			<allowed-methods>countAllCartItems,checkExistItems,saveCart,addCart,lookCart,deleCart,addCartNum,decCartNum,selSumCart,decSumCart</allowed-methods>
 		</action>
 		
 		<!--订单  -->
