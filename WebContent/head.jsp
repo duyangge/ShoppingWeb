@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>购物头部</title>
 <link href="css/sum.css" rel="stylesheet" type="text/css">
+<link href="css/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript">
 function SeacherGood(){
 	var text=document.getElementById("text_seacher");
@@ -57,8 +58,8 @@ function SeacherGood(){
 			</div>	
 			<div class="logo_car">
 					<a href="${pageContext.request.contextPath }/cart_lookCart.action" class="shoppingcar_logo">
-					<image class="" src="images/background/shoppingcar.png"/>
-					<font class="logo_car_buttle">我的购物车(<font size="5px" color="black">${countAllCartItems }</font>)</font></a>
+					<img class="" src="images/background/shoppingcar.png"/>
+					<font class="logo_car_buttle">我的购物车(<font size="0.5em" color="black">${countAllCartItems }</font>)</font></a>
 			</div>	
 			</div>
 			<div class="logo_list">

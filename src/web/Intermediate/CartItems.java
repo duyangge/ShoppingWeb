@@ -2,6 +2,11 @@ package web.Intermediate;
 
 import web.entity.Cart;
 import web.entity.Items;
+/**
+ * @author 黄信胜
+ * @date 2018年11月20日下午8:39:24
+ * @version 版本号
+ */
 @SuppressWarnings("all")
 public class CartItems {
 	private Integer cuid;
@@ -23,6 +28,18 @@ public class CartItems {
 	public CartItems(){
 		super();
 	}
+	/**
+	 * 
+	 * @param cid
+	 * @param gid
+	 * @param uid
+	 * @param gnum
+	 * @param gname
+	 * @param gbrand
+	 * @param gintroduce
+	 * @param gprice
+	 * @param imgsrc
+	 */
 	public CartItems(Integer cid, Integer gid, Integer uid, Integer gnum,
 			String gname, String gbrand, String gintroduce, Double gprice,
 			String imgsrc) {

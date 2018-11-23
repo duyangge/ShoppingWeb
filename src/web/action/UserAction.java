@@ -9,7 +9,8 @@ import com.opensymphony.xwork2.ModelDriven;
 
 /**
  * @author 黄信胜
- *
+ * @date 2018年11月20日下午8:36:28
+ * @version 版本号
  */
 @SuppressWarnings("all")
 public class UserAction extends ActionSupport implements ModelDriven<User>{
@@ -35,7 +36,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	public String login() {
 		if (userService.login(user) != null) {
 			con.getSession().put("user", userService.login(user));
-			return "load";
+			return "loadMyCartNum";
 		} else {
 			con.getSession().put("loginerror", "用户名或密码错误");
 			return "login";

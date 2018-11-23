@@ -7,6 +7,11 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
+/**
+ * @author 黄信胜
+ * @date 2018年11月20日下午8:39:10
+ * @version 版本号
+ */
 @SuppressWarnings("all")
 public class CheckInterceptor extends AbstractInterceptor {
 

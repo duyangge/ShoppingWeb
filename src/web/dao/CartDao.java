@@ -6,11 +6,10 @@ import web.Intermediate.CartItems;
 import web.Intermediate.ShowPage;
 import web.entity.Cart;
 import web.entity.User;
-/**
- * 对购物车的数据库的各种操作
+/**对购物车的数据库的各种操作
  * @author 黄信胜
- * @date 2018/11/10
- *
+ * @date 2018年11月20日下午8:36:40
+ * @version 版本号
  */
 public interface CartDao {
 		/**

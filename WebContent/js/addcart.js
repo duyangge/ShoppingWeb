@@ -30,8 +30,16 @@ function pitchon() {
 	var allMoney=unitprice*gnum;//
 	//String [] gidlist=bb.split(",");
 	window.location.href="${pageContext.request.contextPath}/orders_addOrders.action?gid="+gid+"&gnum="+gnum+"&allMoney="+allMoney+"&gidlist="+bb; 
+	//window.location.href="${pageContext.request.contextPath}/cart_lookCart.action";
 	}
-
+function allSelect(){
+	var a = document.getElementsByName("gidlist");
+	for ( var i = 0; i < a.length; i++) {
+		if (!a[i].checked) {
+			a[i].checked=true;
+		}
+	}
+}
 function add( gid , uid){//增加数量
 	var num=parseInt(document.getElementById("number").value);
 	if(num<100){

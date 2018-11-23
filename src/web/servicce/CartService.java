@@ -9,7 +9,8 @@ import web.entity.User;
 
 /**
  * @author 黄信胜
- *
+ * @date 2018年11月20日下午8:40:19
+ * @version 版本号
  */
 public interface CartService {
 	/**

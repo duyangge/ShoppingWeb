@@ -11,7 +11,8 @@ import web.entity.Cart;
 import web.entity.User;
 /**
  * @author 黄信胜
- *
+ * @date 2018年11月20日下午8:37:28
+ * @version 版本号
  */
 @SuppressWarnings("all")
 public class CartDaoImpl extends HibernateDaoSupport implements CartDao {

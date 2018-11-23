@@ -19,7 +19,8 @@ import web.servicce.CartService;
 
 /**
  * @author 黄信胜
- *
+ * @date 2018年11月20日下午8:35:06
+ * @version 版本号
  */
 @SuppressWarnings("all")
 public class CartAction extends ActionSupport implements ModelDriven<Cart>{
@@ -118,7 +119,7 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	public String lookCart() {
 		System.out.println("showpage:\t"+showPage.getCurrentpage());
 		this.PagingProcess(cartService.statisticalCarts(((User)con.getSession().get("user")).getUid()).intValue());//总记录数
-		List<CartItems> cartlist = cartService.lookCart((User)con.getSession().get("user"),showPage.getCurrentpage(), showPage.getPageSize());//购物表
+		List<CartItems> cartlist = cartService.lookCart((User)con.getSession().get("user"), showPage.getCurrentpage(), showPage.getPageSize());//购物表
 		con.getSession().put("cartlist", cartlist);
 		return "lookCart";
 	}
@@ -133,7 +134,8 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 			con.getSession().put("countAllCartItems", cartService.countAllCartItems(((User) con.getSession().get("user")).getUid()));
 		else
 			con.getSession().put("countAllCartItems", 0);
-		return SUCCESS;
+		
+		return "loadHome";
 	}
 	
 	/**

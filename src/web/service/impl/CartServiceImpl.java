@@ -12,9 +12,9 @@ import web.entity.User;
 import web.servicce.CartService;
 /**
  * @author 黄信胜
- * @date 2018/11/16
+ * @date 2018年11月20日下午8:40:54
+ * @version 版本号
  */
-@Transactional
 @SuppressWarnings("all")
 public class CartServiceImpl implements CartService {
 	private CartDao cartDao;

@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>购物车列表</title>
 <link href="css/mycart.css" rel="stylesheet" type="text/css"/>
+<link href="css/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="js/addcart.js"></script>
 </head>
 <body>
@@ -27,7 +28,7 @@
 		<c:forEach var="cartItems" items="${cartlist}" varStatus="status">
 				<tr>
 					<td align="center"><span class="showMess"><input type="checkbox" name="gidlist"  value="${cartItems.getGid()}" id="gid"/></span></td>
-					<td align="center"><span class="showMess"><img src="${cartItems.getImgsrc()}" width="40px" height="60px"/><c:out value="${item.value.getName()}"/></span></td>
+					<td align="center"><span class="showMess"><img src="${cartItems.getImgsrc()}" width="50px" height="60px"/><c:out value="${item.value.getName()}"/></span></td>
 					<td align="center"><span class="showMess" ><c:out value="${cartItems.getGbrand()}"/></span></td>
 					<td align="center"><span class="showMess"><c:out value="${cartItems.getGintroduce()}"/></span></td>
 					<td align="center"><span class="showMess">¥<font id="unitprice"><c:out value="${cartItems.getGprice()} "/></font></span></td>
@@ -49,8 +50,9 @@
 			<a href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${showPage.getCurrentpage()+1}">下一页</a>
 			<a  href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${showPage.getTotalpages()}">尾页</a>
 		</div>
-		<!-- <div style="float:left;margin-left:80px;"><input type="checkbox" name="gidlist"  value=""/>全选</div> -->
 		<div  style="float:left; margin-left:5%; ">
+			<a href="javaScript:allSelect();">全选</a>&nbsp;
+			<a href="javaScript:pitchon();">下单</a>&nbsp;
 			<a href="${pageContext.request.contextPath }/orders_lookOrders.action">我的订单</a>
 			<input type="submit" value="删除" border="0" style="color: blue; border:0px;background: white;font-size:15px;text-decoration: underline;">
 			<a href="${pageContext.request.contextPath }/user_loginout.action">退出</a>&nbsp;&nbsp;

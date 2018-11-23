@@ -34,15 +34,15 @@
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="login">/login.jsp</result>
 			<result name="register">/resign.jsp</result>
-			<result name="load" type="redirectAction">cart_countAllCartItems</result>
+			<result name="loadMyCartNum" type="redirectAction">cart_countAllCartItems</result>
 			<allowed-methods>login,register,loginout</allowed-methods>
 		</action>
 		
 		<!--商品  -->
 		<action name="items_*" class="itemsAction" method="{1}">
-			<result name="itemslist">/mansheetshow.jsp</result>
+			<result name="itemslist">/ShowListItems.jsp</result>
 			<result name="detailitems">/addCart.jsp</result>
-			<allowed-methods>inItemsList,goDetailItems</allowed-methods>
+			<allowed-methods>inItemsList,goDetailItems,loadAll,loadItemsType,loadItemsShowText,loadItemsBrand</allowed-methods>
 		</action>
 		
 		<!--购物车  -->
@@ -50,6 +50,7 @@
 			<interceptor-ref name="loginStack"></interceptor-ref>
 			<result name="addCart">/addCart.jsp</result>
 			<result name="lookCart">/mycart.jsp</result>
+			<result name="loadHome" type="redirectAction">items_loadAll</result>
 			<allowed-methods>countAllCartItems,checkExistItems,saveCart,addCart,lookCart,deleCart,addCartNum,decCartNum,selSumCart,decSumCart</allowed-methods>
 		</action>
 		

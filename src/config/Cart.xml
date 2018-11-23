@@ -30,7 +30,7 @@
         </bean>
         
         <!--分页实体类  -->
-        <bean id="showPage" class="web.entity.ShowPage"></bean>
+        <bean id="showPage" class="web.Intermediate.ShowPage"></bean>
   
         
         

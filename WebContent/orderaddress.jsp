@@ -6,14 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>下单时，需添加详细订单 </title>
+<link href="css/main.css" type="text/css" rel="stylesheet"/>
 <style type="text/css">
-	form{width: 500px;overflow: hidden;margin: 50px auto;}
-	div{line-height: 40px;}
-	input{width: 250px;padding-left: 10px;height: 30px;
-	line-height: 30px;color: #333;font-size: 14px;
-	border: 1px solid #666;outline: none;margin-bottom: 10px;display: inline-block;}
+	form{width: 50em;overflow: hidden;margin: 5em auto;}
+	div{line-height: 4em;}
+	input{width: 25em;padding-left: 1em;height: 3em;
+	line-height: 3em;color: #333;font-size: 1.4em;
+	border: 0.1em solid #666;outline: none;margin-bottom: 1em;display: inline-block;}
 	span{display: inline-block;float: left;}
-	.submit{width: 120px;background: #666;color: #fff;margin-left: 50px;cursor: pointer;}
+	.submit{width: 12em;background: #666;color: #fff;margin-left: 5em;cursor: pointer;}
 </style>
 </head>
 <body>
@@ -22,7 +23,7 @@
 			<caption><span style="color:red;text-align:center;">请填写好以下信息</span></caption>
 				<tr>
 					<td><span>收货人：</span></td>
-					<td><input type="text" name="shippingAddress.consignee" id="name" placeholder="收货人"  value="<c:out value='${name }'/>"/></td>
+					<td><input type="text" name="shippingAddress.consignee" id="name" placeholder="收货人"  value="${user.username}"/></td>
 				</tr>
 				<tr>
 					<td><span>联系电话：</span></td>

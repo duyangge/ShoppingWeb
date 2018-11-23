@@ -2,6 +2,11 @@ package web.entity;
 
 import java.util.Set;
 
+/**
+ * @author 黄信胜
+ * @date 2018年11月20日下午8:38:48
+ * @version 版本号
+ */
 @SuppressWarnings("all")
 public class User {
 	private Integer uid;

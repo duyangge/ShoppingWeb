@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>订单列表</title>
 <link href="css/mycart.css" rel="stylesheet" type="text/css"/>
+<link href="css/main.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 	<c:if test="${not empty orderList}">

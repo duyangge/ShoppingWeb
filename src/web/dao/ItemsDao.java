@@ -3,39 +3,53 @@ package web.dao;
 import java.util.List;
 
 import web.entity.Items;
-import web.entity.ItemsImgBrand;
+import web.entity.ItemsBrand;
+import web.entity.ItemsShowText;
+import web.entity.ItemsType;
+
 
 /**
  * @author 黄信胜
- *
+ * @date 2018年11月20日下午8:37:01
+ * @version 版本号
  */
 public interface ItemsDao {
-	/**
+	
+	/**点击商品显示
 	 * 
-	 * @param tablename
+	 * @param tid
 	 * @return
 	 */
-	List<Items> inItemsList(String tablename);
-	
-	/**
-	 * 查询商品表中的所有商品，并显示
-	 * @param tablename 商品表
-	 * @param items 商品实体类对象
-	 * @return 商品实体类集合
-	 */
-	List<Items> byIdinItems(String tablename,Items items);
+	List<Items> inItemsList(Integer tid);
 	
 	/**
 	 * 显示商品详情
-	 * @param tablename 商品表
+	 * 
 	 * @param gid 商品id
 	 * @return 商品实体类对象
 	 */
-	Items goDetailItems(String tablename, Integer gid);
+	Items goDetailItems(Integer gid);
 	
 	/**加载商品类型的图标
-	 * @param itemsImgBrand  商标实体类对象
+	 * @param tid  商品类型的id
 	 * @return  商标实体类对象集合
 	 */
-	List<ItemsImgBrand> loadItemsImgBrand(ItemsImgBrand itemsImgBrand);
+	List<ItemsBrand> loadItemsImgBrand(Integer tid);
+	
+	/**
+	 * 加载首页商品类型
+	 * @param tid
+	 * @return
+	 */
+	List<ItemsType> loadItemsType(Integer tid);
+
+	/**
+	 * 加载首页商品类的描述
+	 * @param tid 商品类型的id
+	 * @return 商品类型描述的实体类对象集合
+	 */
+	List<ItemsShowText> loadItemsShowText(Integer tid);
+
+	
+	
 }

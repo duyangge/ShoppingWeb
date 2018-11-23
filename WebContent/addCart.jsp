@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>添加商品</title>
+<link href="css/main.css" type="text/css" rel="stylesheet"/>
 <link href="css/addcart.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
@@ -14,7 +15,7 @@
 <!--通过获取物品id得到物品信息  -->
 	<div class="content">
 		<div class="content_left">
-			<img src="${detailItems.getImgsrc()}" />
+			<img src="${detailItems.getImgsrc()}" class="imgshow"/>
 		</div>
 		<div class="content_right">
 				<div>
@@ -47,6 +48,7 @@
 				<!-- 选择商品的数量 -->
 					<table class="shownumber">
 						<tr>
+							<td id="goodnametitle">数量 </td>
 							<td><input type="button" name="addnumber" value="+" onclick="add()"></td>
 							<td><input type="text" name="gnum" value="1" id="number" readonly="readonly" style="width:20px;"></td>
 							<td><input type="button" name="reducenumber" value="-" onclick="reduce()"></td>
@@ -66,7 +68,7 @@
 	</div>
 	<div class="all_buttom">
 		<a href="${pageContext.request.contextPath }/cart_lookCart.action" class="lookcar">查看购物车</a>
-		<a href="mansheetshow.jsp" class="continueshopping">继续购物</a>
+		<a href="ShowListItems.jsp" class="continueshopping">继续购物</a>
 		<a href="${pageContext.request.contextPath }/user_loginout.action">退出</a>
 	</div>
 	</form>
