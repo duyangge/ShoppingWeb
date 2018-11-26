@@ -6,7 +6,7 @@ import web.Intermediate.ShowPage;
 import web.entity.Orders;
 import web.entity.ShippingAddress;
 import web.entity.User;
-import web.servicce.OrdersService;
+import web.service.OrdersService;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;

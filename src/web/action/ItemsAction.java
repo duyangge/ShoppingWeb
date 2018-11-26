@@ -10,7 +10,7 @@ import web.entity.Items;
 import web.entity.ItemsBrand;
 import web.entity.ItemsShowText;
 import web.entity.ItemsType;
-import web.servicce.ItemsService;
+import web.service.ItemsService;
 
 /**商品类操作
  * @author 黄信胜

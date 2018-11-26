@@ -10,7 +10,7 @@ import web.dao.OrdersDao;
 import web.dao.impl.OrdersDaoImpl;
 import web.entity.Orders;
 import web.entity.User;
-import web.servicce.OrdersService;
+import web.service.OrdersService;
 import web.service.impl.OrdersServiceImpl;
 public class Demo {
 	@Test

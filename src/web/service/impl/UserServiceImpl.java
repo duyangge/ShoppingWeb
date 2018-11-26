@@ -4,7 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import web.dao.UserDao;
 import web.entity.User;
-import web.servicce.UserService;
+import web.service.UserService;
 /**
  * @author 黄信胜
  * @date 2018年11月20日下午8:41:14

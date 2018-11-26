@@ -1,7 +1,7 @@
 package web.action;
 
 import web.entity.User;
-import web.servicce.UserService;
+import web.service.UserService;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
