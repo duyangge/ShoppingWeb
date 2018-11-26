@@ -1,5 +1,6 @@
 package web.entity;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ import web.service.dao.Connc3p0;
  * @version 版本号
  */
 @SuppressWarnings("all")
-public class Items {
+public class Items implements Serializable{
 	private Integer tid;//商品类型id
 	private Integer  gid;//物品id
 	private String  gname;//名称

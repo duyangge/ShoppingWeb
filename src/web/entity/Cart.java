@@ -1,6 +1,7 @@
 package web.entity;
 
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 /**
@@ -9,7 +10,7 @@ import java.util.Set;
  * @version 版本号
  */
 @SuppressWarnings("all")
-public class Cart {
+public class Cart implements Serializable{
 	private Integer cid;//购物车id
 	private Integer gid;//商品id
 	private Integer uid;//购物人
