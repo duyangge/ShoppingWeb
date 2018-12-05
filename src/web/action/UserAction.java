@@ -59,14 +59,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		con.getSession().put("user", user);
 		return SUCCESS;
 	}
-	/**
-	 * 加载首页图片信息
-	 * @return 返回字符串 “success"
-	 */
-	public String pageLoad() {
-		//加载首页图片与信息
-		return SUCCESS;
-	}	
 	
 	//判断验证码
 /*	public String checkCode(){
