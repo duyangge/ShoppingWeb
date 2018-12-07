@@ -14,7 +14,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
         
          <!--加载propertie文件  -->
-         <context:property-placeholder location="classpath:c3p0/c3p0-db.properties"/>
+         <context:property-placeholder location="classpath:c3p0-db.properties"/>
          
          <!--配置数据源 --> 
         <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -33,15 +33,13 @@
         
         <!--创建实体类与依赖注入  -->
   		<!-- 导入User -->
-        <import resource="classpath:bean/User.xml"/>
+        <import resource="classpath:User.xml"/>
         <!-- 导入Items -->
-        <import resource="classpath:bean/Items.xml"/>
+        <import resource="classpath:Items.xml"/>
         <!-- 导入Cart -->
-        <import resource="classpath:bean/Cart.xml"/>
+        <import resource="classpath:Cart.xml"/>
         <!-- 导入Orders -->
-        <import resource="classpath:bean/Orders.xml"/>
-        <!-- 导入OrdersDetail -->
-        <import resource="classpath:bean/OrdersDetail.xml"/>
+        <import resource="classpath:Orders.xml"/>
         
          <!--配置事务管理器  -->
         <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -51,11 +49,7 @@
         <!-- 编写通知，增强事务 -->
         <tx:advice id="txadvice" transaction-manager="transactionManager">
         	<tx:attributes>
-        		<tx:method name="add*"/>
-        		<tx:method name="save*"/>
-        		<tx:method name="update*"/>
-        		<tx:method name="delete*"/>
-        		<tx:method name="find*" read-only="true"/>
+        		<tx:method name="*"/>
         	</tx:attributes>
         </tx:advice>
         

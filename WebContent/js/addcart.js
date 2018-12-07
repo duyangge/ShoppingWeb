@@ -25,7 +25,6 @@ function pitchon() {
 		return;
 	}
 	var gnum=document.getElementById("number").value;//
-	alert("gnum:"+gnum);
 	var gid=document.getElementById("gid").value;//
 	var unitprice=document.getElementById("unitprice").value;//
 	var allMoney=unitprice*gnum;//

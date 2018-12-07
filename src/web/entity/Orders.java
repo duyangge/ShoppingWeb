@@ -18,15 +18,7 @@ public class Orders implements Serializable{
 	private Integer gid;//商品id(外键)，一个订单有多个商品，一个商品只能归于一个订单
 	private Double allMoney;//总金额
 	private Integer orderStatus;//状态，付款与未付款
-	private User user;//关联的用户
-	private Set<OrdersDetail> ordersDetail;//关联的订单详情表，一对多
-	
-	public Set<OrdersDetail> getOrdersDetail() {
-		return ordersDetail;
-	}
-	public void setOrdersDetail(Set<OrdersDetail> ordersDetail) {
-		this.ordersDetail = ordersDetail;
-	}
+	private User user;
 	public User getUser() {
 		return user;
 	}

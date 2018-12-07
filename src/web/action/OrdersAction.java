@@ -1,8 +1,6 @@
 package web.action;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import web.Intermediate.ShowPage;
 import web.entity.Orders;
@@ -28,7 +26,6 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
   private Orders orders = new Orders();
   private ShippingAddress shippingAddress;
   private String gidlist;
-  private Map<Integer,Integer> ItemsIdAndNUmMap =new HashMap<Integer,Integer>();//存储订单中商品id与对应的数量
   
   public void setGidlist(String gidlist) {
 	this.gidlist = gidlist;
@@ -53,6 +50,7 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 	this.showPage = showPage;
   }
   public Orders getModel() {
+  	// TODO Auto-generated method stub
   	return orders;
   }
   
@@ -141,7 +139,5 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 	return null;
   }
   
-  public void saveOrdersOfOrderDetail() {
-	  
-  }
+
 }

@@ -34,7 +34,7 @@
 					<td align="center"><span class="showMess">¥<font id="unitprice"><c:out value="${cartItems.getGprice()} "/></font></span></td>
 					<td align="center">
 					<input type="button" name="addnumber" value="+" onclick="javaScript:window.location.href='${pageContext.request.contextPath }/cart_addCartNum.action?uid=${cartItems.getUid()}&gid=${cartItems.getGid()}&gnum=1'"/>
-					<input type="text" name="numbershowtext" value="${cartItems.getGnum()}" id="number" readonly="readonly" style="width:20px;">
+					<input type="text" name="numbershowtext" value="${cartItems.getGnum()}" id="number" readonly="readonly" style="width:20px;"><!--&showPage.currentPage=${showPage.getCurrentpage()}  -->
 					<input type="button" name="reducenumber" value="-" onclick="javaScript:window.location.href='${pageContext.request.contextPath }/cart_decCartNum.action?uid=${cartItems.getUid()}&gid=${cartItems.getGid()}&gnum=1'"/>
 					</td>
 					<td align="center"><span class="showMess"><a href="#" onclick="pitchon()">点击下单</a></span></td>
@@ -51,7 +51,7 @@
 			<a  href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${showPage.getTotalpages()}">尾页</a>
 		</div>
 		<div  style="float:left; margin-left:5%; ">
-			<!-- <a href="javaScript:allSelect();">全选</a> -->&nbsp;
+			<a href="javaScript:allSelect();">全选</a>&nbsp;
 			<a href="javaScript:pitchon();">下单</a>&nbsp;
 			<a href="${pageContext.request.contextPath }/orders_lookOrders.action">我的订单</a>
 			<input type="submit" value="删除" border="0" style="color: blue; border:0px;background: white;font-size:15px;text-decoration: underline;">
@@ -62,7 +62,7 @@
 	</form>
 	<div>
 	</div>
-</c:if>
+</c:if><!--javascript:history.go(-1)  -->
 <a href="sum.jsp" class="continueshopping">返回</a>
 <c:if test="${empty cartlist}">
 		<h3 align="center" style="font-style: italic;font-weight: bold;font-size:14px; color:blue;">空空的，需要您去寻找你的宝藏......</h3>

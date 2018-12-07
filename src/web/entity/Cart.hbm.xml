@@ -10,5 +10,10 @@
 		<property name="gid"></property>
 		<property name="gnum"></property>
 		<property name="date"></property>
+		
+		<!-- <set name="setitems" inverse="true"  cascade="all">
+			<key column="cgid"></key>
+			<one-to-many class="web.entity.Items"/>
+		</set> -->
 	</class>
 </hibernate-mapping>
