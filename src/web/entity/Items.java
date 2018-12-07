@@ -1,11 +1,7 @@
 package web.entity;
 
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import web.service.dao.Connc3p0;
+import java.util.Set;
 /**
  * @author 黄信胜
  * @date 2018年11月20日下午8:38:07
@@ -20,6 +16,13 @@ public class Items implements Serializable{
 	private String gintroduce;//介绍
 	private double  gprice;//价格
 	private String imgsrc;//图片路径
+	private Set<OrdersDetail> ordersDetail;//关联的订单详情类，一对多
+	public Set<OrdersDetail> getOrdersDetail() {
+		return ordersDetail;
+	}
+	public void setOrdersDetail(Set<OrdersDetail> ordersDetail) {
+		this.ordersDetail = ordersDetail;
+	}
 	public Integer getTid() {
 		return tid;
 	}
@@ -61,11 +64,6 @@ public class Items implements Serializable{
 	}
 	public void setGprice(double gprice) {
 		this.gprice = gprice;
-	}
-	@Override
-	public String toString() {
-		return "Items [tid=" + tid + ", gid=" + gid + ", gname=" + gname + ", gbrand=" + gbrand + ", gintroduce="
-				+ gintroduce + ", gprice=" + gprice + ", imgsrc=" + imgsrc + "]";
 	}
 	
 }

@@ -29,7 +29,7 @@
 					<td align="center"><span class="showMess"><img src="${1}" width="40px" height="60px"/><c:out value="${1}"/></span></td>
 					<td align="center"><span class="showMess"><c:out value="${orders.getGnum()}"/></span></td>
 					<td align="center"><span class="showMess">¥<c:out value="${orders.getAllMoney()}"/></span></td>
-					<td align="center"><span class="showMess"><c:out value="${orders.getDate()}"/></td>
+					<td align="center"><span class="showMess"><c:out value="${orders.getDate()}"/></span></td>
 					<td align="center"><span class="showMess"><c:out value="${orders.getOrderStatus()}"/></span></td>
 				</tr>
 		</c:forEach>
@@ -38,7 +38,7 @@
 		<a href="#"  class="continueshopping">继续购物</a>
 	</div>
 </c:if>
-<c:if test="${empty buylist}">
+<c:if test="${empty orderList}">
 	<script type="text/javascript">
 		alert("亲\n\n您还没有下单哦,快去挑选你喜欢的商品吧");
 		history.back();
