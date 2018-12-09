@@ -2,6 +2,7 @@ package web.dao;
 
 import java.util.List;
 
+import web.entity.Items;
 import web.entity.Orders;
 
 /**
@@ -29,5 +30,12 @@ public interface OrdersDao {
 	 * @return 订单实体类对象集合
 	 */
 	List<Orders> lookOrders(Integer uid);
+	
+	/**
+	 * 通过商品id查询商品
+	 * @param id 要查询的商品id
+	 * @return 返回查询的商品实体类
+	 */
+	Items findItemsById(Integer id);
 
 }

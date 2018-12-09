@@ -23,38 +23,38 @@ public class CartServiceImpl implements CartService {
 	}
 
 	//添加商品到购物车
-	public void addCart(Cart cart) {
+	public void addCart(Cart cart) throws Exception {
 		cartDao.addCart(cart);
 		
 	}
 
 	//查看购物车
-	public List<CartItems> lookCart(User user, Integer currentPage, Integer maxResult) {
+	public List<CartItems> lookCart(User user, Integer currentPage, Integer maxResult) throws Exception {
 		return cartDao.lookCart(user, currentPage, maxResult);
 	}
 
 	//检查购物车中是否有重复商品
-	public List<Cart> checkExistItems(Integer uid, Integer gid) {
+	public List<Cart> checkExistItems(Integer uid, Integer gid) throws Exception {
 		return cartDao.checkExistItems(uid, gid);
 	}
 
 	//修改商品数量
-	public void saveCart(Cart cart) {
+	public void saveCart(Cart cart) throws Exception {
 		 cartDao.SaveCart(cart);
 	}
 
 	//删除购物车中的商品
-	public void deleCart(Integer uid, Integer gid) {
+	public void deleCart(Integer uid, Integer gid) throws Exception {
 		cartDao.deleCart(uid,gid);
 	}
 
 	@Override
-	public Long countAllCartItems(Integer uid) {
+	public Long countAllCartItems(Integer uid) throws Exception {
 		return cartDao.countAllCartItems(uid);
 	}
 
 	@Override
-	public Long statisticalCarts(Integer uid) {
+	public Long statisticalCarts(Integer uid) throws Exception {
 		return cartDao.statisticalCarts(uid);
 	}
 }

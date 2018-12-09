@@ -4,10 +4,10 @@
 <hibernate-mapping>
 	<class name="web.entity.OrdersDetail" table="item_ordersdetail">
 		<id name="id" column="id">
-			<generator class="native"></generator>
+			<generator class="native"/>
 		</id>
-		<property name="itemsNum"></property>
-		<many-to-one name="orders" class="web.entity.Orders" column="orders_id"></many-to-one>
-		<many-to-one name="items" class="web.entity.Items" column="items_id"></many-to-one>
+		<property name="itemsNum"/>
+		<many-to-one name="orders" class="web.entity.Orders" column="orders_id"/>
+		<many-to-one name="items" class="web.entity.Items" column="items_id"/>
 	</class>
 </hibernate-mapping>

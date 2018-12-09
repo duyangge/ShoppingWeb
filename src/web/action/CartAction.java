@@ -68,8 +68,9 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	 * @param uid 用户id
 	 * @param gid 商品id
 	 * @return true:说明表中该记录已存在；false:该记录不存在
+	 * @throws Exception 
 	 */
-	public boolean checkExistItems(Integer uid, Integer gid) {
+	public boolean checkExistItems(Integer uid, Integer gid) throws Exception {
 		List<Cart> list = cartService.checkExistItems(uid, gid);
 		if (list != null&&list.size() > 0) {
 			Cart listCart = list.get(0);
@@ -92,17 +93,18 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	/**
 	 * 
 	 * @param c1 需要保存的商品类
+	 * @throws Exception 
 	 */
-	public void saveCart(Cart c1) {
+	public void saveCart(Cart c1) throws Exception {
 		cartService.saveCart(c1);
 	}
 	
 	/**
 	 * 添加商品
 	 * @return 返回一个字符串“addCart"
-	 * @throws ParseException 日期格式化异常
+	 * @throws Exception 
 	 */
-	public String addCart() throws ParseException {
+	public String addCart() throws Exception {
 		if (this.checkExistItems(((User)con.getSession().get("user")).getUid(), cart.getGid())){}//购物车存在该商品添加数量
 		else {
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式  
@@ -115,8 +117,9 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	/**
 	 * 查看购物车
 	 * @return 返回一个字符串 ”lookCart"
+	 * @throws Exception 
 	 */
-	public String lookCart() {
+	public String lookCart() throws Exception {
 		System.out.println("showpage:\t"+showPage.getCurrentpage());
 		this.PagingProcess(cartService.statisticalCarts(((User)con.getSession().get("user")).getUid()).intValue());//总记录数
 		List<CartItems> cartlist = cartService.lookCart((User)con.getSession().get("user"), showPage.getCurrentpage(), showPage.getPageSize());//购物表
@@ -128,8 +131,9 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	/**
 	 * 统计用户购物车总数
 	 * @return 返回 ”success"
+	 * @throws Exception 
 	 */
-	public String countAllCartItems(){
+	public String countAllCartItems() throws Exception{
 		if (cartService.countAllCartItems(((User) con.getSession().get("user")).getUid()) != null)
 			con.getSession().put("countAllCartItems", cartService.countAllCartItems(((User) con.getSession().get("user")).getUid()));
 		else
@@ -152,8 +156,10 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	/**
 	 * 删除商品
 	 * @return 返回一个字符串 ”lookCart"
+	 * @throws Exception 
+	 * @throws NumberFormatException 
 	 */
-	public String deleCart() {
+	public String deleCart() throws NumberFormatException, Exception {
 		for (String gid : gidlist) {cartService.deleCart(((User)con.getSession().get("user")).getUid(), Integer.parseInt(gid));}
 		this.lookCart();
 		return "lookCart";
@@ -164,8 +170,9 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	/**
 	 * 添加商品数量
 	 * @return 返回一个字符串 ”lookCart"
+	 * @throws Exception 
 	 */
-	public String addCartNum() {
+	public String addCartNum() throws Exception {
 		this.checkExistItems(cart.getUid(), cart.getGid());
 		this.lookCart();
 		return "lookCart";
@@ -174,8 +181,9 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	/**
 	 * 减少商品数量
 	 * @return 返回一个字符串 ”lookCart"
+	 * @throws Exception 
 	 */
-	public String decCartNum() {
+	public String decCartNum() throws Exception {
 		numcondition = false;
 		this.checkExistItems(cart.getUid(), cart.getGid());
 		numcondition = true;

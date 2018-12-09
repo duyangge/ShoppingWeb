@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Set;
+
 import web.service.dao.Connc3p0;
 /**
  * @author 黄信胜
@@ -20,6 +22,14 @@ public class Items implements Serializable{
 	private String gintroduce;//介绍
 	private double  gprice;//价格
 	private String imgsrc;//图片路径
+	private Set<OrdersDetail> ordersDetail;//订单详情，一对多
+	
+	public Set<OrdersDetail> getOrdersDetail() {
+		return ordersDetail;
+	}
+	public void setOrdersDetail(Set<OrdersDetail> ordersDetail) {
+		this.ordersDetail = ordersDetail;
+	}
 	public Integer getTid() {
 		return tid;
 	}

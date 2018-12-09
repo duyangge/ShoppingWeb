@@ -8,11 +8,10 @@
 <title>购物车列表</title>
 <link href="css/mycart.css" rel="stylesheet" type="text/css"/>
 <link href="css/main.css" type="text/css" rel="stylesheet"/>
-<script type="text/javascript" src="js/addcart.js"></script>
 </head>
 <body>
 <c:if test="${not empty cartlist}">
-	<form action="${pageContext.request.contextPath }/cart_deleCart.action" method="post">
+	<form action="${pageContext.request.contextPath }/cart_deleCart.action" method="post" >
 	<h4 align="left"><font size="4px" color="blue">${user.getUsername()}先生</font>,商品数量总共<font  size="4px" color="red">${countAllCartItems}</font>件，详情如下：</h4>
 	<table border="1" cellspacing="0" class="tablecart" align="center" width="90%" style="border-left:none;border-right:none;border-buttom:none;">
 		<tr style="background:red">
@@ -40,6 +39,7 @@
 					<td align="center"><span class="showMess"><a href="#" onclick="pitchon()">点击下单</a></span></td>
 					<td align="center"><span class="showMess">¥<font id="subprice"><c:out value="${cartItems.getGnum()*cartItems.getGprice()}"/></font></span></td>
 				</tr>
+				<input type="hidden" id="hid_num+${cartItems.getGid()}" value="${cartItems.getGnum()}"/>
 		</c:forEach>
 	</table><!--已选商品数量，已选商品总价格  -->
 	<div style="margin-top:5%;">
@@ -68,4 +68,5 @@
 		<h3 align="center" style="font-style: italic;font-weight: bold;font-size:14px; color:blue;">空空的，需要您去寻找你的宝藏......</h3>
 </c:if>
 </body>
+<script type="text/javascript" src="js/addcart.js"></script>
 </html>

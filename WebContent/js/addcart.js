@@ -10,27 +10,41 @@ function instantbuy(){
 		}else{return;}
 }
 
-function pitchon() {
+function pitchon() {//提交订单中的商品id与对应的数量,总价格，商品总数量，
 	var bb = "";
 	var temp = "";
+	var itemsnum = " ";
 	var a = document.getElementsByName("gidlist");
 	for ( var i = 0; i < a.length; i++) {
 		if (a[i].checked) {
 			temp = a[i].value;
 			bb = bb + "," +temp;
+			alert("hid_num:"+temp);
+			var x="hid_num:"+temp;
+			alert("x:"+typeof x);
+			console.log("x:"+typeof x);
+			var allnum= "hid_num4";
+			alert("allnum::"+typeof allnum);
+			console.log("allnum:"+typeof allnum);
+			var hid_num=document.getElementById(typeof String(allnum)).value
+			//var hid_num=document.getElementById("hid_num"+temp).value;
+			//alert(hid_num);
+			//alert(hid_num.innerHTML);
+			alert(hid_num);
+			itemsnum = itemsnum +","+hid_num;
+			
 		}
 	}
 	if(bb == "" || bb.length == 0){
 		alert("请勾选需要的资源项!");
 		return;
 	}
-	var gnum=document.getElementById("number").value;//
-	var gid=document.getElementById("gid").value;//
-	var unitprice=document.getElementById("unitprice").value;//
+	//var gnum=document.getElementById("number").value;//
+	//var gid=document.getElementById("gid").value;//
+	//var unitprice=document.getElementById("unitprice").value;//
 	var allMoney=unitprice*gnum;//
-	//String [] gidlist=bb.split(",");
-	window.location.href="${pageContext.request.contextPath}/orders_addOrders.action?gid="+gid+"&gnum="+gnum+"&allMoney="+allMoney+"&gidlist="+bb; 
-	//window.location.href="${pageContext.request.contextPath}/cart_lookCart.action";
+	/*window.location.href="${pageContext.request.contextPath}/orders_addOrders.action?gid="+gid+"&gnum="
+	   +gnum+"&allMoney="+allMoney+"&gidlist="+bb+"&itemsnum="+itemsnum; */
 	}
 function allSelect(){
 	var a = document.getElementsByName("gidlist");

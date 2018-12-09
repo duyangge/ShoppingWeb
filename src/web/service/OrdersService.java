@@ -2,6 +2,7 @@ package web.service;
 
 import java.util.List;
 
+import web.entity.Items;
 import web.entity.Orders;
 /**
  * @author 黄信胜
@@ -28,5 +29,11 @@ public interface OrdersService {
 	 * @return 订单对象集合
 	 */
 	List<Orders> lookOrders(Integer uid);
-
+	
+	/**
+	 * 通过商品id查询商品信息
+	 * @param id 商品id
+	 * @return 需要被查询的商品实体类
+	 */
+	Items findItemsById(Integer id);
 }

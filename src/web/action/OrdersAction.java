@@ -1,22 +1,25 @@
 package web.action;
 
 import java.util.Date;
-
-import web.Intermediate.ShowPage;
-import web.entity.Orders;
-import web.entity.ShippingAddress;
-import web.entity.User;
-import web.service.OrdersService;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+import web.Intermediate.ShowPage;
+import web.entity.*;
+import web.service.*;
 
-/**对客户订单信息的各种操作
- * @author 黄信胜
- * @date 2018年11月20日下午8:35:47
- * @version 版本号
+/**
+ *<p> Title:  OrdersAction</p>
+ *<p> Description:  对客户订单信息的各种操作</p>
+ * @package   web.action
+ * @author    黄信胜
+ * @date      2018年12月9日下午8:45:00
+ * @version 1.0
  */
 @SuppressWarnings("all")
 public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
@@ -25,15 +28,6 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
   private ActionContext con = ActionContext.getContext();
   private Orders orders = new Orders();
   private ShippingAddress shippingAddress;
-  private String gidlist;
-  
-  public void setGidlist(String gidlist) {
-	this.gidlist = gidlist;
- }
-  public String getGidlist() {
-	return gidlist;
- }
-
   public void setShippingAddress(ShippingAddress shippingAddress) {
 	this.shippingAddress = shippingAddress;
   }
@@ -50,7 +44,6 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 	this.showPage = showPage;
   }
   public Orders getModel() {
-  	// TODO Auto-generated method stub
   	return orders;
   }
   
@@ -63,29 +56,52 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 	return "lookOrders";
   }
   
-
   /**
    *添加订单
-   * 1.得到用户id，商品id，商品数量，商品总金额
+   * 1.下单时间，商品总数量，商品总金额，用户id，订单id
    * 2.确定下单时间
    * 3.检查是否填写收货信息,没有填写转到收货信息页面再提交，已填，直接保存
    * 4.选择是否马上付款（付款：1，未付:0） 
+   * 将订单详情的商品id与对应的商品数量存入map中
+   * 通过商品id查询商品，得到商品单价
+   * 通过商品id，得到对应的商品数量，再把所有的商品数量相加。
+   * 商品数量乘以商品单价得到商品总价，再把所有的商品总价相加；
    * @return 返回字符串"lookOrders"
    */
-  public String addOrders() {
-	/*  String [] gidList=gidlist.split(",");
-	  for (String string : gidList) {
-	}*/
-	  orders.setDate(new Date());
-	  orders.setUid(((User)(con.getSession().get("user"))).getUid());
-	  orders.setUser((User)(con.getSession().get("user")));
-	  orders.setOrderStatus(0);
-	  ordersService.addOrders(orders);
-	  if (!this.checkShippingAddress(((User)(con.getSession().get("user"))).getUid())) {
-		  con.getSession().put("orders", orders);
-		  return "writeaddress";
-	  }
-	  return "lookOrders";
+  public String addOrders(){
+	 try {
+		 Integer itemsAllNum = 0;/*订单中商品总数量*/
+		 Double itemsAllPrice = 0.0;/*订单中商品总价格*/
+		 String[] itemsIdList = ((String) con.get("itemsId")).split(",");/*接收下单的商品id总字符串*/
+		 String[] itemsNumList =((String) con.get("itemsNum")).split(",");/*接收下单的对应商品id的商品数量总字符串*/
+		 Map<Integer,Integer> itemsDetailMap = new HashMap<Integer,Integer>();
+	     for (int i = 0; i < itemsIdList.length; i++)  itemsDetailMap.put(Integer.parseInt(itemsIdList[i]), Integer.parseInt(itemsNumList[i]));
+	     con.getSession().put("itemsDetailMap", itemsDetailMap);/*计算商品总价格与总数量*/
+	    Set<Integer> itemsIdMap =  itemsDetailMap.keySet();
+	    for (Integer itemsidmap : itemsIdMap) {/*计算商品总价格与总数量*/
+	    	Integer itemsnum = itemsDetailMap.get(itemsidmap);/**/
+	    	Double itemsprice =  ordersService.findItemsById(itemsidmap).getGprice();/**/
+	    	itemsAllPrice += (itemsprice*itemsnum);
+	    	itemsAllNum += itemsnum;
+		}
+	 /*  将订单中的各个属性添加*/
+		  orders.setAllMoney(itemsAllPrice);
+		  orders.setGnum(itemsAllNum);
+		  orders.setDate(new Date());
+		  orders.setUid(((User)(con.getSession().get("user"))).getUid());
+		  orders.setUser((User)(con.getSession().get("user")));
+		  orders.setOrderStatus(0);
+		  ordersService.addOrders(orders);
+		/*  判断是否填写地址，无，则跳转到填写地址页面，否则就跳转到我的订单页面*/
+		  if (!this.checkShippingAddress(((User)(con.getSession().get("user"))).getUid())) {
+			  con.getSession().put("orders", orders);
+			  return "writeaddress";
+		  }
+	 }catch(Exception e) {
+		 System.out.println("保存商品id与对应数量到Map失败"+e);
+	 }
+	 return "lookOrders";
+	
   }
   
   /**
@@ -108,9 +124,7 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
   * @return 
   */
   public String saveShippingAddress() {
-	  
-	  
-	return "success";
+	return 	SUCCESS;
   }
   
   /**
@@ -138,6 +152,5 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
   public String delOrders() {
 	return null;
   }
-  
-
+ 
 }

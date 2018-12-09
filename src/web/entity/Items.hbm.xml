@@ -12,5 +12,9 @@
 		<property name="gintroduce"></property>
 		<property name="gprice"></property>
 		<property name="imgsrc"></property>
+		<set name="ordersDetail" cascade="all">
+			<key column="items_id"/>
+			<one-to-many class="web.entity.Items"/>
+		</set>
 	</class>
 </hibernate-mapping>
