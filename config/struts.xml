@@ -58,7 +58,7 @@
 		<action name="orders_*" class="ordersAction" method="{1}">
 			<interceptor-ref name="loginStack"></interceptor-ref>
 			<result name="writeaddress">/orderaddress.jsp</result>
-			<result name="lookOrders">/myorder.jsp</result>
+			<result name="lookOrders" type="redirectAction">orders_lookOrders</result>
 			<allowed-methods>addOrders,lookOrders,checkShippingAddress,saveShippingAddress</allowed-methods>
 		</action>
 	</package>

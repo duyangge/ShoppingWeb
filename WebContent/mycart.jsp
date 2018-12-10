@@ -39,7 +39,7 @@
 					<td align="center"><span class="showMess"><a href="#" onclick="pitchon()">点击下单</a></span></td>
 					<td align="center"><span class="showMess">¥<font id="subprice"><c:out value="${cartItems.getGnum()*cartItems.getGprice()}"/></font></span></td>
 				</tr>
-				<input type="hidden" id="hid_num+${cartItems.getGid()}" value="${cartItems.getGnum()}"/>
+				<input type="hidden" id="hid_num${cartItems.getGid()}" value="${cartItems.getGnum()}"/>
 		</c:forEach>
 	</table><!--已选商品数量，已选商品总价格  -->
 	<div style="margin-top:5%;">
@@ -62,7 +62,7 @@
 	</form>
 	<div>
 	</div>
-</c:if><!--javascript:history.go(-1)  -->
+</c:if>
 <a href="sum.jsp" class="continueshopping">返回</a>
 <c:if test="${empty cartlist}">
 		<h3 align="center" style="font-style: italic;font-weight: bold;font-size:14px; color:blue;">空空的，需要您去寻找你的宝藏......</h3>
