@@ -13,24 +13,24 @@ body{
 	position:absolute; 
 	top:30%; 
 	left:50%; 
-	margin:-15em 0 0 -20em; 
-	width:45em; 
-	height:45em; 
+	margin:-150px 0 0 -200px; 
+	width:450px; 
+	height:450px; 
 }
 .allresign{
 	background:hsla(0,0%,100%,3);
 	text-align:center;
-	width:43em;
-	height:44em;
-	border-radius:0.5em;	
+	width:430px;
+	height:440px;
+	border-radius:5px;	
 }
 
 .button{
-	height:3.7em;
-	width:36.5em; 
+	height:37px;
+	width:365px; 
 	background:#0080ff;
 	border:none;
-	border-radius:0.5em;	
+	border-radius:5px;	
 }		
 .button:active{
 	background:#000080;
@@ -43,17 +43,17 @@ body{
 	font-weight;bold;
 }
 .text,.textpass{
-	height:4em;
-	width:30em;
+	height:40px;
+	width:300px;
 	border-left:none;
 	border-top:none;
 	border-right:none;
-	padding-left:7em;	
+	padding-left:70px;	
 }
 
 .text,.button,,.textpass{
-	margin-right:5em;
-	border-radius:0.5em;
+	margin-right:50px;
+	border-radius:5px;
 }
 
 .text{
@@ -67,11 +67,11 @@ body{
 	text-decoration:none;
 	color:black; 
 	font-family:"华文仿宋";
-	font-size:1.3em;/*10pt  */
+	font-size:10pt;/*10pt  */
 }
 .mess{
 	color:red;
-	font-size:1.2em;
+	font-size:12px;
 	font-weight:bold;
 }
 

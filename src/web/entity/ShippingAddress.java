@@ -2,11 +2,13 @@ package web.entity;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Component;
 /**
  * @author 黄信胜
  * @date 2018年11月20日下午8:38:41
  * @version 版本号
  */
+@Component("shippingAddress")
 @SuppressWarnings("all")
 public class ShippingAddress implements Serializable{
 	private Integer aid;//

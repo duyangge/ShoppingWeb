@@ -1,70 +1,70 @@
 
 .content{
-	margin:3em;
+	margin:30px;
 }
 .content_left{
 	float:left;
-	margin-right:5em;	
+	margin-right:50px;	
 }
 /* .imgshow{
-	height:20em;
-	weight:20em;
+	height:200px;
+	weight:200px;
 } */
 .showmess{
-	border:0em;
-	width:40em;
-	height:26.5em;
+	border:0px;
+	width:400px;
+	height:265px;
 }
 .content_right{
 	
 }
 #addcartbutton{
-	width:8.5em;
-	height:3em;
-	border-radius:1em; 
+	width:85px;
+	height:30px;
+	border-radius:10px; 
 	color:white;
 	background:red;
 }
 #buybutton{
-	width:8.5em;
-	height:3em;
-	border-radius:1em; 
+	width:85px;
+	height:30px;
+	border-radius:10px; 
 	color:red;
 	background:white; 
 	font-weight:bold;
 }
 
 #goodnametitle{
-	font-size:1.3em;
+	font-size:13px;
 	color:black;
 }
 #goodname_e{
-	font-size:1.8em;
+	font-size:18px;
 	color:black;
 	font-weight:bold;
 }
 
 #goodbrand_e{
-	font-size:1.7em;
+	font-size:17px;
 	color:red;
 	font-weight:bold;
 }
 #goodintroduce_e{
-	font-size:2.25em;
+	font-size:22.5px;
 	color:#c0c0c0;
 	font-weight:bold;
 }
 #goodprice_e{
-	font-size:3.1em;
+	font-size:31px;
 	color:red;
 	font-weight:bold;
 }
 .all_buttom{
-	margin-top:2em;
+	margin-top:20px;
 }
 .sheetshow_pricedel{
 	color:#c0c0c0;
 }
 a{
-	font-size:1.5em
+	font-size:15px
 }

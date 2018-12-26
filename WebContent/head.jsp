@@ -59,16 +59,16 @@ function SeacherGood(){
 			<div class="logo_car">
 					<a href="${pageContext.request.contextPath }/cart_lookCart.action" class="shoppingcar_logo">
 					<img class="" src="images/background/shoppingcar.png"/>
-					<font class="logo_car_buttle">我的购物车(<font size="0.5em" color="black">${countAllCartItems }</font>)</font></a>
+					<font class="logo_car_buttle">我的购物车(<font size="5px" color="black">${countAllCartItems }</font>)</font></a>
 			</div>	
 			</div>
 			<div class="logo_list">
 				<ul class="navigation">
 					<li><a href="sum.jsp" class="sum" style="color:white">全部商品分类</a></li>
-					<li><a href="showlistServlet?tablename=goods" id="list">运动馆</a></li>
-					<li><a href="showlistServlet?tablename=goods" id="list">鞋靴馆</a></li>
-					<li><a href="showlistServlet?tablename=goods" id="list">儿童馆</a></li>
-					<li><a href="person.jsp" id="list">个人中心</a></li>
+					<li><a href="#" id="list">运动馆</a></li>
+					<li><a href="#" id="list">鞋靴馆</a></li>
+					<li><a href="#" id="list">儿童馆</a></li>
+					<li><a href="#" id="list">个人中心</a></li>
 					<li><a href="#" id="list">积分兑换</a></li>
 					<li><a href="connectionus.jsp" id="list">联系我们</a></li>
 				</ul>

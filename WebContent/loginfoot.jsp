@@ -8,14 +8,14 @@
 <style>
 span{
 	font-family:"华文新魏";
-	font-size:1.43em;/* 11pt */
+	font-size:11pt;/* 11pt */
 	color:black;
-	font-size:1.43em;/* 11pt */
+	font-size:11pt;/* 11pt */
 }
 a{
 text-decoration:none;
 color:#808080;
-font-size:1.3em;/*10pt  */
+font-size:10pt;/*10pt  */
 }
 pre{
 text-align:center;

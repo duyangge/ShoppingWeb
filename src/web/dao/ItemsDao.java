@@ -28,27 +28,29 @@ public interface ItemsDao {
 	 * @param gid 商品id
 	 * @return 商品实体类对象
 	 */
-	Items goDetailItems(Integer gid);
+	Items getDetailItems(Integer gid);
 	
 	/**加载商品类型的图标
 	 * @param tid  商品类型的id
 	 * @return  商标实体类对象集合
-	 */
+	 *//*
 	List<ItemsBrand> loadItemsImgBrand(Integer tid);
 	
-	/**
+	*//**
 	 * 加载首页商品类型
 	 * @param tid
 	 * @return
-	 */
+	 *//*
 	List<ItemsType> loadItemsType(Integer tid);
 
-	/**
+	*//**
 	 * 加载首页商品类的描述
 	 * @param tid 商品类型的id
 	 * @return 商品类型描述的实体类对象集合
-	 */
+	 *//*
 	List<ItemsShowText> loadItemsShowText(Integer tid);
+
+	*/
 
 	
 	

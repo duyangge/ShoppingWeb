@@ -1,7 +1,6 @@
 <%-- <%@page import="java.awt.SystemTray"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="web.service.bean.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- <jsp:useBean id="users" class="web.service.bean.user" scope="session"/>    --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -44,9 +43,9 @@
 					</div>
 					<br>
 					<div class="validcode">
-						<input type="text" name="checkCode" style="width:7em;height:3.5em;"> 
+						<input type="text" name="checkCode" style="width:70px;height:35px;margin-left:25px;"> 
 						<img src="<c:out value='PCCode'/>" id="CreateCheckCode" align="middle" style="margin-top:-1em;"> 
-						<a href="#" onclick="myReload()" style="font-size:1.2em;color:red;margin-left:10em;"> 看不清,换一个</a>	
+						<a href="#" onclick="myReload()" style="font-size:12px;color:red;margin-left:100px;"> 看不清,换一个</a>	
 					</div>
 					<br>
 					<div class="div_button_login">

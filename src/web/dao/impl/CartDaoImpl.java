@@ -3,19 +3,23 @@ package web.dao.impl;
 import java.util.List;
 
 import org.hibernate.Query;
-import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 
 import web.Intermediate.CartItems;
 import web.dao.CartDao;
 import web.entity.Cart;
 import web.entity.User;
 /**
- * @author 黄信胜
- * @date 2018年11月20日下午8:37:28
- * @version 版本号
+ *<p> Title:  CartDaoImpl.java</p>
+ *<p> Description:  购物车的Dao层实现类</p>
+ * @package   web.dao.impl
+ * @author    黄信胜
+ * @date      2018年12月23日下午12:42:36
+ * @version 1.0
  */
+@Repository("cartDao")
 @SuppressWarnings("all")
-public class CartDaoImpl extends HibernateDaoSupport implements CartDao {
+public class CartDaoImpl extends BaseDaoHibernate implements CartDao {
 	
 	/*
 	 * (non-Javadoc)

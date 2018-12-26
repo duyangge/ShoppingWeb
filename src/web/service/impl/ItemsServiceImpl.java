@@ -2,6 +2,8 @@ package web.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import web.dao.ItemsDao;
@@ -16,9 +18,14 @@ import web.service.ItemsService;
  * @date 2018年11月20日下午8:41:00
  * @version 版本号
  */
+@Transactional
+@Service("itemsService")
 @SuppressWarnings("all")
 public class ItemsServiceImpl implements ItemsService{
+	
+	@Autowired
 	private ItemsDao itemsDao;
+	
 	public void setItemsDao(ItemsDao itemsDao) {
 		this.itemsDao = itemsDao;
 	}
@@ -39,33 +46,33 @@ public class ItemsServiceImpl implements ItemsService{
 	/* (non-Javadoc)进入物品详细页面
 	 * @see web.servicce.ItemsService#goDetailItems(java.lang.String, java.lang.Integer)
 	 */
-	public Items goDetailItems(Integer gid) {
-		return itemsDao.goDetailItems(gid);
+	public Items getDetailItems(Integer gid) {
+		return itemsDao.getDetailItems(gid);
 	}
 
-	/* (non-Javadoc)
+/*	 (non-Javadoc)
 	 * @see web.servicce.ItemsService#loadItemsImgBrand(web.entity.ItemsImgBrand)
-	 */
+	 
 	@Override
 	public List<ItemsBrand> loadItemsBrand(Integer tid) {
 		return itemsDao.loadItemsImgBrand(tid);
 	}
 
-	/* 
+	 
 	 * (non-Javadoc)
 	 * @see web.servicce.ItemsService#loadItemsType(java.lang.Integer)
-	 */
+	 
 	public List<ItemsType> loadItemsType(Integer tid) {
 		return itemsDao.loadItemsType(tid);
 	}
 
-	/* (non-Javadoc)
+	 (non-Javadoc)
 	 * @see web.servicce.ItemsService#loadItemsShowText(java.lang.Integer)
-	 */
+	 
 	public List<ItemsShowText> loadItemsShowText(Integer tid) {
 		
 		return itemsDao.loadItemsShowText(tid);
-	}
+	}*/
 
 
 

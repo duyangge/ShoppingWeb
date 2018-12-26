@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*,web.service.bean.*,web.service.dao.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:useBean id="showpage" class="web.service.bean.ShowPage" scope="session"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,14 +9,6 @@
 <link rel="stylesheet" type="text/css" href="css/showMessPane.css">
 </head>
 <body>
-<%	
-	BaseDao bd=new BaseDao();//实例化一个demo类
-	ArrayList<MessageBoard> messageboard=(ArrayList<MessageBoard>)session.getAttribute("messageboard");//返回所有的数据库中的记录
-	ArrayList<MessageBoard> mb=(ArrayList<MessageBoard>)request.getAttribute("alm");//关键字搜索后，返回有关的数据库记录
-	showpage.setPageSize(3);
-	session.setAttribute("showpage", showpage);//保存，上一页，下一页的调用
-	session.setAttribute("mb", mb);
-%>
 <div align="center">
 <c:if test="${not empty messageboard}"><!--if判断messageboard是否为空  -->
 	<c:choose>
@@ -130,7 +120,7 @@
 		</td>
 	</tr>
 </table>
-<h3><a href="submit.jsp">返回留言板</a><br>当前显示第${showpage.getCurrentpage()}/<%=bd.getTR(showpage,BaseDao.sqlmessageboard)%>页</h3>
+<%-- <h3><a href="submit.jsp">返回留言板</a><br>当前显示第${showpage.getCurrentpage()}/<%=bd.getTR(showpage,BaseDao.sqlmessageboard)%>页</h3> --%>
 </div>
 </body>
 <script type="text/javascript" src="js/leavemess.js"></script>

@@ -10,10 +10,12 @@
 		<property name="gnum"></property>
 		<property name="allMoney"></property>
 		<property name="orderStatus"></property>
-		<set name="ordersDetail" cascade="all">
+		
+		<set name="ordersDetail" cascade="all" lazy="true">
 			<key column="orders_id"/>
 			<one-to-many class="web.entity.OrdersDetail"/>			
 		</set>
+		
 	    <many-to-one name="user" class="web.entity.User" column="uid"/>
 	</class>
 </hibernate-mapping>

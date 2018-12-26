@@ -1,4 +1,4 @@
-#tablemess{
+#tabl0pxess{
 	border:10px solid #eae8e6;
 }
 #tabletitle{
@@ -10,7 +10,7 @@
 	color:black;
 }
 #textcontent{
-	font-size:1.8em;
+	font-size:18px;
 	font-weiht:bold;
 	border:none;
 	overflow:hidden;
@@ -18,41 +18,41 @@
 	width:100%;
 }
 #tablecontent{
-	font-size:1.8em;
+	font-size:18px;
 	font-weiht:bold;
 	text-aglin:center;
 	
 }
 h2{
-	font-size:2.5em;
+	font-size:25px;
 	text-aglin:center;
 	color:blue;
 }
 .button{
-	border-radius:0.8em;
-	width:8em;
-	height:2.7em;
+	border-radius:8px;
+	width:80px;
+	height:27px;
 	background:#ffc184;
 }
 .textseacher{
-	border-radius:1em;
-	width:23em;
-	height:2em;
+	border-radius:10px;
+	width:230px;
+	height:20px;
 }
 .subform{
 	width: 50%;
 	height:30%;
-	margin: 20em auto;
-	margin-top:4em;
+	margin: 200px auto;
+	margin-top:40px;
 
 }
 #submit_text{
 	font-family:"华文宋体";
-	font-size:1.3em;/* 10pt */
+	font-size:10pt;/* 10pt */
 	font-weight:bold;
 }
 .sm_b{
-	width:4em;
-	height:4em;
-	border-radius:0.5em;
+	width:40px;
+	height:40px;
+	border-radius:5px;
 }

@@ -2,14 +2,14 @@
 .tablecart{
 	border-left:0px;
 	border-right:0px;
-	border: 0em solid white;
+	border: 0px solid white;
 }
 .showMesstitle{
-	font-size:2em;
+	font-size:20px;
 	color:white;
 }  
 .showMess{
-	font-size:1.6em;
+	font-size:16px;
 }
 
                

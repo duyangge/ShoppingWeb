@@ -1,6 +1,4 @@
-<%@page import="javax.sound.midi.SysexMessage,web.service.bean.Items"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,7 +9,11 @@
 <link href="css/addcart.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<form action="${pageContext.request.contextPath }/cart_addCart.action" method="post">
+<c:if test="${SessionScope.detailItems == null}">
+	<font>空空如夜${SessionScope.detailItems}</font>
+</c:if>
+<c:if test="${SessionScope.detailItems != null}">
+	<form action="${pageContext.request.contextPath }/cart_addCart.action" method="post">
 <!--通过获取物品id得到物品信息  -->
 	<div class="content">
 		<div class="content_left">
@@ -72,6 +74,10 @@
 		<a href="${pageContext.request.contextPath }/user_loginout.action">退出</a>
 	</div>
 	</form>
+
+
+</c:if>
+
 </body>
 <script type="text/javascript" src="js/addcart.js">
 </script> 

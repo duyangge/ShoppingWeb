@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>魅力男鞋专场</title>
 <link href="css/main.css" type="text/css" rel="stylesheet"/>
+<title>魅力男鞋专场</title>
 </head>
 <body onload="${pageContext.request.contextPath}/items_loadAll.action">
 	<div class="mansheet">
@@ -28,7 +28,9 @@
 						<c:forEach items="${manBrand}" var="brand" varStatus="status">
 							<th><img src="${brand.imageSrc}"></th>
 							<!--显示商标一行两列  -->
-							<c:if test="${status.count % 2 == 0}"></tr><tr>
+							<c:if test="${status.count % 2 == 0}">
+									</tr>
+								<tr>
 							</c:if>	
 						</c:forEach>
 					</tr>

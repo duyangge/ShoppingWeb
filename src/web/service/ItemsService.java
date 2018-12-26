@@ -17,38 +17,42 @@ public interface ItemsService {
 
 	/**
 	 * 点击商品显示
-	 * 
 	 * @param tid  商品类型id
 	 * @return
+	 * @throws Exception
 	 */
-	List<Items> inItemsList(Integer tid);
+	List<Items> inItemsList(Integer tid) throws Exception;
 	
 	/**
 	 * 通过商品表名与商品id查询并返回该商品对象
 	 * 
 	 * @param gid 商品id
 	 * @return 商品对象
+	 * @throws Exception
 	 */
-    Items goDetailItems(Integer gid);
+    Items getDetailItems(Integer gid) throws Exception;
     
-	/**加载首页商品类图标，并返回商品商标实体类对象
+/*	*//**加载首页商品类图标，并返回商品商标实体类对象
 	 * @param tid  商品类型的id
 	 * @return 返回商品商标实体类对象集合
-	 */
-	List<ItemsBrand> loadItemsBrand(Integer tid);
+	 * @throws Exception
+	 *//*
+	List<ItemsBrand> loadItemsBrand(Integer tid) throws Exception;
 	
-	/**
+	*//**
 	 * 加载首页商品类型的
 	 * @param tid 商品类型的id
 	 * @return 商品类型的实体类集合
-	 */
-	List<ItemsType> loadItemsType(Integer tid);
+	 * @throws Exception
+	 *//*
+	List<ItemsType> loadItemsType(Integer tid) throws Exception;
 
-	/**
+	*//**
 	 * 加载首页商品图片
 	 * @param tid 商品类型的id
 	 * @return 商品类型的集合
-	 */
-	List<ItemsShowText> loadItemsShowText(Integer tid);
+	 * @throws Exception
+	 *//*
+	List<ItemsShowText> loadItemsShowText(Integer tid) throws Exception;*/
 	
 }

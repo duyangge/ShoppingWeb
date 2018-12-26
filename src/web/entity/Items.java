@@ -7,21 +7,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Set;
 
-import web.service.dao.Connc3p0;
+
 /**
- * @author 黄信胜
- * @date 2018年11月20日下午8:38:07
- * @version 版本号
+ *<p> Title:  Items.java</p>
+ *<p> Description:  商品实体类</p>
+ * @package   web.entity
+ * @author    黄信胜
+ * @date      2018年12月23日上午9:17:07
+ * @version 1.0
  */
 @SuppressWarnings("all")
 public class Items implements Serializable{
+	@Override
+	public String toString() {
+		return "Items [tid=" + tid + ", gid=" + gid + ", gname=" + gname + ", gbrand=" + gbrand + ", gintroduce="
+				+ gintroduce + ", gprice=" + gprice + ", imgsrc=" + imgsrc + ", ordersDetail=" + ordersDetail + "]";
+	}
 	private Integer tid;//商品类型id
-	private Integer  gid;//物品id
+	private Integer gid;//物品id
 	private String  gname;//名称
 	private String gbrand;//品牌
 	private String gintroduce;//介绍
 	private double  gprice;//价格
 	private String imgsrc;//图片路径
+	
 	private Set<OrdersDetail> ordersDetail;//订单详情，一对多
 	
 	public Set<OrdersDetail> getOrdersDetail() {
@@ -72,10 +81,4 @@ public class Items implements Serializable{
 	public void setGprice(double gprice) {
 		this.gprice = gprice;
 	}
-	@Override
-	public String toString() {
-		return "Items [tid=" + tid + ", gid=" + gid + ", gname=" + gname + ", gbrand=" + gbrand + ", gintroduce="
-				+ gintroduce + ", gprice=" + gprice + ", imgsrc=" + imgsrc + "]";
-	}
-	
 }

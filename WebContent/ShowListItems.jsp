@@ -10,11 +10,11 @@
 <link href="css/main.css" type="text/css" rel="stylesheet"/>
 <style type="text/css">
 .head_hr{
-	margin-top:1.5em;
-	margin-buttom:1em;
+	margin-top:15px;
+	margin-buttom:10px;
 }
 .contentshow{
-	margin:3em;
+	margin:30px;
 }
 </style>
 </head>
@@ -29,7 +29,7 @@
 					<c:forEach var="items" items="${itemslist}" varStatus="status">
 						<td>
 							<div>
-								<a href="${pageContext.request.contextPath }/items_goDetailItems.action?gid=${items.gid}" class="personalshow_introduce">
+								<a href="${pageContext.request.contextPath }/items_getDetailItems.action?gid=${items.gid}" class="personalshow_introduce">
 									<img src="${items.getImgsrc()}" width="230px" height="200px"/>	
 									<div>
 										<dl>

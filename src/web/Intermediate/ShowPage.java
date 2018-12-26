@@ -1,10 +1,13 @@
 package web.Intermediate;
 
+import org.springframework.stereotype.Component;
+
 /**分页的实体类
  * @author 黄信胜
  * @date 2018年11月20日下午8:40:02
  * @version 版本号
  */
+@Component("showPage")
 @SuppressWarnings("all")
 public class ShowPage {
 	private Integer currentpage=1;//当前页

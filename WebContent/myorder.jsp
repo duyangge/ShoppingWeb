@@ -10,35 +10,36 @@
 <link href="css/main.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-	<c:if test="${not empty orderList}">
+	<c:if test="${not empty ordersList}">
 	<h5 align="left" style="color:blue" >${username}先生的订单列表，总计<span>${orderList.size()}件订单，详情如下：</span></h5>
 	<table border="1" cellspacing="0" class="tablecart" align="center" width="90%">
 		<tr style="background:red">
 		<!--1.显示：订单编号，商品名称，商品数量，总金额，订单时间，是否付款， 
 		 -->
 		 	<td align="center"><span class="showMesstitle">订单编号</span></td>
-			<td align="center"><span class="showMesstitle">商品</span></td>
 			<td align="center"><span class="showMesstitle">商品数量</span></td>
 			<td align="center"><span class="showMesstitle">总金额</span></td>
 			<td align="center"><span class="showMesstitle">下单时间</span></td>
 			<td align="center"><span class="showMesstitle">状态</span></td>
+			<td align="center"><span class="showMesstitle">查看详情</span></td>
+			
 		</tr>
-		<c:forEach var="orders" items="${orderList}">
+		<c:forEach var="orders" items="${ordersList}">
 				<tr>
 					<td align="center"><span class="showMess"><c:out value="${orders.getRid()}"/></span></td>
-					<td align="center"><span class="showMess"><img src="${1}" width="40px" height="60px"/><c:out value="${1}"/></span></td>
 					<td align="center"><span class="showMess"><c:out value="${orders.getGnum()}"/></span></td>
 					<td align="center"><span class="showMess">¥<c:out value="${orders.getAllMoney()}"/></span></td>
-					<td align="center"><span class="showMess"><c:out value="${orders.getDate()}"/></td>
+					<td align="center"><span class="showMess"><c:out value="${orders.getDate()}"/></span></td>
 					<td align="center"><span class="showMess"><c:out value="${orders.getOrderStatus()}"/></span></td>
+					<td align="center"><span class="showMess"><a href="${pageContext.request.contextPath }/orders_lookItemsDetail.action?rid=${orders.getRid()}">查看详情</a></span></td>
 				</tr>
 		</c:forEach>
 	</table>
 	<div align="center" style=" margin-top:50px">
-		<a href="#"  class="continueshopping">继续购物</a>
+		<a href="sum.jsp"  class="continueshopping">继续购物</a>
 	</div>
 </c:if>
-<c:if test="${empty buylist}">
+<c:if test="${empty ordersList}">
 	<script type="text/javascript">
 		alert("亲\n\n您还没有下单哦,快去挑选你喜欢的商品吧");
 		history.back();

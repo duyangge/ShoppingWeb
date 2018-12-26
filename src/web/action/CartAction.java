@@ -1,17 +1,20 @@
 package web.action;
 
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 import web.Intermediate.CartItems;
-import web.Intermediate.RecordPriceAndNum;
 import web.Intermediate.ShowPage;
 import web.entity.Cart;
 import web.entity.User;
@@ -22,15 +25,27 @@ import web.service.CartService;
  * @date 2018年11月20日下午8:35:06
  * @version 版本号
  */
+@Controller("cartAction")
+@Scope("prototype")
 @SuppressWarnings("all")
 public class CartAction extends ActionSupport implements ModelDriven<Cart>{
+	
 	private  Cart cart = new Cart();
+	
 	private ActionContext con = ActionContext.getContext();
+	
+	@Resource(name="cartService")
 	private CartService cartService;
+	
 	private String[] gidlist;
+	
 	private String smallcounter;
+	
 	private boolean numcondition = true;
+	
+	@Resource(name="showPage")
 	private ShowPage showPage;
+	
 	public Cart getModel() {
 		return cart;
 	}
@@ -59,9 +74,6 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 		this.showPage = showPage;
 	}
 	
-	public ShowPage getShowPage() {
-		return showPage;
-	}
 	
 	/**
 	 * 查询购物车商品中是否存在该商品，有数量加+1，无添加该对象，
@@ -91,17 +103,8 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	}
 	
 	/**
-	 * 
-	 * @param c1 需要保存的商品类
-	 * @throws Exception 
-	 */
-	public void saveCart(Cart c1) throws Exception {
-		cartService.saveCart(c1);
-	}
-	
-	/**
 	 * 添加商品
-	 * @return 返回一个字符串“addCart"
+	 * @return addCart
 	 * @throws Exception 
 	 */
 	public String addCart() throws Exception {
@@ -116,11 +119,10 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	
 	/**
 	 * 查看购物车
-	 * @return 返回一个字符串 ”lookCart"
+	 * @return lookCart
 	 * @throws Exception 
 	 */
 	public String lookCart() throws Exception {
-		System.out.println("showpage:\t"+showPage.getCurrentpage());
 		this.PagingProcess(cartService.statisticalCarts(((User)con.getSession().get("user")).getUid()).intValue());//总记录数
 		List<CartItems> cartlist = cartService.lookCart((User)con.getSession().get("user"), showPage.getCurrentpage(), showPage.getPageSize());//购物表
 		con.getSession().put("cartlist", cartlist);
@@ -130,7 +132,7 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	
 	/**
 	 * 统计用户购物车总数
-	 * @return 返回 ”success"
+	 * @return success
 	 * @throws Exception 
 	 */
 	public String countAllCartItems() throws Exception{
@@ -155,7 +157,7 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 
 	/**
 	 * 删除商品
-	 * @return 返回一个字符串 ”lookCart"
+	 * @return lookCart
 	 * @throws Exception 
 	 * @throws NumberFormatException 
 	 */
@@ -169,7 +171,7 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	
 	/**
 	 * 添加商品数量
-	 * @return 返回一个字符串 ”lookCart"
+	 * @return lookCart
 	 * @throws Exception 
 	 */
 	public String addCartNum() throws Exception {
@@ -180,7 +182,7 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	
 	/**
 	 * 减少商品数量
-	 * @return 返回一个字符串 ”lookCart"
+	 * @return lookCart
 	 * @throws Exception 
 	 */
 	public String decCartNum() throws Exception {

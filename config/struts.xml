@@ -30,6 +30,11 @@
 			<result name="login">/login.jsp</result>
 		</global-results>
 		
+		<!--加载首页文件  -->
+		<action name="loadFile_*" class="loadFileAction" method="{1}">
+		<allowed-methods>loadAll,loadItemsType,loadItemsShowText,loadItemsBrand</allowed-methods>
+		</action>
+		
 		<!--用户  -->
 		<action name="user_*" class="userAction" method="{1}"><!--  -->
 			<result name="login">/login.jsp</result>
@@ -41,8 +46,8 @@
 		<!--商品  -->
 		<action name="items_*" class="itemsAction" method="{1}">
 			<result name="itemslist">/ShowListItems.jsp</result>
-			<result name="detailitems">/addCart.jsp</result>
-			<allowed-methods>inItemsList,goDetailItems,loadAll,loadItemsType,loadItemsShowText,loadItemsBrand</allowed-methods>
+			<result name="detailItems" >/addCart.jsp</result>
+			<allowed-methods>inItemsList,getDetailItems,loadAll,loadItemsType,loadItemsShowText,loadItemsBrand</allowed-methods>
 		</action>
 		
 		<!--购物车  -->
@@ -50,7 +55,7 @@
 			<interceptor-ref name="loginStack"></interceptor-ref>
 			<result name="addCart">/addCart.jsp</result>
 			<result name="lookCart">/mycart.jsp</result>
-			<result name="loadHome" type="redirectAction">items_loadAll</result>
+			<result name="loadHome" type="redirectAction">loadFile_loadAll</result>
 			<allowed-methods>countAllCartItems,checkExistItems,saveCart,addCart,lookCart,deleCart,addCartNum,decCartNum,selSumCart,decSumCart</allowed-methods>
 		</action>
 		
@@ -58,8 +63,10 @@
 		<action name="orders_*" class="ordersAction" method="{1}">
 			<interceptor-ref name="loginStack"></interceptor-ref>
 			<result name="writeaddress">/orderaddress.jsp</result>
-			<result name="lookOrders" type="redirectAction">orders_lookOrders</result>
-			<allowed-methods>addOrders,lookOrders,checkShippingAddress,saveShippingAddress</allowed-methods>
+			<result name="lookOrders">/myorder.jsp</result>
+			<result name="tryLookOrders" type="redirectAction">orders_lookOrders</result>
+			<result name="lookItemsDetail">/ordersDetail.jsp</result>
+			<allowed-methods>addOrders,lookOrders,checkShippingAddress,saveShippingAddress,lookItemsDetail</allowed-methods>
 		</action>
 	</package>
 </struts>

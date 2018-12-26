@@ -17,9 +17,10 @@ public class Orders implements Serializable{
 	private Integer gnum;//商品总数量
 	private Integer gid;//商品id(外键)，一个订单有多个商品，一个商品只能归于一个订单
 	private Double allMoney;//总金额
+	private User user;//订单与用户，一对多关系
 	private Integer orderStatus;//状态，付款与未付款
 	private Set<OrdersDetail> ordersDetail;//订单详情，一对多
-	private User user;
+	
 	public Set<OrdersDetail> getOrdersDetail() {
 		return ordersDetail;
 	}
@@ -73,12 +74,6 @@ public class Orders implements Serializable{
 	}
 	public void setGnum(Integer gnum) {
 		this.gnum = gnum;
-	}
-	@Override
-	public String toString() {
-		return "Orders [rid=" + rid + ", uid=" + uid + ", date=" + date
-				+ ", gnum=" + gnum + ", gid=" + gid + ", allMoney=" + allMoney
-				+ ", orderStatus=" + orderStatus + ", user=" + user + "]";
 	}
 
 }
