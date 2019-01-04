@@ -14,10 +14,8 @@
 	<package name="User" extends="struts-default" namespace="/">
 		<!--注册拦截器  -->
 		<interceptors>
-			<interceptor name="loginInterceptor" class="web.interceptor.LoginInterceptor"></interceptor>
-			<!-- <interceptor name="checkInterceptor" class="web.interceptor.CheckInterceptor"></interceptor> -->
+			<interceptor name="loginInterceptor" class="cn.jx.pxc.shoppingweb.interceptor.LoginInterceptor"></interceptor>
 			<interceptor-stack name="loginStack">
-				<!-- <interceptor-ref name="checkInterceptor"></interceptor-ref> -->
 				<interceptor-ref name="loginInterceptor">
 					<param name="excludeMethods">login,pageLoad</param>
 				</interceptor-ref>

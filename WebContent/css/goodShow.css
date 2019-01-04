@@ -61,6 +61,9 @@
 	text-decoration:none;
 	color:black;
 }
+.show_list_dl{
+	width:250px;
+}
 .manshow_imagetext{
 	background:pink;
 	color:white;

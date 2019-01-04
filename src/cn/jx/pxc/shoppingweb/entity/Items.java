@@ -22,7 +22,7 @@ public class Items implements Serializable{
 	private String gintroduce;//介绍
 	private Double  gprice;//价格
 	private Double sellPrice;//售价
-	private String ActivityInfo;//活动介绍
+	private String activityInfo;//活动介绍
 	private String imgsrc;//图片路径
 	private Date createdTime;//创建时间
 	private String createdUser;//创建者
@@ -42,10 +42,10 @@ public class Items implements Serializable{
 		this.sellPrice = sellPrice;
 	}
 	public String getActivityInfo() {
-		return ActivityInfo;
+		return activityInfo;
 	}
 	public void setActivityInfo(String activityInfo) {
-		ActivityInfo = activityInfo;
+		this.activityInfo = activityInfo;
 	}
 	public Set<OrdersDetail> getOrdersDetail() {
 		return ordersDetail;

@@ -13,7 +13,7 @@
 		<property name="gprice"/>
 		<property name="imgsrc"/>
 		<property name="sellPrice" column="sell_price"/>
-		<property name="ActivityInfo" column="activity_info"/>
+		<property name="activityInfo" column="activity_info"/>
 		<property name="createdUser" column="created_user"/>
 		<property name="createdTime" column="created_time"/>
 		<property name="modifiedUser" column="modified_user"/>

@@ -11,7 +11,7 @@
 <body>
 <c:if test="${not empty cartlist}">
 	<form action="${pageContext.request.contextPath }/cart_deleCart.action" method="post" >
-	<h4 align="left"><font size="4px" color="blue">${user.getUsername()}先生</font>,商品数量总共<font  size="4px" color="red">${countAllCartItems}</font>件，详情如下：</h4>
+	<h4 align="left"><font size="4px" color="blue">${user.username}先生</font>,商品数量总共<font  size="4px" color="red">${countAllCartItems}</font>件，详情如下：</h4>
 	<table border="0" cellspacing="5" class="tablecart" align="center" width="90%" style="border-left:none;border-right:none;border-buttom:none;">
 		<tr style="background:red;">
 			<td align="center"><span class="showMesstitle">选择</span></td>
@@ -28,29 +28,29 @@
 				<td colspan="8"><div></div></td>
 				</tr> -->
 				<tr style="margin-top:10px;">
-					<td align="center"><span class="showMess"><input type="checkbox" name="gidlist"  value="${cartItems.getGid()}" id="gid"/></span></td>
-					<td align="center"><span class="showMess"><a href="${pageContext.request.contextPath }/items_getDetailItems.action?gid=${cartItems.getGid()}"><img src="${cartItems.getImgsrc()}" width="80px" height="80px"/></a></span></td><!--<c:out value="${item.value.getName()}"/>  -->
-					<td align="center"><span class="showMess" ><c:out value="${cartItems.getGbrand()}"/></span></td>
-					<td align="center"><span class="showMess"><c:out value="${cartItems.getGintroduce()}"/></span></td>
-					<td align="center"><span class="showMess">¥<font id="unitprice"><c:out value="${cartItems.getGprice()} "/></font></span></td>
+					<td align="center"><span class="showMess"><input type="checkbox" name="gidlist"  value="${cartItems.gid}" id="gid"/></span></td>
+					<td align="center"><span class="showMess"><a href="${pageContext.request.contextPath }/items_getDetailItems.action?gid=${cartItems.gid}"><img src="${cartItems.imgsrc}" width="80px" height="80px"/></a></span></td><!--<c:out value="${item.value.getName()}"/>  -->
+					<td align="center"><span class="showMess" ><c:out value="${cartItems.gbrand}"/></span></td>
+					<td align="center"><span class="showMess"><c:out value="${cartItems.gintroduce}"/></span></td>
+					<td align="center"><span class="showMess">¥<font id="unitprice"><c:out value="${cartItems.sellPrice} "/></font></span></td>
 					<td align="center">
-					<input type="button" name="addnumber" value="+" onclick="javaScript:window.location.href='${pageContext.request.contextPath }/cart_addCartNum.action?uid=${cartItems.getUid()}&gid=${cartItems.getGid()}&gnum=1'"/>
-					<input type="text" name="numbershowtext" value="${cartItems.getGnum()}" id="number" readonly="readonly" style="width:20px;">
-					<input type="button" name="reducenumber" value="-" onclick="javaScript:window.location.href='${pageContext.request.contextPath }/cart_decCartNum.action?uid=${cartItems.getUid()}&gid=${cartItems.getGid()}&gnum=1'"/>
+					<input type="button" name="addnumber" value="+" onclick="javaScript:window.location.href='${pageContext.request.contextPath }/cart_addCartNum.action?uid=${cartItems.uid}&gid=${cartItems.gid}&gnum=1'"/>
+					<input type="text" name="numbershowtext" value="${cartItems.gnum}" id="number" readonly="readonly" style="width:20px;">
+					<input type="button" name="reducenumber" value="-" onclick="javaScript:window.location.href='${pageContext.request.contextPath }/cart_decCartNum.action?uid=${cartItems.uid}&gid=${cartItems.gid}&gnum=1'"/>
 					</td>
 					<td align="center"><span class="showMess"><a href="#" onclick="pitchon()">点击下单</a></span></td>
-					<td align="center"><span class="showMess">¥<font id="subprice"><c:out value="${cartItems.getGnum()*cartItems.getGprice()}"/></font></span></td>
+					<td align="center"><span class="showMess">¥<font id="subprice"><c:out value="${cartItems.gnum*cartItems.sellPrice}"/></font></span></td>
 				</tr>
-				<input type="hidden" id="hid_num${cartItems.getGid()}" value="${cartItems.getGnum()}"/>
+				<input type="hidden" id="hid_num${cartItems.gid}" value="${cartItems.gnum}"/>
 		</c:forEach>
 	</table><!--已选商品数量，已选商品总价格  -->
 	<div style="margin-top:5%;">
 		<div align="center">
-			<a href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${1}">首页</a>
-			<a href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${showPage.getCurrentpage()-1}">上一页</a>&nbsp;
-			<span>当前${ showPage.getCurrentpage()}/${showPage.getTotalpages() }页</span>&nbsp;
-			<a href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${showPage.getCurrentpage()+1}">下一页</a>
-			<a  href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${showPage.getTotalpages()}">尾页</a>
+			<a href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=1">首页</a>
+			<a href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${showPage.currentpage-1}">上一页</a>&nbsp;
+			<span>当前${ showPage.currentpage}/${showPage.totalpages }页</span>&nbsp;
+			<a href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${showPage.currentpage+1}">下一页</a>
+			<a  href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${showPage.totalpages}">尾页</a>
 		</div>
 		<div  style="float:left; margin-left:5%; ">
 			<a href="javaScript:allSelect();">全选</a>&nbsp;

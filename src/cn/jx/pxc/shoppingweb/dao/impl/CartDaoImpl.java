@@ -12,7 +12,7 @@ import cn.jx.pxc.shoppingweb.entity.Items;
 import cn.jx.pxc.shoppingweb.entity.User;
 /**
  *<p> Title:  CartDaoImpl.java</p>
- *<p> Description:  描述</p>
+ *<p> Description:  商品显示的dao层的接口实现</p>
  * @package   cn.jx.pxc.shoppingweb.dao.impl
  * @author    黄信胜
  * @date      2018年12月23日下午12:42:36
@@ -34,8 +34,9 @@ public class CartDaoImpl extends BaseDaoHibernate implements CartDao {
 	/* (non-Javadoc)
 	 * @see cn.jx.pxc.shoppingweb.dao.CartDao#lookCart(cn.jx.pxc.shoppingweb.entity.User, java.lang.Integer, java.lang.Integer)
 	 */
+	@Override
 	public List<CartItems> lookCart(User user, Integer currentPage, Integer maxResult) {
-		Query query = this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("select new cn.jx.pxc.shoppingweb.Intermediate.CartItems(c.cid,c.gid,c.uid,c.gnum,i.gname,i.gbrand,i.gintroduce,i.gprice,i.imgsrc)"
+		Query query = this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("select new cn.jx.pxc.shoppingweb.Intermediate.CartItems(c.cid,c.gid,c.uid,c.gnum,i.gname,i.gbrand,i.gintroduce,i.gprice,i.imgsrc,i.sellPrice)"
 				+ " from Cart c,Items i where i.gid=c.gid and c.uid=:uid");
 		query.setParameter("uid", user.getUid());
 		query.setFirstResult((currentPage - 1) * maxResult);
@@ -47,6 +48,7 @@ public class CartDaoImpl extends BaseDaoHibernate implements CartDao {
 	/* (non-Javadoc)
 	 * @see cn.jx.pxc.shoppingweb.dao.CartDao#checkExistItems(java.lang.Integer, java.lang.Integer)
 	 */
+	@Override
 	public List<Cart> checkExistItems(Integer uid, Integer gid) {
 		List<Cart> list = (List<Cart>) this.getHibernateTemplate().find("from Cart where uid=? and gid=?", uid, gid);
 		return list;
@@ -56,6 +58,7 @@ public class CartDaoImpl extends BaseDaoHibernate implements CartDao {
 	/* (non-Javadoc)
 	 * @see cn.jx.pxc.shoppingweb.dao.CartDao#deleCart(java.lang.Integer, java.lang.Integer)
 	 */
+	@Override
 	public void deleCart(Integer uid, Integer gid) {
 		this.getHibernateTemplate().delete(this.checkExistItems(uid, gid).get(0));
 	}
@@ -64,6 +67,7 @@ public class CartDaoImpl extends BaseDaoHibernate implements CartDao {
 	/* (non-Javadoc)
 	 * @see cn.jx.pxc.shoppingweb.dao.CartDao#SaveCart(cn.jx.pxc.shoppingweb.entity.Cart)
 	 */
+	@Override
 	public void SaveCart(Cart cart) {
 		this.getHibernateTemplate().save(cart);
 	}
@@ -72,6 +76,7 @@ public class CartDaoImpl extends BaseDaoHibernate implements CartDao {
 	/* (non-Javadoc)
 	 * @see cn.jx.pxc.shoppingweb.dao.CartDao#countAllCartItems(java.lang.Integer)
 	 */
+	@Override
 	public Long countAllCartItems(Integer uid) {
 		Query query=this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("select sum(gnum) as countnum from Cart where uid=:uid");
 		query.setParameter("uid", uid);
@@ -82,6 +87,7 @@ public class CartDaoImpl extends BaseDaoHibernate implements CartDao {
 	/* (non-Javadoc)
 	 * @see cn.jx.pxc.shoppingweb.dao.CartDao#statisticalCarts(java.lang.Integer)
 	 */
+	@Override
 	public Long statisticalCarts(Integer uid) {
 		Query query=this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("select count(*) as countrecord from Cart where uid=:uid");
 		query.setParameter("uid", uid);

@@ -24,17 +24,13 @@ public class CartItems implements Serializable{
 	private String gintroduce;
 	private Double gprice;
 	private String imgsrc;
-	public Integer getCuid() {
-		return cuid;
-	}
-	public void setCuid(Integer cuid) {
-		this.cuid = cuid;
-	}
+	private Double sellPrice;
 	public CartItems(){
 		super();
 	}
+	
+	
 	/**
-	 * 
 	 * @param cid
 	 * @param gid
 	 * @param uid
@@ -44,10 +40,10 @@ public class CartItems implements Serializable{
 	 * @param gintroduce
 	 * @param gprice
 	 * @param imgsrc
+	 * @param sellPrice
 	 */
-	public CartItems(Integer cid, Integer gid, Integer uid, Integer gnum,
-			String gname, String gbrand, String gintroduce, Double gprice,
-			String imgsrc) {
+	public CartItems(Integer cid, Integer gid, Integer uid, Integer gnum, String gname, String gbrand,
+			String gintroduce, Double gprice, String imgsrc, Double sellPrice) {
 		super();
 		this.cid = cid;
 		this.gid = gid;
@@ -58,8 +54,22 @@ public class CartItems implements Serializable{
 		this.gintroduce = gintroduce;
 		this.gprice = gprice;
 		this.imgsrc = imgsrc;
+		this.sellPrice = sellPrice;
 	}
-	
+
+
+	public Double getSellPrice() {
+		return sellPrice;
+	}
+	public void setSellPrice(Double sellPrice) {
+		this.sellPrice = sellPrice;
+	}
+	public Integer getCuid() {
+		return cuid;
+	}
+	public void setCuid(Integer cuid) {
+		this.cuid = cuid;
+	}
 	public Integer getCid(){
 		return cid;
 	}
