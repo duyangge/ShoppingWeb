@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping>
-	<class name="web.entity.User" table="user">
+	<class name="cn.jx.pxc.shoppingweb.entity.User" table="user">
 		<id name="uid" column="uid">
 			<generator class="native"/>
 		</id>
@@ -15,7 +15,7 @@
 		<property name="modifiedTime" column="modified_time"/>
 		<set name="orders" cascade="all" lazy="true">
 			<key column="uid"/>
-			<one-to-many class="web.entity.Orders"/>
+			<one-to-many class="cn.jx.pxc.shoppingweb.entity.Orders"/>
 		</set>
 	</class>
 </hibernate-mapping>

@@ -3,6 +3,8 @@ package cn.jx.pxc.shoppingweb.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.stereotype.Repository;
+
 /**
  *<p> Title:  ItemsType.java</p>
  *<p> Description:  商品类型</p>
@@ -11,6 +13,7 @@ import java.util.Date;
  * @date      2019年1月4日下午2:21:23
  * @version 19.01.04
  */
+@Repository("itemsType")
 @SuppressWarnings("all")
 public class ItemsType implements Serializable{
 	private Integer tid;//商品类型id

@@ -27,6 +27,13 @@ public class Items implements Serializable{
 	private Date modifiedTime;//修改时间
 	private String modifiedUser;//修改者
 	private Set<OrdersDetail> ordersDetail;//订单详情，一对多
+	
+	public Set<OrdersDetail> getOrdersDetail() {
+		return ordersDetail;
+	}
+	public void setOrdersDetail(Set<OrdersDetail> ordersDetail) {
+		this.ordersDetail = ordersDetail;
+	}
 	public Date getCreatedTime() {
 		return createdTime;
 	}
@@ -50,12 +57,6 @@ public class Items implements Serializable{
 	}
 	public void setModifiedUser(String modifiedUser) {
 		this.modifiedUser = modifiedUser;
-	}
-	public Set<OrdersDetail> getOrdersDetail() {
-		return ordersDetail;
-	}
-	public void setOrdersDetail(Set<OrdersDetail> ordersDetail) {
-		this.ordersDetail = ordersDetail;
 	}
 	public Integer getTid() {
 		return tid;

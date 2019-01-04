@@ -36,7 +36,7 @@ public class CartDaoImpl extends BaseDaoHibernate implements CartDao {
 	 * 
 	 */
 	public List<CartItems> lookCart(User user, Integer currentPage, Integer maxResult) {
-		Query query = this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("select new web.Intermediate.CartItems(c.cid,c.gid,c.uid,c.gnum,i.gname,i.gbrand,i.gintroduce,i.gprice,i.imgsrc)"
+		Query query = this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("select new cn.jx.pxc.shoppingweb.Intermediate.CartItems(c.cid,c.gid,c.uid,c.gnum,i.gname,i.gbrand,i.gintroduce,i.gprice,i.imgsrc)"
 				+ " from Cart c,Items i where i.gid=c.gid and c.uid=:uid");
 		query.setParameter("uid", user.getUid());
 		query.setFirstResult((currentPage - 1) * maxResult);

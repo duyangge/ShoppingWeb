@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * @date      2019年1月4日下午2:22:29
  * @version 19.01.04
  */
-@Repository(value="shippingAddress")
+@Repository("shippingAddress")
 @SuppressWarnings("all")
 public class ShippingAddress implements Serializable{
 	private Integer aid;//

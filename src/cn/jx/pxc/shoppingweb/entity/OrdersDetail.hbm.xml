@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping>
-	<class name="web.entity.OrdersDetail" table="item_ordersdetail" >
+	<class name="cn.jx.pxc.shoppingweb.entity.OrdersDetail" table="item_ordersdetail" >
 		<id name="id" column="id">
 			<generator class="native"/>
 		</id>
@@ -11,8 +11,8 @@
 		<property name="createdTime" column="created_time"/>
 		<property name="modifiedUser" column="modified_user"/>
 		<property name="modifiedTime" column="modified_time"/>
-		<many-to-one name="orders" class="web.entity.Orders" column="orders_id"/>
+		<many-to-one name="orders" class="cn.jx.pxc.shoppingweb.entity.Orders" column="orders_id"/>
 		
-		<many-to-one name="items" class="web.entity.Items" column="items_id"/>
+		<many-to-one name="items" class="cn.jx.pxc.shoppingweb.entity.Items" column="items_id"/>
 	</class>
 </hibernate-mapping>

@@ -3,6 +3,8 @@ package cn.jx.pxc.shoppingweb.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.stereotype.Repository;
+
 /**
  *<p> Title:  ItemsBrand.java</p>
  *<p> Description:  商标类</p>
@@ -11,6 +13,7 @@ import java.util.Date;
  * @date      2019年1月4日下午2:05:43
  * @version 19.01.04
  */
+@Repository("itemsBrand")
 @SuppressWarnings("all")
 public class ItemsBrand implements Serializable{
 	private Integer bid;//商标id

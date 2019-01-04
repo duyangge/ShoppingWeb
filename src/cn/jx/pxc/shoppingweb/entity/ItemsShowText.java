@@ -2,6 +2,8 @@ package cn.jx.pxc.shoppingweb.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import org.springframework.stereotype.Repository;
 /**
  *<p> Title:  ItemsShowText.java</p>
  *<p> Description:  首页商品描述</p>
@@ -10,6 +12,7 @@ import java.util.Date;
  * @date      2019年1月4日下午2:21:01
  * @version 19.01.04
  */
+@Repository("itemsShowText")
 @SuppressWarnings("all")
 public class ItemsShowText implements Serializable{
 	private Integer sid;//商品描述id
