@@ -37,6 +37,7 @@
 	</table>
 	<div align="center" style=" margin-top:50px">
 		<a href="sum.jsp"  class="continueshopping">继续购物</a>
+		<a href="${pageContext.request.contextPath }/cart_lookCart.action"  class="continueshopping">查看购物车</a>
 	</div>
 </c:if>
 <c:if test="${empty ordersList}">

@@ -26,26 +26,16 @@
         
          
         <!--开启注解扫描  -->
-        <context:component-scan base-package="web"/>
+        <context:component-scan base-package="cn.jx.pxc.shoppingweb"/>
         
         <!--配置sessionFactory  -->
         <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         	<property name="dataSource" ref="dataSource"></property>
         	<property name="configLocations" value="classpath:hibernate.cfg.xml"></property>
-        	<property name="mappingLocations" value="classpath:web/entity/*.hbm.xml"></property>
+        	<property name="mappingLocations" value="classpath:cn/jx/pxc/shoppingweb/entity/*.hbm.xml"></property>
         </bean>
         
-        <!--创建实体类与依赖注入  -->
-  		<!-- 导入User -->
-       <!--  <import resource="classpath:bean/User.xml"/> -->
-        <!-- 导入Items -->
-       <!--  <import resource="classpath:bean/Items.xml"/> -->
-        <!-- 导入Cart -->
-       <!--  <import resource="classpath:bean/Cart.xml"/> -->
-        <!-- 导入Orders -->
-        <!-- <import resource="classpath:bean/Orders.xml"/> -->
-        <!-- 导入OrdersDetail -->
-       <!--  <import resource="classpath:bean/OrdersDetail.xml"/> -->
+        <!--配置基于Aop声明式事务管理  -->
         
          <!--配置事务管理器  -->
         <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -53,24 +43,24 @@
         </bean>
         
         <!--事务管理  -->
-        <tx:annotation-driven transaction-manager="transactionManager"/>
-        
+       <!--  <tx:annotation-driven transaction-manager="transactionManager"/> -->
         
         <!-- 编写通知，增强事务 -->
-        <!-- <tx:advice id="txadvice" transaction-manager="transactionManager">
+        <tx:advice id="txadvice" transaction-manager="transactionManager">
         	<tx:attributes>
         		<tx:method name="add*" propagation="REQUIRED" read-only="false" rollback-for="true"/>
         		<tx:method name="delete*" propagation="REQUIRED" read-only="false" rollback-for="true"/>
         		<tx:method name="update*" propagation="REQUIRED" read-only="false" rollback-for="true"/>
         		<tx:method name="save*" propagation="REQUIRED" read-only="false" rollback-for="true"/>
         		<tx:method name="find*" propagation="REQUIRED" read-only="true"/>
+        		<tx:method name="look*" propagation="REQUIRED" read-only="true"/>
         	</tx:attributes>
-        </tx:advice> -->
+        </tx:advice>
         
         <!--编写切点与切面进行关联  -->
-     <!--    <aop:config expose-proxy="true">
-        	<aop:pointcut expression="execution(* web.service.impl.*.*(..))" id="txpointcut"/>
-        	<aop:advisor advice-ref="txadvice" pointcut-ref="txpointcut"/>
-        </aop:config> -->
+        <aop:config expose-proxy="true">
+        	<!-- <aop:pointcut expression="execution(* cn.jx.pxc.shoppingweb.service.impl.*.*(..))" id="txpointcut"/> -->
+        	<aop:advisor advice-ref="txadvice" pointcut="execution(* cn.jx.pxc.shoppingweb.service.impl.*.*(..))"/>
+        </aop:config>
         
 </beans>

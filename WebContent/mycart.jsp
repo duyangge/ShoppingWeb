@@ -12,8 +12,8 @@
 <c:if test="${not empty cartlist}">
 	<form action="${pageContext.request.contextPath }/cart_deleCart.action" method="post" >
 	<h4 align="left"><font size="4px" color="blue">${user.getUsername()}先生</font>,商品数量总共<font  size="4px" color="red">${countAllCartItems}</font>件，详情如下：</h4>
-	<table border="1" cellspacing="0" class="tablecart" align="center" width="90%" style="border-left:none;border-right:none;border-buttom:none;">
-		<tr style="background:red">
+	<table border="0" cellspacing="5" class="tablecart" align="center" width="90%" style="border-left:none;border-right:none;border-buttom:none;">
+		<tr style="background:red;">
 			<td align="center"><span class="showMesstitle">选择</span></td>
 			<td align="center"><span class="showMesstitle">商品</span></td>
 			<td align="center"><span class="showMesstitle">商品品牌</span></td>
@@ -24,15 +24,18 @@
 			<td align="center"><span class="showMesstitle">小计</span></td>
 		</tr>
 		<c:forEach var="cartItems" items="${cartlist}" varStatus="status">
-				<tr>
+				<!-- <tr >
+				<td colspan="8"><div></div></td>
+				</tr> -->
+				<tr style="margin-top:10px;">
 					<td align="center"><span class="showMess"><input type="checkbox" name="gidlist"  value="${cartItems.getGid()}" id="gid"/></span></td>
-					<td align="center"><span class="showMess"><img src="${cartItems.getImgsrc()}" width="50px" height="60px"/><c:out value="${item.value.getName()}"/></span></td>
+					<td align="center"><span class="showMess"><a href="${pageContext.request.contextPath }/items_getDetailItems.action?gid=${cartItems.getGid()}"><img src="${cartItems.getImgsrc()}" width="80px" height="80px"/></a></span></td><!--<c:out value="${item.value.getName()}"/>  -->
 					<td align="center"><span class="showMess" ><c:out value="${cartItems.getGbrand()}"/></span></td>
 					<td align="center"><span class="showMess"><c:out value="${cartItems.getGintroduce()}"/></span></td>
 					<td align="center"><span class="showMess">¥<font id="unitprice"><c:out value="${cartItems.getGprice()} "/></font></span></td>
 					<td align="center">
 					<input type="button" name="addnumber" value="+" onclick="javaScript:window.location.href='${pageContext.request.contextPath }/cart_addCartNum.action?uid=${cartItems.getUid()}&gid=${cartItems.getGid()}&gnum=1'"/>
-					<input type="text" name="numbershowtext" value="${cartItems.getGnum()}" id="number" readonly="readonly" style="width:20px;"><!--&showPage.currentPage=${showPage.getCurrentpage()}  -->
+					<input type="text" name="numbershowtext" value="${cartItems.getGnum()}" id="number" readonly="readonly" style="width:20px;">
 					<input type="button" name="reducenumber" value="-" onclick="javaScript:window.location.href='${pageContext.request.contextPath }/cart_decCartNum.action?uid=${cartItems.getUid()}&gid=${cartItems.getGid()}&gnum=1'"/>
 					</td>
 					<td align="center"><span class="showMess"><a href="#" onclick="pitchon()">点击下单</a></span></td>
@@ -62,10 +65,11 @@
 	<div>
 	</div>
 </c:if>
-<a href="sum.jsp" class="continueshopping">返回</a>
+<a href="JavaScript:history.go(-1)">返回上一页</a>
 <c:if test="${empty cartlist}">
 		<h3 align="center" style="font-style: italic;font-weight: bold;font-size:14px; color:blue;">空空的，需要您去寻找你的宝藏......</h3>
 </c:if>
+<jsp:include page="foot.jsp"/>
 </body>
 <script type="text/javascript" src="js/addcart.js"></script>
 </html>

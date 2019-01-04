@@ -33,7 +33,7 @@
 				</table>
 			</div>
 			<div class="mansheet_image">
-				<img  class="mansheet_image_big" src="${sportShowText.get(0).itemsShowImgSrc }"/>
+				<img  class="mansheet_image_big" src="${sportShowText.get(0).itemsShowImgSrc }" title="${sportShowText.get(0).itemShowTextIntro }"/>
 				<div class="mansheet_image_text_div">
 					<dl>
 						<dt>${sportShowText.get(0).itemShowTextType }</dt>
@@ -52,7 +52,7 @@
 										<dt class="sheet_show_toptext">${sportshowtext.itemShowTextType }</dt>
 										<dt class="sheet_show_buttom">${sportshowtext.itemShowTextIntro }</dt>
 									</dl>
-									<img src="${sportshowtext.itemsShowImgSrc }"/>
+									<img src="${sportshowtext.itemsShowImgSrc }" title="${sportshowtext.itemShowTextIntro }"/>
 									</a>
 								</div>
 							</th>

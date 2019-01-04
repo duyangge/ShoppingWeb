@@ -1,0 +1,33 @@
+package cn.jx.pxc.shoppingweb.dao.impl;
+
+import java.util.List;
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
+
+import cn.jx.pxc.shoppingweb.dao.UserDao;
+import cn.jx.pxc.shoppingweb.entity.User;
+
+/**
+ *<p> Title:  UserDaoImpl.java</p>
+ *<p> Description:  user的dao层的实现接口</p>
+ * @package   web.dao.impl
+ * @author    黄信胜
+ * @date      2019年1月4日下午2:20:17
+ * @version 19.01.04
+ */
+@Repository("userDao")
+@SuppressWarnings("all")
+public class UserDaoImpl extends BaseDaoHibernate implements UserDao{
+	//注册
+	public User register(User user) {
+		 this.getHibernateTemplate().save(user);
+		 return user;
+	}
+	//登录
+	public User login(User user) {
+		List<User> list = (List<User>) this.getHibernateTemplate().find("from User where username=? and password=?", user.getUsername(), user.getPassword());
+		if (list != null && list.size() > 0) return list.get(0);
+		return null;
+	}
+
+}

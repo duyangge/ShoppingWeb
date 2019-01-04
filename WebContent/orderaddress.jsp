@@ -18,7 +18,7 @@
 </style>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath }/orders_saveShippingAddress" method="post" class="form" id="detailtable">
+	<form action="${pageContext.request.contextPath }/orders_saveShippingAddress" method="get" class="form" id="detailtable">
 			<table>
 			<caption><span style="color:red;text-align:center;">请填写好以下信息</span></caption>
 				<tr>
@@ -29,10 +29,9 @@
 					<td><span>联系电话：</span></td>
 					<td><input type="text" name="shippingAddress.phone" id="phone" placeholder="联系电话电话" /></td>
 				</tr>
-				</tr>
 				<tr>
 					<td><span>邮政编号：</span></td>
-					<td><input type="password" name="shippingAddress.postcode" id="postoffice" placeholder="邮政编号" />
+					<td><input type="text" name="shippingAddress.postcode" id="postoffice" placeholder="邮政编号" />
 				</td>
 				<tr>
 					<td><span>商品备注:</span></td>
@@ -47,7 +46,7 @@
 					<td><input type="text" name="orderno" id="orderno" value="${orders.getRid()}" readonly="true"/></td>
 				</tr>
 			</table>
-			<input type="hidden" name="shippingAddress.uid" value="${user.getUid() }"/>
+			<input type="hidden" name="shippingAddress.uid" value="${user.getUid()}"/>
 			<input type="button" value="提交" class="submit" onclick="return check();"/>
 			<input type="reset" value="重置" class="submit" />
 	</form>

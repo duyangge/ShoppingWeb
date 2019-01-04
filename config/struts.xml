@@ -46,8 +46,8 @@
 		<!--商品  -->
 		<action name="items_*" class="itemsAction" method="{1}">
 			<result name="itemslist">/ShowListItems.jsp</result>
-			<result name="detailItems" >/addCart.jsp</result>
-			<allowed-methods>inItemsList,getDetailItems,loadAll,loadItemsType,loadItemsShowText,loadItemsBrand</allowed-methods>
+			<result name="detailItems">/addCart.jsp</result>
+			<allowed-methods>inItemsList,getDetailItems</allowed-methods>
 		</action>
 		
 		<!--购物车  -->
@@ -55,6 +55,7 @@
 			<interceptor-ref name="loginStack"></interceptor-ref>
 			<result name="addCart">/addCart.jsp</result>
 			<result name="lookCart">/mycart.jsp</result>
+			<result name="addLookCart" type="redirectAction">cart_lookCart</result>
 			<result name="loadHome" type="redirectAction">loadFile_loadAll</result>
 			<allowed-methods>countAllCartItems,checkExistItems,saveCart,addCart,lookCart,deleCart,addCartNum,decCartNum,selSumCart,decSumCart</allowed-methods>
 		</action>

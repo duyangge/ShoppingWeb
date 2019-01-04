@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="web.entity.ItemsShowText" table="item_imgintro">
+		<id name="sid" column="sid">
+			<generator class="native"/>
+		</id>
+		<property name="tid"/>
+		<property name="itemShowTextType"/>
+		<property name="itemShowTextIntro"/>
+		<property name="itemsShowImgSrc"/>
+		<property name="createdUser" column="created_user"/>
+		<property name="createdTime" column="created_time"/>
+		<property name="modifiedUser" column="modified_user"/>
+		<property name="modifiedTime" column="modified_time"/>
+	</class>
+</hibernate-mapping>

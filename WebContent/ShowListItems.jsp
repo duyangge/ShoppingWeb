@@ -29,16 +29,22 @@
 					<c:forEach var="items" items="${itemslist}" varStatus="status">
 						<td>
 							<div>
-								<a href="${pageContext.request.contextPath }/items_getDetailItems.action?gid=${items.gid}" class="personalshow_introduce">
-									<img src="${items.getImgsrc()}" width="230px" height="200px"/>	
-									<div>
-										<dl>
-											<dt class="manshow_imagetext">限时抢购</dt>
-											<dt>${items.getGintroduce()}</dt>
-											<dt><b class="sheetshow_price">¥${items.getGprice()}</b>&nbsp;<s class="sheetshow_pricedel">¥${items.getGprice()}</s></dt>
-										</dl>	
-									</div>
-								</a>
+								<div>
+									<a href="${pageContext.request.contextPath }/items_getDetailItems.action?gid=${items.gid}" class="personalshow_introduce">
+										<img src="${items.getImgsrc()}" width="230px" height="200px" title="${items.getGintroduce()}"/>	
+											<dl>
+												<dt class="manshow_imagetext">限时抢购</dt>
+												<dt>${items.getGintroduce()}</dt>
+												<dt>
+												<b class="sheetshow_price">¥${items.getGprice()}</b>&nbsp;<s class="sheetshow_pricedel">¥${items.getGprice()}</s>
+												</dt>
+											</dl>	
+									</a>
+								</div>
+								<div style="float:left;">
+									<a href="${pageContext.request.contextPath }/cart_addCart.action?gid=${items.gid}&gnum=1"><img src="${pageContext.request.contextPath }/images/cart/cartimage.png" width="30" height="30" title="加入购物车"></a>
+								</div>
+								
 							</div>	
 						</td>
 					</c:forEach>

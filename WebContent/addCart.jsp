@@ -9,10 +9,6 @@
 <link href="css/addcart.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<c:if test="${SessionScope.detailItems == null}">
-	<font>空空如夜${SessionScope.detailItems}</font>
-</c:if>
-<c:if test="${SessionScope.detailItems != null}">
 	<form action="${pageContext.request.contextPath }/cart_addCart.action" method="post">
 <!--通过获取物品id得到物品信息  -->
 	<div class="content">
@@ -74,10 +70,7 @@
 		<a href="${pageContext.request.contextPath }/user_loginout.action">退出</a>
 	</div>
 	</form>
-
-
-</c:if>
-
+<jsp:include page="foot.jsp"/>
 </body>
 <script type="text/javascript" src="js/addcart.js">
 </script> 

@@ -8,7 +8,7 @@
 	<title>user-resgin</title>
 	<link href="css/regiter.css" rel="stylesheet" type="text/css"/>
 	<link href="css/main.css" type="text/css" rel="stylesheet"/>
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
 	/*1.创建xmlHTTpRequest对象createxmlHttpRequest()
 	 * 2.利用open方法创建于服务器的连接
 	 3.发送请求send
@@ -18,7 +18,7 @@
 		 var users=document.getElementById("usernames");
 		 users.onblur=function(){//当文本框失去焦点是注册监听
 		var xmlhttp=createXMLHttpRequest();//创建XMLHttpRequest对象
-		xmlhttp.open("POST","<c:url value='/ResginServlet'/>",true);//与服务器进行连接
+		xmlhttp.open("POST","${pageContext.request.contextPath}/",true);//与服务器进行连接
 		xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");//post，需要设置请求头
 		xmlhttp.send("usernames="+users.value);//发送请求,给出请求体
 		xmlhttp.onreadystatechange=function(){//给xmlhttp的onreadystatechange的事件监听器
@@ -36,7 +36,7 @@
 			
 				}//onblur
 		 }//onload
-	</script> -->
+	</script>
 </head>
 <body>
 	<%-- <c:if test="${not empty requestScope.reginmess}">
