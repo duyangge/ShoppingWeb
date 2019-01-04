@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  *<p> Title:  Orders.java</p>
  *<p> Description:  订单实体类</p>
- * @package   web.entity
+ * @package   cn.jx.pxc.shoppingweb.entity
  * @author    黄信胜
  * @date      2019年1月4日下午2:21:43
  * @version 19.01.04

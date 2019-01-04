@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 /**
  *<p> Title:  ShowPage.java</p>
  *<p> Description:  分页</p>
- * @package   web.Intermediate
+ * @package   cn.jx.pxc.shoppingweb.Intermediate
  * @author    黄信胜
  * @date      2019年1月4日下午2:28:26
  * @version 19.01.04

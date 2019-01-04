@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
  *<p> Title:  ItemsShowText.java</p>
  *<p> Description:  首页商品描述</p>
- * @package   web.entity
+ * @package  cn.jx.pxc.shoppingweb.entity
  * @author    黄信胜
  * @date      2019年1月4日下午2:21:01
  * @version 19.01.04

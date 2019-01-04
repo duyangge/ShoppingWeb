@@ -13,7 +13,7 @@ import cn.jx.pxc.shoppingweb.entity.ShippingAddress;
 /**
  *<p> Title:  OrdersDaoImpl.java</p>
  *<p> Description:  订单dao层的实现类</p>
- * @package   web.dao.impl
+ * @package   cn.jx.pxc.shoppingweb.dao.impl
  * @author    黄信胜
  * @date      2018年12月9日下午2:24:13
  * @version 18.12.09
@@ -22,10 +22,9 @@ import cn.jx.pxc.shoppingweb.entity.ShippingAddress;
 @SuppressWarnings("all")
 public class OrdersDaoImpl extends BaseDaoHibernate implements OrdersDao {
 	
-
 	
 	/* (non-Javadoc)
-	 * @see web.dao.OrdersDao#addOrders(web.entity.Orders)
+	 * @see cn.jx.pxc.shoppingweb.dao.OrdersDao#addOrders(cn.jx.pxc.shoppingweb.entity.Orders)
 	 */
 	@Override
 	public void addOrders(Orders orders) {
@@ -33,8 +32,9 @@ public class OrdersDaoImpl extends BaseDaoHibernate implements OrdersDao {
 	}
 
 	
+	
 	/* (non-Javadoc)
-	 * @see web.dao.OrdersDao#checkShippingAddress(java.lang.Integer)
+	 * @see cn.jx.pxc.shoppingweb.dao.OrdersDao#checkShippingAddress(java.lang.Integer)
 	 */
 	@Override
 	public Orders checkShippingAddress(Integer uid) {
@@ -43,34 +43,34 @@ public class OrdersDaoImpl extends BaseDaoHibernate implements OrdersDao {
 		return null;
 	}
 
+	
 	/* (non-Javadoc)
-	 * @see web.dao.OrdersDao#lookOrders(java.lang.Integer)
+	 * @see cn.jx.pxc.shoppingweb.dao.OrdersDao#lookOrders(java.lang.Integer)
 	 */
 	@Override
 	public List<Orders> lookOrders(Integer uid) {
 		return (List<Orders>) this.getHibernateTemplate().find("from Orders where uid=?", uid);
 	}
 
+	
 	/* (non-Javadoc)
-	 * @see web.dao.OrdersDao#findItemsById(java.lang.Integer)
+	 * @see cn.jx.pxc.shoppingweb.dao.OrdersDao#findItemsById(java.lang.Integer)
 	 */
 	@Override
 	public Items findItemsById(Integer id) {
 		return (Items) this.getHibernateTemplate().find("from Items where gid=?", id).get(0);
 	}
 
-
 	/* (non-Javadoc)
-	 * @see web.dao.OrdersDao#findOrdersDetailById(java.lang.Integer)
+	 * @see cn.jx.pxc.shoppingweb.dao.OrdersDao#findOrdersDetailById(java.lang.Integer)
 	 */
 	@Override
 	public List<Items> findOrdersDetailById(Integer rid) throws Exception {
 		return (List<Items>) this.getHibernateTemplate().find("from OrdersDetail where orders_id=?", rid);
 	}
 
-
 	/* (non-Javadoc)
-	 * @see web.dao.OrdersDao#saveOrdersDetailItems(java.lang.Integer, java.lang.Integer, java.lang.Integer)
+	 * @see cn.jx.pxc.shoppingweb.dao.OrdersDao#saveOrdersDetailItems(cn.jx.pxc.shoppingweb.entity.OrdersDetail)
 	 */
 	@Override
 	public void saveOrdersDetailItems(OrdersDetail ordersDetail) throws Exception {
@@ -78,9 +78,8 @@ public class OrdersDaoImpl extends BaseDaoHibernate implements OrdersDao {
 		
 	}
 
-
 	/* (non-Javadoc)
-	 * @see web.dao.OrdersDao#savesaveShippingAddress(web.entity.ShippingAddress)
+	 * @see cn.jx.pxc.shoppingweb.dao.OrdersDao#saveShippingAddress(cn.jx.pxc.shoppingweb.entity.ShippingAddress)
 	 */
 	@Override
 	public void saveShippingAddress(ShippingAddress shippingAddress) throws Exception {
@@ -90,7 +89,7 @@ public class OrdersDaoImpl extends BaseDaoHibernate implements OrdersDao {
 
 
 	/* (non-Javadoc)
-	 * @see web.dao.OrdersDao#deleteCartByDoOrder(java.lang.Integer, java.lang.Integer)
+	 * @see cn.jx.pxc.shoppingweb.dao.OrdersDao#deleteCartByDoOrder(java.lang.Integer, java.lang.Integer)
 	 */
 	@Override
 	public void deleteCartByDoOrder(Integer uid, Integer gid) throws Exception {

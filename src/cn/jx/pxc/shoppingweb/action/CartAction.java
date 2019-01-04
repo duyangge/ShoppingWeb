@@ -24,7 +24,7 @@ import cn.jx.pxc.shoppingweb.service.CartService;
 /**
  *<p> Title:  CartAction.java</p>
  *<p> Description:  购物车的控制层</p>
- * @package   web.action
+ * @package   cn.jx.pxc.shoppingweb.action
  * @author    黄信胜
  * @date      2019年1月3日下午7:03:04
  * @version 19.01.03
@@ -73,7 +73,7 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	 */
 	public boolean checkExistItems(Integer uid, Integer gid) throws Exception {
 		List<Cart> list = cartService.checkExistItems(uid, gid);
-		if (list != null&&list.size() > 0) {
+		if (list != null&&list.size() > 0) {//判断购物车中是否存在该商品
 			Cart listCart = list.get(0);
 			if (numcondition) {
 				listCart.setGnum(listCart.getGnum() + cart.getGnum());
@@ -84,6 +84,8 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 					listCart.setGnum(listCart.getGnum() - cart.getGnum());
 				}
 			}
+			listCart.setModifiedTime(new Date());
+			listCart.setModifiedUser(((User)con.getSession().get("user")).getUsername());
 			cartService.saveCart(listCart);
 			return true;
 		} else {
@@ -103,6 +105,10 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 			//cart.setDate(df.parse(df.format(new Date())));
 			cart.setDate(new Date());
 			cart.setUid(((User)con.getSession().get("user")).getUid());
+			cart.setCreatedUser(((User)con.getSession().get("user")).getUsername());
+			cart.setCreatedTime(new Date());
+			cart.setModifiedTime(new Date());
+			cart.setModifiedUser(((User)con.getSession().get("user")).getUsername());
 			cartService.addCart(cart);
 		}
 		return "addLookCart";
@@ -148,7 +154,7 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	}
 
 	/**
-	 * 删除商品
+	 * 删除购物车中的商品
 	 * @return lookCart
 	 * @throws Exception 
 	 * @throws NumberFormatException 

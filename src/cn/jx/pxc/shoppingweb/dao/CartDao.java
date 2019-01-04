@@ -9,7 +9,7 @@ import cn.jx.pxc.shoppingweb.entity.User;
 /**
  *<p> Title:  CartDao.java</p>
  *<p> Description:  对购物车的数据库的各种操作</p>
- * @package   web.dao
+ * @package   cn.jx.pxc.shoppingweb.dao
  * @author    黄信胜
  * @date      2019年1月4日下午2:16:41
  * @version 19.01.04

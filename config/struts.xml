@@ -47,7 +47,8 @@
 		<action name="items_*" class="itemsAction" method="{1}">
 			<result name="itemslist">/ShowListItems.jsp</result>
 			<result name="detailItems">/addCart.jsp</result>
-			<allowed-methods>inItemsList,getDetailItems</allowed-methods>
+			<result name="findItems">/findItems.jsp</result>
+			<allowed-methods>inItemsList,getDetailItems,findItems</allowed-methods>
 		</action>
 		
 		<!--购物车  -->
@@ -62,7 +63,7 @@
 		
 		<!--订单  -->
 		<action name="orders_*" class="ordersAction" method="{1}">
-			<interceptor-ref name="loginStack"></interceptor-ref>
+			<interceptor-ref name="loginStack"/>
 			<result name="writeaddress">/orderaddress.jsp</result>
 			<result name="lookOrders">/myorder.jsp</result>
 			<result name="tryLookOrders" type="redirectAction">orders_lookOrders</result>

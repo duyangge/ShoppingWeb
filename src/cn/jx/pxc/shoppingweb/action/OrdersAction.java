@@ -24,7 +24,7 @@ import cn.jx.pxc.shoppingweb.service.OrdersService;
 /**
  *<p> Title:  OrdersAction</p>
  *<p> Description:  对客户订单信息的各种操作</p>
- * @package   web.action
+ * @package  cn.jx.pxc.shoppingweb.action
  * @author    黄信胜
  * @date      2018年12月9日下午8:45:00
  * @version 1.0

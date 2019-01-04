@@ -6,7 +6,7 @@ import cn.jx.pxc.shoppingweb.entity.Items;
 /**
  *<p> Title:  ItemsService.java</p>
  *<p> Description:  商品显示的业务层</p>
- * @package   web.service
+ * @package   cn.jx.pxc.shoppingweb.service
  * @author    黄信胜
  * @date      2019年1月4日下午2:29:25
  * @version 19.01.04
@@ -29,5 +29,12 @@ public interface ItemsService {
 	 * @throws Exception
 	 */
     Items getDetailItems(Integer gid) throws Exception;
+    
+    /**通过商品名称查询商品
+     * @param itemsName
+     * @return
+     * @throws Exception
+     */
+    List<Items> findItems(String itemsName) throws Exception;
     
 }

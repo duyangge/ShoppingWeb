@@ -67,7 +67,7 @@
 </c:if>
 <a href="JavaScript:history.go(-1)">返回上一页</a>
 <c:if test="${empty cartlist}">
-		<h3 align="center" style="font-style: italic;font-weight: bold;font-size:14px; color:blue;">空空的，需要您去寻找你的宝藏......</h3>
+		<h3 align="center" style="font-style: italic;font-weight: bold;font-size:19px; color:blue;">空空的，需要您去寻找你的宝藏......</h3>
 </c:if>
 <%-- <jsp:include page="foot.jsp"/> --%>
 </body>

@@ -8,7 +8,7 @@ import cn.jx.pxc.shoppingweb.entity.Items;
 /**
  *<p> Title:  ItemsDao.java</p>
  *<p> Description:  商品的dao</p>
- * @package   web.dao
+ * @package  cn.jx.pxc.shoppingweb.dao
  * @author    黄信胜
  * @date      2019年1月3日下午5:10:47
  * @version 19.01.03
@@ -19,15 +19,24 @@ public interface ItemsDao {
 	 * 
 	 * @param tid
 	 * @return
+	 * @throws Exception
 	 */
-	List<Items> inItemsList(Integer tid);
+	List<Items> inItemsList(Integer tid) throws Exception;
 	
 	/**
 	 * 显示商品详情
-	 * 
 	 * @param gid 商品id
 	 * @return 商品实体类对象
+	 * @throws Exception
 	 */
-	Items getDetailItems(Integer gid);
+	Items getDetailItems(Integer gid) throws Exception;
+	
+	
+	/**通过商品名称查询
+	 * @param itemsName 查询的商品名称或某个字段
+	 * @return
+	 * @throws Exception
+	 */
+	List<Items> selectItemsByName(String itemsName) throws Exception ;
 	
 }

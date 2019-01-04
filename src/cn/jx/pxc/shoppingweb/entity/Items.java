@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  *<p> Title:  Items.java</p>
  *<p> Description:  商品实体类</p>
- * @package   web.entity
+ * @package   cn.jx.pxc.shoppingweb.entity
  * @author    黄信胜
  * @date      2018年12月23日上午9:17:07
  * @version 18.12.23
@@ -20,14 +20,33 @@ public class Items implements Serializable{
 	private String  gname;//名称
 	private String gbrand;//品牌
 	private String gintroduce;//介绍
-	private double  gprice;//价格
+	private Double  gprice;//价格
+	private Double sellPrice;//售价
+	private String ActivityInfo;//活动介绍
 	private String imgsrc;//图片路径
 	private Date createdTime;//创建时间
 	private String createdUser;//创建者
 	private Date modifiedTime;//修改时间
 	private String modifiedUser;//修改者
 	private Set<OrdersDetail> ordersDetail;//订单详情，一对多
-	
+	public Double getGprice() {
+		return gprice;
+	}
+	public void setGprice(Double gprice) {
+		this.gprice = gprice;
+	}
+	public Double getSellPrice() {
+		return sellPrice;
+	}
+	public void setSellPrice(Double sellPrice) {
+		this.sellPrice = sellPrice;
+	}
+	public String getActivityInfo() {
+		return ActivityInfo;
+	}
+	public void setActivityInfo(String activityInfo) {
+		ActivityInfo = activityInfo;
+	}
 	public Set<OrdersDetail> getOrdersDetail() {
 		return ordersDetail;
 	}
@@ -93,11 +112,5 @@ public class Items implements Serializable{
 	}
 	public void setGintroduce(String gintroduce) {
 		this.gintroduce = gintroduce;
-	}
-	public double getGprice() {
-		return gprice;
-	}
-	public void setGprice(double gprice) {
-		this.gprice = gprice;
 	}
 }

@@ -10,7 +10,7 @@ import cn.jx.pxc.shoppingweb.entity.ShippingAddress;
 /**
  *<p> Title:  OrdersDao.java</p>
  *<p> Description:  订单的dao层</p>
- * @package   web.dao
+ * @package  cn.jx.pxc.shoppingweb.dao
  * @author    黄信胜
  * @date      2019年1月3日下午5:31:11
  * @version 19.01.03

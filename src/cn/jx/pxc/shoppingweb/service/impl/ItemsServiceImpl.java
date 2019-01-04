@@ -13,15 +13,15 @@ import cn.jx.pxc.shoppingweb.entity.ItemsShowText;
 import cn.jx.pxc.shoppingweb.entity.ItemsType;
 import cn.jx.pxc.shoppingweb.service.ItemsService;
 
-
 /**
  *<p> Title:  ItemsServiceImpl.java</p>
- *<p> Description:  商品展示的业务层接口实现</p>
- * @package   web.service.impl
+ *<p> Description:   商品展示的业务层接口实现</p>
+ * @package   cn.jx.pxc.shoppingweb.service.impl
  * @author    黄信胜
- * @date      2019年1月4日下午2:34:50
+ * @date      2019年1月4日下午3:41:26
  * @version 19.01.04
  */
+@Transactional
 @Service("itemsService")
 @SuppressWarnings("all")
 public class ItemsServiceImpl implements ItemsService{
@@ -29,24 +29,40 @@ public class ItemsServiceImpl implements ItemsService{
 	@Autowired
 	private ItemsDao itemsDao;
 	
-	/*点击查看商品列表
-	 * (non-Javadoc)
-	 * @see web.servicce.ItemsService#inItemsList(java.lang.String)
+	
+	/* (non-Javadoc)
+	 * @see cn.jx.pxc.shoppingweb.service.ItemsService#inItemsList(java.lang.Integer)
 	 */
-	public List<Items> inItemsList(Integer tid) {
+	public List<Items> inItemsList(Integer tid){
 		
-		return itemsDao.inItemsList(tid);
+		try {
+			return itemsDao.inItemsList(tid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/* (non-Javadoc)
-	 * @see web.servicce.ItemsService#byIdinItems(java.lang.String, web.entity.Items)
-	 */
-
-	/* (non-Javadoc)进入物品详细页面
-	 * @see web.servicce.ItemsService#goDetailItems(java.lang.String, java.lang.Integer)
+	 * @see cn.jx.pxc.shoppingweb.service.ItemsService#getDetailItems(java.lang.Integer)
 	 */
 	public Items getDetailItems(Integer gid) {
-		return itemsDao.getDetailItems(gid);
+		try {
+			return itemsDao.getDetailItems(gid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see cn.jx.pxc.shoppingweb.service.ItemsService#findItems(java.lang.String)
+	 */
+	@Override
+	public List<Items> findItems(String itemsName) throws Exception {
+		
+		return itemsDao.selectItemsByName(itemsName);
 	}
 
 

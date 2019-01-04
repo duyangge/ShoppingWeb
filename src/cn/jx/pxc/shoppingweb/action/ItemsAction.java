@@ -1,5 +1,7 @@
 package cn.jx.pxc.shoppingweb.action;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
@@ -14,7 +16,7 @@ import cn.jx.pxc.shoppingweb.service.ItemsService;
 /**
  *<p> Title:  ItemsAction.java</p>
  *<p> Description:  商品类操作</p>
- * @package   web.action
+ * @package  cn.jx.pxc.shoppingweb.action
  * @author    黄信胜
  * @date      2018年12月23日下午3:16:06
  * @version 18.12.23
@@ -54,5 +56,21 @@ public class ItemsAction extends ActionSupport implements ModelDriven<Items>{
 	public String getDetailItems() throws Exception{
 		con.getSession().put("detailItems", itemsService.getDetailItems(items.getGid()));
 		return "detailItems";
+	}
+	
+	
+	/**通过查询商品名称
+	 * @return
+	 */
+	public String findItems() {
+		try {
+			System.out.println(items.getGname());
+			List<Items> findItemsList = itemsService.findItems(items.getGname());
+			con.getSession().put("findItemsList", findItemsList);
+			return "findItems";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

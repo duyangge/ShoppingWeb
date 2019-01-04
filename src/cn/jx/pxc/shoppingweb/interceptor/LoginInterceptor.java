@@ -14,7 +14,7 @@ import cn.jx.pxc.shoppingweb.entity.User;
 /**
  *<p> Title:  LoginInterceptor.java</p>
  *<p> Description:  登陆拦截器</p>
- * @package   web.interceptor
+ * @package   cn.jx.pxc.shoppingweb.interceptor
  * @author    黄信胜
  * @date      2019年1月4日下午2:25:52
  * @version 19.01.04

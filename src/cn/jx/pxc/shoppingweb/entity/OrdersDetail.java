@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 /**
  *<p> Title:  OrdersDetail</p>
  *<p> Description:  订单详情商品信息</p>
- * @package   web.entity
+ * @package  cn.jx.pxc.shoppingweb.entity
  * @author    黄信胜
  * @date      2018年12月7日下午6:41:19
  * @version 18.12.07

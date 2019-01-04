@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 /**
  *<p> Title:  verifyCode.java</p>
  *<p> Description:  生成随机文字</p>
- * @package   web.Utils
+ * @package   cn.jx.pxc.shoppingweb.Utils
  * @author    黄信胜
  * @date      2019年1月4日下午2:38:49
  * @version 19.01.04

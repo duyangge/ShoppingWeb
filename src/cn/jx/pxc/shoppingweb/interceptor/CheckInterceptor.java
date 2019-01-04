@@ -10,7 +10,7 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 /**
  *<p> Title:  CheckInterceptor.java</p>
  *<p> Description:  国际化拦截器</p>
- * @package   web.interceptor
+ * @package   cn.jx.pxc.shoppingweb.interceptor
  * @author    黄信胜
  * @date      2019年1月4日下午2:25:18
  * @version 19.01.04

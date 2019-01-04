@@ -7,7 +7,7 @@ import cn.jx.pxc.shoppingweb.entity.Items;
 /**
  *<p> Title:  CartItems.java</p>
  *<p> Description:  购物车的临时映射类</p>
- * @package   web.Intermediate
+ * @package   cn.jx.pxc.shoppingweb.Intermediate
  * @author    黄信胜
  * @date      2019年1月4日下午2:27:23
  * @version 19.01.04

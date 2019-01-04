@@ -7,7 +7,7 @@ import cn.jx.pxc.shoppingweb.entity.User;
 /**
  *<p> Title:  UserDao.java</p>
  *<p> Description:  userDao的接口</p>
- * @package   web.dao
+ * @package   cn.jx.pxc.shoppingweb.dao
  * @author    黄信胜
  * @date      2019年1月4日下午2:17:56
  * @version 19.01.04

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 /**
  *<p> Title:  ShippingAddress.java</p>
  *<p> Description:  收货信息实体类</p>
- * @package   web.entity
+ * @package   cn.jx.pxc.shoppingweb.entity
  * @author    黄信胜
  * @date      2019年1月4日下午2:22:29
  * @version 19.01.04

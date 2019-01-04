@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *<p> Title:  ImageServlet.java</p>
  *<p> Description:  图片</p>
- * @package   web.Utils
+ * @package   cn.jx.pxc.shoppingweb.Utils
  * @author    黄信胜
  * @date      2019年1月3日下午5:11:52
  * @version 19.01.03

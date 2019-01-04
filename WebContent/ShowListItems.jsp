@@ -15,6 +15,7 @@
 }
 .contentshow{
 	margin:30px;
+	
 }
 </style>
 </head>
@@ -53,7 +54,6 @@
 			</table>
 		</c:if>	
 	</div>
-	<c:remove var="welcome"/>
 	<jsp:include page="foot.jsp"/>
 </body>
 </html>

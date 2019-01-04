@@ -11,11 +11,11 @@
 <link href="css/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript">
 function SeacherGood(){
-	var text=document.getElementById("text_seacher");
-	if(text.value==""){
+	var text=document.getElementById("text_seacher").value;
+	if(text==""){
 		alert("提示\n\n请输入要查询的物品！");
 	}else{
-		window.location.href="SumIndexServlet?tablename=goods&goodname="+text.value;
+		window.location.href="${pageContext.request.contextPath}/items_findItems.action?gname="+text;
 		return;
 	}
 }
@@ -59,7 +59,11 @@ function SeacherGood(){
 			<div class="logo_car">
 					<a href="${pageContext.request.contextPath }/cart_lookCart.action" class="shoppingcar_logo">
 					<img class="" src="images/background/shoppingcar.png"/>
-					<font class="logo_car_buttle">我的购物车(<font size="3px" color="black">${countAllCartItems }</font>)</font></a>
+					<font class="logo_car_buttle">我的购物车
+						<c:if test="${not empty user }">
+							(<font size="3px" color="black">${countAllCartItems }</font>)
+						</c:if>
+					</font></a>
 			</div>	
 			</div>
 			<div class="logo_list">

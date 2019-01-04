@@ -15,7 +15,7 @@ import cn.jx.pxc.shoppingweb.service.UserService;
 /**
  *<p> Title:  UserAction.java</p>
  *<p> Description:  用户的action</p>
- * @package   web.action
+ * @package  cn.jx.pxc.shoppingweb.action
  * @author    黄信胜
  * @date      2018年12月23日下午12:22:37
  * @version 1.0
@@ -67,7 +67,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	 * @return login
 	 */
 	public String loginout() {
-		con.getSession().clear();
+		con.getSession().remove("user");
 		return "login";
 	}
 	

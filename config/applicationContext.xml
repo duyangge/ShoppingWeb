@@ -43,24 +43,24 @@
         </bean>
         
         <!--事务管理  -->
-       <!--  <tx:annotation-driven transaction-manager="transactionManager"/> -->
+        <tx:annotation-driven transaction-manager="transactionManager" />
         
         <!-- 编写通知，增强事务 -->
-        <tx:advice id="txadvice" transaction-manager="transactionManager">
+      <!--   <tx:advice id="txadvice" transaction-manager="transactionManager">
         	<tx:attributes>
         		<tx:method name="add*" propagation="REQUIRED" read-only="false" rollback-for="true"/>
         		<tx:method name="delete*" propagation="REQUIRED" read-only="false" rollback-for="true"/>
         		<tx:method name="update*" propagation="REQUIRED" read-only="false" rollback-for="true"/>
         		<tx:method name="save*" propagation="REQUIRED" read-only="false" rollback-for="true"/>
         		<tx:method name="find*" propagation="REQUIRED" read-only="true"/>
-        		<tx:method name="look*" propagation="REQUIRED" read-only="true"/>
+        		<tx:method name="look*" propagation="REQUIRED" read-only="false"/>
         	</tx:attributes>
-        </tx:advice>
+        </tx:advice> -->
         
         <!--编写切点与切面进行关联  -->
-        <aop:config expose-proxy="true">
-        	<!-- <aop:pointcut expression="execution(* cn.jx.pxc.shoppingweb.service.impl.*.*(..))" id="txpointcut"/> -->
+    <!--     <aop:config expose-proxy="true">
+        	<aop:pointcut expression="execution(* cn.jx.pxc.shoppingweb.service.impl.*.*(..))" id="txpointcut"/>
         	<aop:advisor advice-ref="txadvice" pointcut="execution(* cn.jx.pxc.shoppingweb.service.impl.*.*(..))"/>
-        </aop:config>
+        </aop:config> -->
         
 </beans>

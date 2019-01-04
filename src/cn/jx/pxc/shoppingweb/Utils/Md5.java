@@ -7,7 +7,7 @@ import sun.misc.BASE64Encoder;
 /**
  *<p> Title:  Md5.java</p>
  *<p> Description:  md5加密</p>
- * @package   web.Utils
+ * @package   cn.jx.pxc.shoppingweb.Utils
  * @author    黄信胜
  * @date      2019年1月4日下午2:37:45
  * @version 19.01.04

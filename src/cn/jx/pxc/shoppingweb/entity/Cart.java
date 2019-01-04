@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  *<p> Title:  Cart.java</p>
  *<p> Description:  购物车</p>
- * @package   web.entity
+ * @package   cn.jx.pxc.shoppingweb.entity
  * @author    黄信胜
  * @date      2019年1月4日下午1:56:23
  * @version 19.01.04
