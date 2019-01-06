@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -29,21 +31,21 @@ import cn.jx.pxc.shoppingweb.service.CartService;
  * @date      2019年1月3日下午7:03:04
  * @version 19.01.03
  */
-@Controller("cartAction")
+@Controller
 @Scope("prototype")
 @SuppressWarnings("all")
 public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	
 	private  Cart cart = new Cart();
 	
-	@Resource(name="cartService")
+	@Autowired
 	private CartService cartService;
 	
 	private String[] gidlist;
 	
 	private String smallcounter;
 	
-	@Resource(name="showPage")
+	@Autowired
 	private ShowPage showPage;
 	
 	private boolean numcondition = true;
@@ -60,10 +62,10 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	public void setSmallcounter(String smallcounter) {
 		this.smallcounter = smallcounter;
 	}
-
-	public String execute() throws Exception {
-		return super.execute();
-	}	
+	
+	public void setShowPage(ShowPage showPage) {
+		this.showPage = showPage;
+	}
 	/**
 	 * 查询购物车商品中是否存在该商品，有数量加+1，无添加该对象，
 	 * @param uid 用户id
@@ -102,7 +104,6 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 		if (this.checkExistItems(((User)con.getSession().get("user")).getUid(), cart.getGid())){}//购物车存在该商品添加数量
 		else {
 			//SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式  
-			//cart.setDate(df.parse(df.format(new Date())));
 			cart.setDate(new Date());
 			cart.setUid(((User)con.getSession().get("user")).getUid());
 			cart.setCreatedUser(((User)con.getSession().get("user")).getUsername());
@@ -123,7 +124,8 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 		this.PagingProcess(cartService.statisticalCarts(((User)con.getSession().get("user")).getUid()).intValue());//总记录数
 		List<CartItems> cartlist = cartService.lookCart((User)con.getSession().get("user"), showPage.getCurrentpage(), showPage.getPageSize());//购物表
 		this.updateCartCounts();
-		con.getSession().put("cartlist", cartlist);
+		//con.getSession().put("cartlist", cartlist);
+		ServletActionContext.getRequest().setAttribute("cartlist", cartlist);
 		return "lookCart";
 	}
 	
@@ -150,7 +152,8 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 		showPage.setTotalpages((totalRecords % showPage.getPageSize() == 0) ? (totalRecords / showPage.getPageSize()) : ((totalRecords / showPage.getPageSize()) + 1));
 		if (showPage.getCurrentpage() == 0) showPage.setCurrentpage(1);
 		if (showPage.getCurrentpage() >= showPage.getTotalpages()) showPage.setCurrentpage(showPage.getTotalpages());
-		con.getSession().put("showPage", showPage);
+		//con.getSession().put("showPage", showPage);
+
 	}
 
 	/**

@@ -68,7 +68,7 @@ public class OrdersServiceImpl implements OrdersService {
 	 * @see cn.jx.pxc.shoppingweb.service.OrdersService#lookOrdersDetail(java.lang.Integer)
 	 */
 	@Override
-	public List<Items> lookOrdersDetail(Integer rid) throws Exception {
+	public List<OrdersDetail> lookOrdersDetail(Integer rid) throws Exception {
 		return ordersDao.findOrdersDetailById(rid);
 	}
 

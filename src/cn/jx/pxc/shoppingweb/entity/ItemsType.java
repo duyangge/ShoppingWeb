@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * @date      2019年1月4日下午2:21:23
  * @version 19.01.04
  */
-@Repository("itemsType")
+@Repository
 @SuppressWarnings("all")
 public class ItemsType implements Serializable{
 	private Integer tid;//商品类型id

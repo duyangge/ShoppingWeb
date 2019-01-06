@@ -2,6 +2,7 @@ package cn.jx.pxc.shoppingweb.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import cn.jx.pxc.shoppingweb.dao.OrdersDao;
@@ -65,8 +66,9 @@ public class OrdersDaoImpl extends BaseDaoHibernate implements OrdersDao {
 	 * @see cn.jx.pxc.shoppingweb.dao.OrdersDao#findOrdersDetailById(java.lang.Integer)
 	 */
 	@Override
-	public List<Items> findOrdersDetailById(Integer rid) throws Exception {
-		return (List<Items>) this.getHibernateTemplate().find("from OrdersDetail where orders_id=?", rid);
+	public List<OrdersDetail> findOrdersDetailById(Integer rid) throws Exception {
+		//Query query = this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("select ");
+		return (List<OrdersDetail>) this.getHibernateTemplate().find("from OrdersDetail where orders_id=?", rid);
 	}
 
 	/* (non-Javadoc)

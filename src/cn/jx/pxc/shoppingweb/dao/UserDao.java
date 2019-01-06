@@ -18,14 +18,23 @@ public interface UserDao {
 	 * 登陆
 	 * @param user 用户实体类对象
 	 * @return 用户实体类对象
+	 * @throws Exception
 	 */
-	User login(User user);
+	User login(User user) throws Exception;
 	
 	/**
 	 * 注册
 	 * @param user 用户实体类对象
 	 * @return 用户实体类对象
+	 * @throws Exception
 	 */
-	User register(User user);
+	User register(User user) throws Exception;
+	
+	/**通过用户名查询是否存在该用户
+	 * @param username
+	 * @return
+	 * @throws Exception
+	 */
+	User findUserByUserName(String username) throws Exception;
 		
 }

@@ -36,4 +36,14 @@ public class UserDaoImpl extends BaseDaoHibernate implements UserDao{
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see cn.jx.pxc.shoppingweb.dao.UserDao#findUserByUserName(java.lang.String)
+	 */
+	@Override
+	public User findUserByUserName(String username) throws Exception {
+		List<User> list = (List<User>) this.getHibernateTemplate().find("from User where username=?", username);
+		if (list != null && list.size()>0) return list.get(0);
+		return null;
+	}
+
 }

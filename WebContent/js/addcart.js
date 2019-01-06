@@ -1,13 +1,16 @@
 
 function instantbuy(){
-	if(confirm("亲!\n\n您确认是否下单，下单须填写详细信息")){
+	if (confirm("亲!\n\n您确认是否下单")) {
 			//检查是否填写收货信息
 			var gnum=document.getElementById("number").value;//
 			var gid=document.getElementById("gid").value;//
 			var unitprice=document.getElementById("unitprice").value;//
 			var allMoney=unitprice*gnum;//
-			window.location.href="${pageContext.request.contextPath}/orders_addOrders.action?gid="+gid+"&gnum="+gnum+"&allMoney="+allMoney; 
-		}else{return;}
+			window.location.href="${pageContext.request.contextPath}/orders_addOrders.action?itemsId="+gid+"&itemsNum="+gnum; 
+		}else {
+			return;
+			
+			}
 }
 
 function pitchon() {//提交复选框选中的商品id与对应的数量

@@ -13,10 +13,10 @@ import org.springframework.stereotype.Repository;
  * @date      2019年1月4日下午2:22:29
  * @version 19.01.04
  */
-@Repository("shippingAddress")
+@Repository
 @SuppressWarnings("all")
 public class ShippingAddress implements Serializable{
-	private Integer aid;//
+	
 	private Integer uid;//用户id
 	private String consignee;//收货人
 	private String phone;//联系电话
@@ -50,12 +50,6 @@ public class ShippingAddress implements Serializable{
 	}
 	public void setModifiedUser(String modifiedUser) {
 		this.modifiedUser = modifiedUser;
-	}
-	public Integer getAid() {
-		return aid;
-	}
-	public void setAid(Integer aid) {
-		this.aid = aid;
 	}
 	public Integer getUid() {
 		return uid;
@@ -92,12 +86,5 @@ public class ShippingAddress implements Serializable{
 	}
 	public void setShippingaddress(String shippingaddress) {
 		this.shippingaddress = shippingaddress;
-	}
-	@Override
-	public String toString() {
-		return "ShippingAddress [aid=" + aid + ", uid=" + uid + ", consignee="
-				+ consignee + ", phone=" + phone + ", postcode=" + postcode
-				+ ", remark=" + remark + ", shippingaddress=" + shippingaddress
-				+ "]";
 	}
 }

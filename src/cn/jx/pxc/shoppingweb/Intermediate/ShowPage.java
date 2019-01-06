@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @date      2019年1月4日下午2:28:26
  * @version 19.01.04
  */
-@Component("showPage")
+@Component
 @SuppressWarnings("all")
 public class ShowPage {
 	private Integer currentpage=1;//当前页

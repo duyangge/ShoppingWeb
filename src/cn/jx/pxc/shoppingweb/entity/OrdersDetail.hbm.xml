@@ -11,8 +11,7 @@
 		<property name="createdTime" column="created_time"/>
 		<property name="modifiedUser" column="modified_user"/>
 		<property name="modifiedTime" column="modified_time"/>
-		<many-to-one name="orders" class="cn.jx.pxc.shoppingweb.entity.Orders" column="orders_id"/>
-		
+		<many-to-one name="orders" class="cn.jx.pxc.shoppingweb.entity.Orders" column="orders_id" />
 		<many-to-one name="items" class="cn.jx.pxc.shoppingweb.entity.Items" column="items_id"/>
 	</class>
 </hibernate-mapping>

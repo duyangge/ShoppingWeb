@@ -31,4 +31,12 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	User register(User user) throws Exception;
+	
+	/**
+	 * 通过用户名查询是否存在该用户
+	 * @param username
+	 * @return
+	 * @throws Exception
+	 */
+	Boolean checkUserName(String username) throws Exception;
 }

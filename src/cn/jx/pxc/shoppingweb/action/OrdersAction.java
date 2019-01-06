@@ -2,11 +2,14 @@ package cn.jx.pxc.shoppingweb.action;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -15,6 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 import cn.jx.pxc.shoppingweb.Intermediate.ShowPage;
+import cn.jx.pxc.shoppingweb.entity.Items;
 import cn.jx.pxc.shoppingweb.entity.Orders;
 import cn.jx.pxc.shoppingweb.entity.OrdersDetail;
 import cn.jx.pxc.shoppingweb.entity.ShippingAddress;
@@ -29,7 +33,7 @@ import cn.jx.pxc.shoppingweb.service.OrdersService;
  * @date      2018年12月9日下午8:45:00
  * @version 1.0
  */
-@Controller("ordersAction")
+@Controller
 @Scope("prototype")
 @SuppressWarnings("all")
 public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
@@ -38,16 +42,16 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
   
   private String itemsNum;//选中的商品id对应的商品数量
   
-  @Resource(name="showPage")
+  @Autowired
   private ShowPage showPage;//分页实体类
   
-  @Resource(name="ordersService")
+  @Autowired
   private OrdersService ordersService;
   
-  @Resource(name="ordersDetail")
+  @Autowired
   private OrdersDetail ordersDetail;
   
-  @Resource(name="shippingAddress")
+  @Autowired
   private ShippingAddress shippingAddress;
   
   private Orders orders = new Orders();
@@ -72,7 +76,7 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
  * @throws Exception 
    */
   public String lookOrders() throws Exception {
-	 con.getSession().put("ordersList", ordersService.lookOrders(((User)(con.getSession().get("user"))).getUid()));
+	  ServletActionContext.getRequest().setAttribute("ordersList", ordersService.lookOrders(((User)(con.getSession().get("user"))).getUid()));
 	return "lookOrders";
   }
 /**
@@ -89,7 +93,6 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
    */
   public String addOrders(){
 	 try {
-		 
 		 Integer itemsAllNum = 0;//订单中商品总数量
 		 Double itemsAllPrice = 0.0;//订单中商品总价格
 		 String[] itemsIdList = this.itemsId.split(",");//接收下单的商品id总字符串
@@ -103,9 +106,10 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 	    	 }
 	     }
 	     
-	    /*计算商品总价格与总数量*/
 	    Set<Integer> itemsIdMap =  itemsDetailMap.keySet();//得到商品id的数组
-	    for (Integer itemsidmap : itemsIdMap) {/*计算商品总价格与总数量*/
+	    
+	    /*计算商品总价格与总数量*/
+	    for (Integer itemsidmap : itemsIdMap) {
 	    	Integer itemsnum = itemsDetailMap.get(itemsidmap);
 	    	
 	    	/*下单后修改购物车商品总数量*/
@@ -128,6 +132,7 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 		  
 		 /*将订单中的商品信息存入详细订单详情中*/ 
 		for (Integer itemsidmap : itemsIdMap) {
+			
 			/*下单同时，删除购物车中的下单物品 */
 			this.deleteCartByDoOrder(((User)(con.getSession().get("user"))).getUid(), itemsidmap);
 		    this.saveOrdersDetailItems(orders.getRid(), itemsDetailMap.get(itemsidmap), itemsidmap);
@@ -135,7 +140,8 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 		
 		/*先保存订单，再判断是否填写地址，无，则跳转到填写地址页面，否则就跳转到我的订单页面*/
 		  if (!this.checkShippingAddress(((User)(con.getSession().get("user"))).getUid())) {
-			  con.getSession().put("orders", orders);
+			 //con.getSession().put("orders", orders);
+			  ServletActionContext.getRequest().setAttribute("orders", orders);
 			  return "writeaddress";
 		  }
 		  
@@ -156,10 +162,14 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 public void saveOrdersDetailItems(Integer rid, Integer num, Integer gid) throws Exception {
 	OrdersDetail ordersDetail = new OrdersDetail ();//实例化多个对象
 	ordersDetail.setItems(ordersService.findItemsById(gid));
-	ordersDetail.setItemsId(gid);
+	ordersDetail.setItems_id(gid);
 	ordersDetail.setOrders(orders);
 	ordersDetail.setItemsNum(num);
-	ordersDetail.setOrdersId(rid);
+	ordersDetail.setOrders_id(rid);
+	ordersDetail.setCreatedUser(((User)(con.getSession().get("user"))).getUsername());
+	ordersDetail.setCreatedTime(new Date());
+	ordersDetail.setModifiedTime(new Date());
+	ordersDetail.setModifiedUser(((User)(con.getSession().get("user"))).getUsername());
 	ordersService.saveOrdersDetailItems(ordersDetail);
 	
   }
@@ -170,9 +180,13 @@ public void saveOrdersDetailItems(Integer rid, Integer num, Integer gid) throws 
    * @throws Exception 
    */
   public String lookItemsDetail() throws Exception {
-	con.getSession().put("ordersDetailList", ordersService.lookOrdersDetail(orders.getRid()))  ;
-	System.out.println("订单详细商品一次");
-	return "lookItemsDetail";
+	  List<OrdersDetail> list = ordersService.lookOrdersDetail(orders.getRid());
+	  	for (OrdersDetail ordersDetail : list) {
+			Items items = ordersService.findItemsById(ordersDetail.getItems_id());
+			ordersDetail.setItems(items);
+		}
+	  ServletActionContext.getRequest().setAttribute("ordersDetailList", ordersService.lookOrdersDetail(orders.getRid()));
+	 return "lookItemsDetail";
   }
   
   

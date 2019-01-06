@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
  * @date      2019年1月4日下午2:21:01
  * @version 19.01.04
  */
-@Repository("itemsShowText")
+@Repository
 @SuppressWarnings("all")
 public class ItemsShowText implements Serializable{
 	private Integer sid;//商品描述id

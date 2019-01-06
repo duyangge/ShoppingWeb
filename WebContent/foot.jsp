@@ -21,7 +21,6 @@
 			<div class="foot_button">
 				<pre>网络文化经营许可证：浙网文[2016]0268-027号|增值电信业务经营许可证：浙B2-20080224|互联网违法和不良信息举报电话：0571-81683755 blxxjb@alibaba-inc.com
 				</pre>
-				
 			</div>
 		</div>
 </body>

@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
+.foot{
+	background-color:#EDEDED;
+}
 span{
 	font-family:"华文新魏";
 	font-size:11pt;/* 11pt */
@@ -14,7 +17,7 @@ span{
 }
 a{
 text-decoration:none;
-color:#808080;
+color:black;
 font-size:10pt;/*10pt  */
 }
 pre{
@@ -24,12 +27,18 @@ font-weight:bold;
 .foot_top,.foot_buttom{
 text-align:center;
 }
+#foot_right_div{
+text-align:center;
+}
+#foot_left_div{
+	float:right;
+}
 </style>
 <link href="css/main.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 	<div class="foot"><!--尾部结束  -->
-			<div>
+			<div id="foot_left_div">
 				<div class="foot_top">
 					<span>增值电信业务经营许可证:<a href="#">浙B2-20110446</a></span>
 					<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>     
@@ -45,9 +54,13 @@ text-align:center;
 					<span>互联网药品信息服务资质证书编号：<a href="#">浙-（经营性）-2017-0005</a> </span>  
 				</div> 
 			</div>
+			<div id="foot_right__div">
+					 <img src="images/footscan/ebs-logo.jpg">
+					 <img src="images/footscan/sm_124x47.png">
+					 <img src="images/footscan/beian1.png">
+			</div>
 			<div class="foot_button">
 				<span><pre>浙公网安备 33010002000120号</pre></span>
-				
 			</div>
 		</div>
 </body>

@@ -53,7 +53,7 @@ public interface OrdersDao {
 	 * @return 
 	 * @throws Exception
 	 */
-	List<Items> findOrdersDetailById(Integer rid) throws Exception;
+	List<OrdersDetail> findOrdersDetailById(Integer rid) throws Exception;
 
 	/**
 	 * 添加订单详细商品

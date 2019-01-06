@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * @date      2019年1月4日下午2:05:43
  * @version 19.01.04
  */
-@Repository("itemsBrand")
+@Repository
 @SuppressWarnings("all")
 public class ItemsBrand implements Serializable{
 	private Integer bid;//商标id

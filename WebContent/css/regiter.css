@@ -1,33 +1,35 @@
 body{
  	height:100%;
 	width:100%; 
-	background-image:url(../images/lunbo/timg.jpg);
+	/* background-image:url(../images/lunbo/timg.jpg); */
 	background-repeat:no-repeat;
 	display:block;
 	text-align:center;
 	background-size:100% 100%;
 	background-attachment:fixed;
-	opacity:0.88;
+	opacity:1;
 }
 .container{
 	position:absolute; 
 	top:30%; 
-	left:50%; 
+	right:5%; 
 	margin:-150px 0 0 -200px; 
 	width:450px; 
 	height:450px; 
 }
 .allresign{
+	margin-top:100px;
+	margin-right:50px;
 	background:hsla(0,0%,100%,3);
-	text-align:center;
-	width:430px;
-	height:440px;
+	text-align:right;
+	width:410px;
+	height:410px;
 	border-radius:5px;	
 }
 
 .button{
 	height:37px;
-	width:365px; 
+	width:300px; 
 	background:#0080ff;
 	border:none;
 	border-radius:5px;	
@@ -67,12 +69,28 @@ body{
 	text-decoration:none;
 	color:black; 
 	font-family:"华文仿宋";
-	font-size:10pt;/*10pt  */
+	font-size:10pt;
 }
 .mess{
 	color:red;
 	font-size:12px;
 	font-weight:bold;
 }
-
-
+#register_content_id{
+	display:none;
+}
+#div_register_title{
+	margin-top:30px;
+}
+#register_title{
+	font-size:30px;
+	text-align:center;
+	margin-top:10px;
+	margin-right:150px;
+}
+#resign_content_div{
+	margin-right:20px;
+}
+.resign_input{
+	margin-top:30px;
+}

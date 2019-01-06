@@ -26,12 +26,21 @@
 		</tr>
 		<c:forEach var="orders" items="${ordersList}">
 				<tr>
-					<td align="center"><span class="showMess"><c:out value="${orders.getRid()}"/></span></td>
-					<td align="center"><span class="showMess"><c:out value="${orders.getGnum()}"/></span></td>
-					<td align="center"><span class="showMess">¥<c:out value="${orders.getAllMoney()}"/></span></td>
-					<td align="center"><span class="showMess"><c:out value="${orders.getDate()}"/></span></td>
-					<td align="center"><span class="showMess"><c:out value="${orders.getOrderStatus()}"/></span></td>
-					<td align="center"><span class="showMess"><a href="${pageContext.request.contextPath }/orders_lookItemsDetail.action?rid=${orders.getRid()}">查看详情</a></span></td>
+					<td align="center"><span class="showMess"><c:out value="${orders.rid}"/></span></td>
+					<td align="center"><span class="showMess"><c:out value="${orders.gnum}"/></span></td>
+					<td align="center"><span class="showMess">¥<c:out value="${orders.allMoney}"/></span></td>
+					<td align="center"><span class="showMess"><c:out value="${orders.date}"/></span></td>
+					<td align="center">
+						<span class="showMess">
+							<c:if test="${orders.orderStatus == 1}">
+								<c:out value="已付款"/>
+							</c:if>
+							<c:if test="${orders.orderStatus == 0}">
+								<c:out value="未付款"/>
+							</c:if>
+						</span>
+					</td>
+					<td align="center"><span class="showMess"><a href="${pageContext.request.contextPath }/orders_lookItemsDetail.action?rid=${orders.rid}">查看详情</a></span></td>
 				</tr>
 		</c:forEach>
 	</table>

@@ -28,7 +28,13 @@ public class UserServiceImpl implements UserService{
 	 * @see cn.jx.pxc.shoppingweb.service.UserService#login(cn.jx.pxc.shoppingweb.entity.User)
 	 */
 	public User login(User user) {
-		return userDao.login(user);
+		try {
+			return userDao.login(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	
@@ -36,6 +42,21 @@ public class UserServiceImpl implements UserService{
 	 * @see cn.jx.pxc.shoppingweb.service.UserService#register(cn.jx.pxc.shoppingweb.entity.User)
 	 */
 	public User register(User user) {
-		return userDao.register(user);
+		try {
+			return userDao.register(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see cn.jx.pxc.shoppingweb.service.UserService#checkUserName(java.lang.String)
+	 */
+	@Override
+	public Boolean checkUserName(String username) throws Exception {
+		return userDao.findUserByUserName(username) != null;
 	}
 }

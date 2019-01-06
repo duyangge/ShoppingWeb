@@ -2,8 +2,8 @@ package cn.jx.pxc.shoppingweb.action;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -21,14 +21,14 @@ import cn.jx.pxc.shoppingweb.service.ItemsService;
  * @date      2018年12月23日下午3:16:06
  * @version 18.12.23
  */
-@Controller("itemsAction")
+@Controller
 @Scope("prototype")
 @SuppressWarnings("all")
 public class ItemsAction extends ActionSupport implements ModelDriven<Items>{
 	
 	private Items items = new Items();
 	
-	@Resource(name="itemsService")
+	@Autowired
 	private ItemsService itemsService;
 	
 	private ActionContext con = ActionContext.getContext();
@@ -54,7 +54,8 @@ public class ItemsAction extends ActionSupport implements ModelDriven<Items>{
 	 * @throws Exception 
 	 */
 	public String getDetailItems() throws Exception{
-		con.getSession().put("detailItems", itemsService.getDetailItems(items.getGid()));
+		//con.getSession().put("detailItems", itemsService.getDetailItems(items.getGid()));
+		ServletActionContext.getRequest().setAttribute("detailItems", itemsService.getDetailItems(items.getGid()));
 		return "detailItems";
 	}
 	
@@ -66,7 +67,8 @@ public class ItemsAction extends ActionSupport implements ModelDriven<Items>{
 		try {
 			System.out.println(items.getGname());
 			List<Items> findItemsList = itemsService.findItems(items.getGname());
-			con.getSession().put("findItemsList", findItemsList);
+			//con.getSession().put("findItemsList", findItemsList);
+			ServletActionContext.getRequest().setAttribute("findItemsList", findItemsList);
 			return "findItems";
 		} catch (Exception e) {
 			e.printStackTrace();

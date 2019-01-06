@@ -18,7 +18,6 @@
 			<key column="orders_id"/>
 			<one-to-many class="cn.jx.pxc.shoppingweb.entity.OrdersDetail"/>			
 		</set>
-		
 	    <many-to-one name="user" class="cn.jx.pxc.shoppingweb.entity.User" column="uid"/>
 	</class>
 </hibernate-mapping>

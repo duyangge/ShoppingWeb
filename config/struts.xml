@@ -38,7 +38,12 @@
 			<result name="login">/login.jsp</result>
 			<result name="register">/resign.jsp</result>
 			<result name="loadMyCartNum" type="redirectAction">cart_countAllCartItems</result>
-			<allowed-methods>login,register,loginout</allowed-methods>
+			<allowed-methods>login,register,loginout,checkUserNameExist</allowed-methods>
+		</action>
+		
+		<!--验证码  -->
+		<action name="verifyCodeImage_*" class="verifyCodeImageAction" method="{1}">
+		<allowed-methods>verify,getRandColor</allowed-methods>
 		</action>
 		
 		<!--商品  -->

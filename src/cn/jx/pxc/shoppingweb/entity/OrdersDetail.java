@@ -16,12 +16,12 @@ import org.springframework.stereotype.Repository;
  * @date      2018年12月7日下午6:41:19
  * @version 18.12.07
  */
-@Repository("ordersDetail")
+@Repository
 @SuppressWarnings("all")
 public class OrdersDetail implements Serializable{
     private Integer id;//订单详情商品信息id
-    private Integer ordersId;//订单id
-    private Integer itemsId;//商品id
+    private Integer orders_id;//订单rid
+    private Integer items_id;//商品id
     private Integer itemsNum;//商品数量
 	private Date createdTime;//创建时间
 	private String createdUser;//创建者
@@ -35,17 +35,17 @@ public class OrdersDetail implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getOrdersId() {
-		return ordersId;
+	public Integer getOrders_id() {
+		return orders_id;
 	}
-	public void setOrdersId(Integer ordersId) {
-		this.ordersId = ordersId;
+	public void setOrders_id(Integer orders_id) {
+		this.orders_id = orders_id;
 	}
-	public Integer getItemsId() {
-		return itemsId;
+	public Integer getItems_id() {
+		return items_id;
 	}
-	public void setItemsId(Integer itemsId) {
-		this.itemsId = itemsId;
+	public void setItems_id(Integer items_id) {
+		this.items_id = items_id;
 	}
 	public Integer getItemsNum() {
 		return itemsNum;

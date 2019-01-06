@@ -52,7 +52,7 @@ public interface OrdersService {
 	 * @return
 	 * @throws Exception
 	 */
-	List<Items> lookOrdersDetail(Integer rid)  throws Exception;
+	List<OrdersDetail> lookOrdersDetail(Integer rid)  throws Exception;
 
 	/**
 	 * 添加订单详细信息

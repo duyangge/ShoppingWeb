@@ -18,7 +18,7 @@
 </style>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath }/orders_saveShippingAddress" method="get" class="form" id="detailtable">
+	<form action="${pageContext.request.contextPath }/orders_saveShippingAddress" method="post" class="form" id="detailtable">
 			<table>
 			<caption><span style="color:red;text-align:center;">请填写好以下信息</span></caption>
 				<tr>
@@ -27,7 +27,7 @@
 				</tr>
 				<tr>
 					<td><span>联系电话：</span></td>
-					<td><input type="text" name="shippingAddress.phone" id="phone" placeholder="联系电话电话" /></td>
+					<td><input type="text" name="shippingAddress.phone" id="phone" placeholder="联系电话电话"/></td>
 				</tr>
 				<tr>
 					<td><span>邮政编号：</span></td>
@@ -43,7 +43,7 @@
 				</tr>
 				<tr>
 					<td><span>订单编号</span></td>
-					<td><input type="text" name="orderno" id="orderno" value="${orders.getRid()}" readonly="true"/></td>
+					<td><input type="text" name="orderno" id="orderno" value="${orders.getRid()}" readonly="readonly"/></td>
 				</tr>
 			</table>
 			<input type="hidden" name="shippingAddress.uid" value="${user.getUid()}"/>
