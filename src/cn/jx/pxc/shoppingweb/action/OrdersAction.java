@@ -87,7 +87,7 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
   }
 
   /**
-   * 查看订单
+   * 查看订单及其详情
    * @return 返回字符串”lookorders“
    * @throws Exception 
    */
@@ -95,6 +95,14 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 	  Integer uid = ((User)(con.getSession().get("user"))).getUid();
 	  this.PagingProcess(ordersService.sumCountOrders(uid).intValue());
 	  List<Orders> ordersList = ordersService.lookOrders(uid, showPage.getCurrentpage(), showPage.getPageSize());
+	  for (Orders orders : ordersList) {
+		List<OrdersDetail> ordersDetail = ordersService.lookOrdersDetail(orders.getRid());
+		//orders.setOrdersDetail(ordersDetail);
+		for (OrdersDetail ordersDetail2 : ordersDetail) {
+			Items items = ordersService.findItemsById(ordersDetail2.getItems().getGid());
+			ordersDetail2.setItems(items);
+		}
+	 }
 	  ServletActionContext.getRequest().setAttribute("ordersList", ordersList);
 	return "lookOrders";
   }
@@ -107,7 +115,7 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 		showPage.setTotalpages((totalRecords % showPage.getPageSize() == 0) ? (totalRecords / showPage.getPageSize()) : ((totalRecords / showPage.getPageSize()) + 1));
 		if (showPage.getCurrentpage() == 0) showPage.setCurrentpage(1);
 		if (showPage.getCurrentpage() >= showPage.getTotalpages()) showPage.setCurrentpage(showPage.getTotalpages());
-		showPage.setPageSize(5);
+		showPage.setPageSize(3);
 		ServletActionContext.getRequest().setAttribute("showPage", showPage);
 	}
   
@@ -159,7 +167,6 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 		  orders.setAllMoney(itemsAllPrice);
 		  orders.setGnum(itemsAllNum);
 		  orders.setDate(new Date());
-		  orders.setUid(uid);
 		  orders.setUser((User)(con.getSession().get("user")));
 		  orders.setOrderStatus(0);
 		  orders.setCreatedUser(uname);
@@ -201,10 +208,8 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 	    Integer uid = ((User)(con.getSession().get("user"))).getUid();
 		OrdersDetail ordersDetail = new OrdersDetail ();//实例化多个对象
 		ordersDetail.setItems(ordersService.findItemsById(gid));
-		//ordersDetail.setItemsId(gid);
 		ordersDetail.setOrders(orders);
 		ordersDetail.setItemsNum(num);
-		//ordersDetail.setOrdersId(rid);
 		ordersDetail.setCreatedUser(uname);
 		ordersDetail.setCreatedTime(new Date());
 		ordersDetail.setModifiedTime(new Date());

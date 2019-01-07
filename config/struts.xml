@@ -17,12 +17,13 @@
 			<interceptor name="loginInterceptor" class="cn.jx.pxc.shoppingweb.interceptor.LoginInterceptor"></interceptor>
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor">
-					<param name="excludeMethods">login,pageLoad</param>
+					<param name="excludeMethods">login,pageLoad,sendMessage</param>
 				</interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
 		
+		<!--全局配置  -->
 		<global-results>
 			<result name="success">/sum.jsp</result>
 			<result name="login">/login.jsp</result>
@@ -37,8 +38,12 @@
 		<action name="user_*" class="userAction" method="{1}"><!--  -->
 			<result name="login">/login.jsp</result>
 			<result name="register">/resign.jsp</result>
+			<result name="showUserInfo">/admin-updateuser.jsp</result>
+			<result name="admin" type="redirectAction">user_lookAllUser</result>
+			<result name="lookAllUsers">/admin-aduser.jsp</result>
 			<result name="loadMyCartNum" type="redirectAction">cart_countAllCartItems</result>
-			<allowed-methods>login,register,loginout,checkUserNameExist</allowed-methods>
+			<result name="sendMessage">/mySendMessage.jsp</result>
+			<allowed-methods>login,register,loginout,checkUserNameExist,sendMessage,lookAllUser,deleteUser,updateUser,lookAllUserMessasge,updateUserMessage,deleteUserMessage,showUserInfo,adminAddUser</allowed-methods>
 		</action>
 		
 		<!--验证码  -->

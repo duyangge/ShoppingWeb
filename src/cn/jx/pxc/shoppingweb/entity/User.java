@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Column;
+
 /**
  *<p> Title:  User.java</p>
  *<p> Description:  用户实体类</p>
@@ -31,12 +33,14 @@ public class User implements Serializable{
 	private Date modifiedTime;//修改时间
 	private String modifiedUser;//修改者
 	private Set<Orders> orders;
+	
 	public Date getCreatedTime() {
 		return createdTime;
 	}
 	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
 	}
+	
 	public String getCreatedUser() {
 		return createdUser;
 	}

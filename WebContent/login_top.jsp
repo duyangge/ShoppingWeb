@@ -16,7 +16,7 @@
 			<span>|</span>&nbsp;
 			<a href="#">帮助</a>&nbsp;
 			<span>|</span>&nbsp;
-			<a href="connectionus.jsp">反馈</a>
+			<a href="connectionUs.jsp">反馈</a>
 			<select>
 				<option>语言设置</option>
 				<option>中文</option>

@@ -12,8 +12,51 @@
 <body>
 <div>
 	<c:if test="${not empty ordersList}">
-	<h5 align="left" style="color:blue" >${user.username}，您的订单列表，总计<span>${orderList.size()}件订单，详情如下：</span></h5>
-	<div>
+	<h5 align="left" style="color:black" >${user.username}，您的订单列表，总计<span>${ordersList.size()}件订单，详情如下：</span></h5>
+	<div id="orders_content_table_div_div">
+			<!--双层嵌套 -->
+			<!--显示订单以及订单详情  -->
+			
+			<c:forEach items="${ordersList}" var="orders">
+				<div id="orders_content_foreach_table_div_div">
+				<table border="0" cellpadding="0" cellspacing="2" id="orders_content_table_div">
+					<!--显示订单（订单号以及订单时间）  -->
+					<%-- <tr bgcolor="#d0d0d0">
+						<td><span class="showMesstitle">订单编号：${orders.rid}</span></td>
+						<td><span class="showMesstitle">下单时间:${orders.createdTime}</span></td>
+					</tr> --%>
+					<div id="table_title_orders_div">
+						<span class="showMesstitle">订单编号：${orders.rid}</span>
+						<span class="showMesstitle">下单时间:${orders.createdTime}</span>
+					</div>
+					<tr bgcolor="#d0d0d0">
+						<td align="center"><span class="showMess">商品</span></td>
+						<td align="center"><span class="showMess">商品品牌</span></td>
+						<td align="center"><span class="showMess">商品简介</span></td>
+						<td align="center"><span class="showMess">商品单价</span></td>
+						<td align="center"><span class="showMess">数量</span></td>
+						<td align="center"><span class="showMess">小计</span></td>
+						<td align="center"><span class="showMess">状态</span></td>
+		   			</tr>
+					<c:forEach items="${orders.ordersDetail}" var="ordersDetailItems">
+						<!--显示订单详情 -->
+							<tr>
+								<td align="center"><span class="showMess"><img src="${ordersDetailItems.items.imgsrc}" width="50px" height="60px"/></span></td>
+								<td align="center"><span class="showMess" ><c:out value="${ordersDetailItems.items.gbrand}"/></span></td>
+								<td align="center"><span class="showMess"><c:out value="${ordersDetailItems.items.gintroduce}"/></span></td>
+								<td align="center"><span class="showMess">¥<font id="unitprice"><c:out value="${ordersDetailItems.items.sellPrice}"/></font></span></td>
+								<td align="center">
+									<input type="text" name="numbershowtext" value="X${ordersDetailItems.itemsNum}" id="number" readonly="readonly" style="width:20px; border:0px;">
+								</td>
+								<td align="center"><span class="showMess">¥<font id="subprice"><c:out value="${ordersDetailItems.itemsNum*ordersDetailItems.items.sellPrice}"/></font></span></td>
+								<td align="center"><span class="showMess"><input type="button" onclick="#" value="未付款 "></span></td>
+							</tr>
+					</c:forEach>
+				</table>
+				</div>
+			</c:forEach>
+	</div>
+	<%-- <div>
 		<table border="0" cellspacing="2" class="tablecart" align="center" width="1100px">
 			<tr style="background:red">
 			<!--1.显示：订单编号，商品名称，商品数量，总金额，订单时间，是否付款， 
@@ -46,7 +89,7 @@
 					</tr>
 			</c:forEach>
 		</table>
-	</div>
+	</div> --%>
 	<div id="orders_content_div">
 			<a href="${pageContext.request.contextPath }/orders_lookOrders.action?showPage.currentpage=1">首页</a>
 			<a href="${pageContext.request.contextPath }/orders_lookOrders.action?showPage.currentpage=${showPage.currentpage-1}">上一页</a>&nbsp;

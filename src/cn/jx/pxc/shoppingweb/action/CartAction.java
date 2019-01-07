@@ -109,7 +109,6 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	public String addCart() throws Exception {
 		if (this.checkExistItems(((User)con.getSession().get("user")).getUid(), cart.getGid())){}//购物车存在该商品添加数量
 		else {
-			//SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式  
 			cart.setDate(new Date());
 			cart.setUid(((User)con.getSession().get("user")).getUid());
 			cart.setCreatedUser(((User)con.getSession().get("user")).getUsername());

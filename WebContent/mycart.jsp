@@ -11,9 +11,9 @@
 <body>
 <c:if test="${not empty cartlist}">
 	<form action="${pageContext.request.contextPath }/cart_deleCart.action" method="post" >
-	<h4 align="left"><font size="4px" color="blue">${user.username}先生</font>,商品数量总共<font  size="4px" color="red">${countAllCartItems}</font>件，详情如下：</h4>
+	<h4 align="left"><font size="4px" color="black">${user.username}先生</font>,商品数量总共<font  size="4px" color="red">${countAllCartItems}</font>件，详情如下：</h4>
 	<table border="0" cellspacing="2" class="table_cart" align="center">
-		<tr style="background:red;">
+		<tr bgcolor="#d0d0d0">
 			<td align="center"><span class="showMesstitle">选择</span></td>
 			<td align="center"><span class="showMesstitle">商品</span></td>
 			<td align="center"><span class="showMesstitle">商品品牌</span></td>
@@ -64,7 +64,6 @@
 	</form>
 	<div>
 </div>
-	
 </c:if>
 <c:if test="${empty cartlist}">
 		<script type="text/javascript">

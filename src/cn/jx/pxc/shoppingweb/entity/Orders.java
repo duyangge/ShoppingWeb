@@ -15,7 +15,6 @@ import java.util.Set;
 @SuppressWarnings("all")
 public class Orders implements Serializable{
 	private Integer rid;//订单号
-	private Integer uid;//用户id(外键)
 	private Date date;//订单时间
 	private Integer gnum;//商品总数量
 	private Double allMoney;//总金额
@@ -67,12 +66,6 @@ public class Orders implements Serializable{
 	}
 	public void setRid(Integer rid) {
 		this.rid = rid;
-	}
-	public Integer getUid() {
-		return uid;
-	}
-	public void setUid(Integer uid) {
-		this.uid = uid;
 	}
 	public Date getDate() {
 		return date;

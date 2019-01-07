@@ -20,7 +20,6 @@
 			username.focus();
 			return false;
 		}
-		alert(username.length);
 		if(username.length < 3 ){
 			document.getElementById("usernamealter").innerHTML="*用户名的长度在3~11之间！"
 			username.focus();

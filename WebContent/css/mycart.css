@@ -9,8 +9,11 @@
 	border: 0px solid white;
 }
 .showMesstitle{
-	font-size:20px;
-	color:white;
+	font-size:19px;
+	color:black;
+	width:100px;
+	height:100px;
+	font-weight:bold;
 }  
 .showMess{
 	font-size:16px;
@@ -21,7 +24,7 @@
 }
 #orders_content_menu_div{
 	margin-top:50px;
-	text-align:left;
+	text-align:right;
 }
 
 #cart_content_menu_function_div{
@@ -33,5 +36,21 @@
 #cart_content_menu_div{
 	float:right;
 	margin-right:10%;
+}
+#orders_content_table_div_div{
+	width:100%;
+	height:80%;
+	text-align:center;
+}
+#orders_content_table_div{
+	text-align:center;
+	width:1200px;
+	height:90%;
+}
+#orders_content_foreach_table_div_div{
+	margin-top:20px;
+}
+#table_title_orders_div{
+	text-align:left;
 }
                

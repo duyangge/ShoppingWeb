@@ -1,5 +1,7 @@
 package cn.jx.pxc.shoppingweb.interceptor;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
@@ -32,7 +34,8 @@ public class LoginInterceptor extends MethodFilterInterceptor {
 		if (user!=null) {
 			return invocation.invoke();
 		} else {
-			return "login";
+		   ServletActionContext.getRequest().setAttribute("loginerror", "*您还未登陆！");
+		   return "login";
 		}
 	}
 

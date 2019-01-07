@@ -3,6 +3,7 @@ package cn.jx.pxc.shoppingweb.dao;
 import java.util.List;
 
 import cn.jx.pxc.shoppingweb.entity.User;
+import cn.jx.pxc.shoppingweb.entity.UserMessage;
 
 /**
  *<p> Title:  UserDao.java</p>
@@ -38,6 +39,67 @@ public interface UserDao {
 	User findUserByUserName(String username) throws Exception;
 	
 	
+	/**添加留言
+	 * @param userMessage
+	 * @throws Exception
+	 */
+	void addUserMessage(UserMessage userMessage) throws Exception;
 	
-		
+	/**修改留言
+	 * @param userMessage
+	 * @throws Exception
+	 */
+	void updateUserMessage(UserMessage userMessage) throws Exception;
+	
+	
+	/**删除留言
+	 * @param userMessage
+	 * @throws Exception
+	 */
+	void deleteUserMesssage(UserMessage userMessage) throws Exception;
+	
+	
+	/**删除用户
+	 * @param user
+	 * @throws Exception
+	 */
+	void deleteUser(User user) throws Exception;
+	
+	/**查询所有用户
+	 * @return
+	 * @throws Exceptioin
+	 */
+	List<User> findAllUser() throws Exception;
+	
+	
+	/**查询所有用户留言
+	 * @return
+	 * @throws Exception
+	 */
+	List<UserMessage> findAllUserMessage() throws Exception;
+	
+	/**修改用户信息
+	 * @param user
+	 * @throws Exception
+	 */
+	void updateUser(User user) throws Exception;
+	
+	
+	/**通过用户id查询用户
+	 * @param uid
+	 * @return
+	 * @throws Exception
+	 */
+	User findUserById(Integer uid) throws Exception;
+	
+	
+	/**更具用户名查询用户，分页
+	 * @param username
+	 * @param currpage
+	 * @param maxResult
+	 * @return
+	 * @throws Exception
+	 */
+	List<User> findAllUsersByPages(String username, Integer currpage, Integer maxResult) throws Exception;
+	
 }

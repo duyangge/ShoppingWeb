@@ -51,7 +51,7 @@ public class OrdersDaoImpl extends BaseDaoHibernate implements OrdersDao {
 	 */
 	@Override
 	public List<Orders> lookOrders(Integer uid, Integer currPage, Integer maxResult) {
-		Query query = this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("from Orders where uid=:uid");
+		Query query = this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("from Orders where user.uid=:uid");
 		query.setParameter("uid", uid);
 		query.setFirstResult((currPage - 1) * maxResult);
 		query.setMaxResults(maxResult);
@@ -72,18 +72,7 @@ public class OrdersDaoImpl extends BaseDaoHibernate implements OrdersDao {
 	 */
 	@Override
 	public List<OrdersDetail> findOrdersDetailById(Integer rid) throws Exception {
-		/*String sql="select id,itemsNum,orders_id ordersId,items_id itemsId,"
-				+ "created_user createdUser,created_time createdTime,modified_user modifiedUser,"
-				+ "modified_time modifiedTime from item_ordersdetail where orders_id="+rid;
-		  return this.getHibernateTemplate().getSessionFactory().getCurrentSession().createSQLQuery(sql)
-					 .addEntity(OrdersDetail.class).list();*/
-		//使用动态hql
-		String sql="select new cn.jx.pxc.shoppingweb.entity.OrdersDetail(d.id,d.itemsNum,d.createdTime,d.createdUser,d.modifiedTime,d.modifiedUser,d.orders,d.items) from OrdersDetail d where d.orders.rid=:ordersId";
-		 Query query = this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(sql);
-		 query.setParameter("ordersId", rid);
-		 return query.list();
-		//return (List<OrdersDetail>) this.getHibernateTemplate().find("from OrdersDetail where ordersId=?", rid);
-		
+		return (List<OrdersDetail>) this.getHibernateTemplate().find("from OrdersDetail where orders.rid=?", rid);
 	}
 
 	/* (non-Javadoc)
@@ -121,7 +110,7 @@ public class OrdersDaoImpl extends BaseDaoHibernate implements OrdersDao {
 	 */
 	@Override
 	public Long sumCountOrders(Integer uid) throws Exception {
-		Query query=this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("select count(*) as countnum from Orders where uid=:uid");
+		Query query=this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("select count(*) as countnum from Orders where user.uid=:uid");
 		query.setParameter("uid", uid);
 		return (Long) query.uniqueResult();
 	}
