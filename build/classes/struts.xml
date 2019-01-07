@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/><!-- 处理编码 -->
+	<!-- <constant name="struts.custom.i18n.resources" value="messagers"></constant> --><!-- 国际化 -->
+	<constant name="struts.devMode" value="true" /><!--启用开发者模式 （自动重新加载功能，每次修改属性或XML配置文件更改，应用程序不再需要重启才能生效） -->
+	
+	<!-- <package name="stack-shop" extends="struts-default">
+		全局拦截  <default-interceptor-ref name="loginStack"></default-interceptor-ref>
+	</package> -->
+	
+	<package name="User" extends="struts-default" namespace="/">
+		<!--注册拦截器  -->
+		<interceptors>
+			<interceptor name="loginInterceptor" class="cn.jx.pxc.shoppingweb.interceptor.LoginInterceptor"></interceptor>
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInterceptor">
+					<param name="excludeMethods">login,pageLoad,sendMessage</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!--全局配置  -->
+		<global-results>
+			<result name="success">/sum.jsp</result>
+			<result name="login">/login.jsp</result>
+		</global-results>
+		
+		<!--加载首页文件  -->
+		<action name="loadFile_*" class="loadFileAction" method="{1}">
+		<allowed-methods>loadAll,loadItemsType,loadItemsShowText,loadItemsBrand</allowed-methods>
+		</action>
+		
+		<!--用户  -->
+		<action name="user_*" class="userAction" method="{1}"><!--  -->
+			<result name="login">/login.jsp</result>
+			<result name="register">/resign.jsp</result>
+			<result name="showUserInfo">/admin-updateuser.jsp</result>
+			<result name="admin" type="redirectAction">user_lookAllUser</result>
+			<result name="lookAllUsers">/admin-aduser.jsp</result>
+			<result name="loadMyCartNum" type="redirectAction">cart_countAllCartItems</result>
+			<result name="sendMessage">/mySendMessage.jsp</result>
+			<allowed-methods>login,register,loginout,checkUserNameExist,sendMessage,lookAllUser,deleteUser,updateUser,lookAllUserMessasge,updateUserMessage,deleteUserMessage,showUserInfo,adminAddUser</allowed-methods>
+		</action>
+		
+		<!--验证码  -->
+		<action name="verifyCodeImage_*" class="verifyCodeImageAction" method="{1}">
+		<allowed-methods>verify,getRandColor</allowed-methods>
+		</action>
+		
+		<!--商品  -->
+		<action name="items_*" class="itemsAction" method="{1}">
+			<result name="itemslist">/ShowListItems.jsp</result>
+			<result name="detailItems">/addCart.jsp</result>
+			<result name="findItems">/findItems.jsp</result>
+			<allowed-methods>inItemsList,getDetailItems,findItems,findItemsPage</allowed-methods>
+		</action>
+		
+		<!--购物车  -->
+		<action name="cart_*" class="cartAction" method="{1}">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="addCart">/addCart.jsp</result>
+			<result name="lookCart">/mycart.jsp</result>
+			<result name="addLookCart" type="redirectAction">cart_lookCart</result>
+			<result name="loadHome" type="redirectAction">loadFile_loadAll</result>
+			<allowed-methods>countAllCartItems,checkExistItems,saveCart,addCart,lookCart,deleCart,addCartNum,decCartNum,selSumCart,decSumCart</allowed-methods>
+		</action>
+		
+		<!--订单  -->
+		<action name="orders_*" class="ordersAction" method="{1}">
+			<interceptor-ref name="loginStack"/>
+			<result name="writeaddress">/orderaddress.jsp</result>
+			<result name="lookOrders">/myorder.jsp</result>
+			<result name="tryLookOrders" type="redirectAction">orders_lookOrders</result>
+			<result name="lookItemsDetail">/ordersDetail.jsp</result>
+			<allowed-methods>addOrders,lookOrders,checkShippingAddress,saveShippingAddress,lookItemsDetail</allowed-methods>
+		</action>
+	</package>
+</struts>

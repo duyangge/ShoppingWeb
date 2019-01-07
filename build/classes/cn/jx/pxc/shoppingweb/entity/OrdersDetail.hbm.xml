@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="cn.jx.pxc.shoppingweb.entity.OrdersDetail" table="item_ordersdetail" >
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="itemsNum"/>
+		<property name="createdUser" column="created_user"/>
+		<property name="createdTime" column="created_time"/>
+		<property name="modifiedUser" column="modified_user"/>
+		<property name="modifiedTime" column="modified_time"/>
+		
+		<many-to-one name="orders" class="cn.jx.pxc.shoppingweb.entity.Orders" column="ordersId"/>
+		<many-to-one name="items" class="cn.jx.pxc.shoppingweb.entity.Items" column="itemsId"/>
+	</class>
+</hibernate-mapping>

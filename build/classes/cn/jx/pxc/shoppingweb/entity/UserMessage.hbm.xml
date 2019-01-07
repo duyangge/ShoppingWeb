@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="cn.jx.pxc.shoppingweb.entity.UserMessage" table="user_Message">
+		<id name="mid" column="mid">
+			<generator class="native"/>
+		</id>
+		<property name="linkWay"/>
+		<property name="name"/>
+		<property name="message"/>
+		<property name="questionType"/>
+		<property name="createdUser" column="created_user"/>
+		<property name="createdTime" column="created_time"/>
+		<property name="modifiedUser" column="modified_user"/>
+		<property name="modifiedTime" column="modified_time"/>
+		
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="cn.jx.pxc.shoppingweb.entity.Items" table="items">
+		<id name="gid" column="gid">
+			<generator class="native"/>
+		</id>
+		<property name="tid"/>
+		<property name="gname"/>
+		<property name="gbrand"/>
+		<property name="gintroduce"/>
+		<property name="gprice"/>
+		<property name="imgsrc"/>
+		<property name="sellPrice" column="sell_price"/>
+		<property name="activityInfo" column="activity_info"/>
+		<property name="createdUser" column="created_user"/>
+		<property name="createdTime" column="created_time"/>
+		<property name="modifiedUser" column="modified_user"/>
+		<property name="modifiedTime" column="modified_time"/>
+		
+		<set name="ordersDetail" cascade="save-update" lazy="true">
+			<key column="itemsId" />
+			<one-to-many class="cn.jx.pxc.shoppingweb.entity.OrdersDetail"/>
+		</set>
+	</class>
+</hibernate-mapping>
