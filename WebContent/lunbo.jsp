@@ -43,13 +43,12 @@ ul{list-style: none;}
 		<div class="dian"></div>
 	</div>
 	<div class="box">
-		<img src="images/lunbo/lunbo1.jpg">
-		<img src="images/lunbo/lunbo2.jpg">
-		<img src="images/lunbo/lunbo3.jpg">
-		<img src="images/lunbo/lunbo4.jpg">
-		<img src="images/lunbo/lunbo5.jpg">
-		<img src="images/lunbo/lunbo6.jpg">
-		<img src="images/lunbo/lunbo1.jpg">			
+		<a href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2"><img src="images/lunbo/lunbo1.jpg"></a>
+		<a href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2"><img src="images/lunbo/lunbo2.jpg"></a>
+		<a href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2"><img src="images/lunbo/lunbo3.jpg"></a>
+		<a href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2"><img src="images/lunbo/lunbo4.jpg"></a>
+		<a href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2"><img src="images/lunbo/lunbo5.jpg"></a>
+		<a href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2"><img src="images/lunbo/lunbo6.jpg"></a>
 	</div>
 	<div class="btn">
 		<div class="btn-l fl"><</div>

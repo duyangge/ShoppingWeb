@@ -12,7 +12,7 @@
 <c:if test="${not empty cartlist}">
 	<form action="${pageContext.request.contextPath }/cart_deleCart.action" method="post" >
 	<h4 align="left"><font size="4px" color="blue">${user.username}先生</font>,商品数量总共<font  size="4px" color="red">${countAllCartItems}</font>件，详情如下：</h4>
-	<table border="0" cellspacing="5" class="tablecart" align="center" width="90%" style="border-left:none;border-right:none;border-buttom:none;">
+	<table border="0" cellspacing="2" class="table_cart" align="center">
 		<tr style="background:red;">
 			<td align="center"><span class="showMesstitle">选择</span></td>
 			<td align="center"><span class="showMesstitle">商品</span></td>
@@ -24,9 +24,6 @@
 			<td align="center"><span class="showMesstitle">小计</span></td>
 		</tr>
 		<c:forEach var="cartItems" items="${cartlist}" varStatus="status">
-				<!-- <tr >
-				<td colspan="8"><div></div></td>
-				</tr> -->
 				<tr style="margin-top:10px;">
 					<td align="center"><span class="showMess"><input type="checkbox" name="gidlist"  value="${cartItems.gid}" id="gid"/></span></td>
 					<td align="center"><span class="showMess"><a href="${pageContext.request.contextPath }/items_getDetailItems.action?gid=${cartItems.gid}"><img src="${cartItems.imgsrc}" width="80px" height="80px"/></a></span></td><!--<c:out value="${item.value.getName()}"/>  -->
@@ -52,24 +49,29 @@
 			<a href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${showPage.currentpage+1}">下一页</a>
 			<a  href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${showPage.totalpages}">尾页</a>
 		</div>
-		<div  style="float:left; margin-left:5%; ">
+		<div id="cart_content_menu_function_div">
 			<a href="javaScript:allSelect();">全选</a>&nbsp;
 			<a href="javaScript:pitchon();">下单</a>&nbsp;
 			<a href="${pageContext.request.contextPath }/orders_lookOrders.action">我的订单</a>
 			<input type="submit" value="删除" border="0" style="color: blue; border:0px;background: white;font-size:15px;text-decoration: underline;">
-			<a href="${pageContext.request.contextPath }/user_loginout.action">退出</a>&nbsp;&nbsp;
 		</div>
-	<%-- 	<div align="right" style="margin-right:100px;"><span>已选择商品<font>{0}</font>件</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="showMess">合计<font id="selCartprice">￥${0}</font></span></div> --%>
+		<div id="cart_content_menu_div">
+		<a href="JavaScript:history.go(-1)">返回上一级</a>
+		<a href="sum.jsp">回到主页</a>
+		<a href="${pageContext.request.contextPath }/user_loginout.action">退出</a>&nbsp;&nbsp;
+		</div>
 	</div>
 	</form>
 	<div>
-	</div>
+</div>
+	
 </c:if>
-<a href="JavaScript:history.go(-1)">返回上一页</a>
 <c:if test="${empty cartlist}">
-		<h3 align="center" style="font-style: italic;font-weight: bold;font-size:19px; color:blue;">空空的，需要您去寻找你的宝藏......</h3>
+		<script type="text/javascript">
+		alert("亲\n\n您的购物车中还没有添加商品，快去添加吧！");
+		history.back();
+	</script>
 </c:if>
-<%-- <jsp:include page="foot.jsp"/> --%>
 </body>
 <script type="text/javascript" src="js/addcart.js"></script>
 </html>

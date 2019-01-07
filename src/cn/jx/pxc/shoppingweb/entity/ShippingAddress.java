@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("all")
 public class ShippingAddress implements Serializable{
 	
+	private Integer aid;//地址id
 	private Integer uid;//用户id
 	private String consignee;//收货人
 	private String phone;//联系电话
@@ -27,6 +28,13 @@ public class ShippingAddress implements Serializable{
 	private String createdUser;//创建者
 	private Date modifiedTime;//修改时间
 	private String modifiedUser;//修改者
+	
+	public Integer getAid() {
+		return aid;
+	}
+	public void setAid(Integer aid) {
+		this.aid = aid;
+	}
 	public Date getCreatedTime() {
 		return createdTime;
 	}

@@ -50,8 +50,8 @@ public class OrdersServiceImpl implements OrdersService {
 	 * @see cn.jx.pxc.shoppingweb.service.OrdersService#lookOrders(java.lang.Integer)
 	 */
 	@Override
-	public List<Orders> lookOrders(Integer uid) throws Exception {
-		return ordersDao.lookOrders(uid);
+	public List<Orders> lookOrders(Integer uid, Integer currPage, Integer maxResult) throws Exception {
+		return ordersDao.lookOrders(uid, currPage, maxResult);
 	}
 
 	
@@ -99,6 +99,15 @@ public class OrdersServiceImpl implements OrdersService {
 	@Override
 	public void deleteCartByDoOrder(Integer uid, Integer gid) throws Exception {
 		ordersDao.deleteCartByDoOrder(uid, gid);
+	}
+
+
+	/* (non-Javadoc)
+	 * @see cn.jx.pxc.shoppingweb.service.OrdersService#sumCountOrders(java.lang.Integer)
+	 */
+	@Override
+	public Long sumCountOrders(Integer uid) throws Exception {
+		return ordersDao.sumCountOrders(uid);
 	}
 
 }

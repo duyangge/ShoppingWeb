@@ -60,9 +60,18 @@ public class ItemsServiceImpl implements ItemsService{
 	 * @see cn.jx.pxc.shoppingweb.service.ItemsService#findItems(java.lang.String)
 	 */
 	@Override
-	public List<Items> findItems(String itemsName) throws Exception {
+	public List<Items> findItems(String itemsName, Integer currPage, Integer maxResult) throws Exception {
 		
-		return itemsDao.selectItemsByName(itemsName);
+		return itemsDao.selectItemsByName(itemsName,currPage ,maxResult);
+	}
+
+	/* (non-Javadoc)
+	 * @see cn.jx.pxc.shoppingweb.service.ItemsService#sumCountSelectItems(java.lang.String)
+	 */
+	@Override
+	public Long sumCountSelectItems(String itemsName) throws Exception {
+		
+		return itemsDao.sumCountSelectItems(itemsName);
 	}
 
 

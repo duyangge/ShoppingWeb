@@ -51,7 +51,7 @@
 			<result name="itemslist">/ShowListItems.jsp</result>
 			<result name="detailItems">/addCart.jsp</result>
 			<result name="findItems">/findItems.jsp</result>
-			<allowed-methods>inItemsList,getDetailItems,findItems</allowed-methods>
+			<allowed-methods>inItemsList,getDetailItems,findItems,findItemsPage</allowed-methods>
 		</action>
 		
 		<!--购物车  -->

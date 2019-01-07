@@ -40,12 +40,12 @@ function allSelect(){
 		}
 	}
 }
-function add( gid , uid){//增加数量
-	var num=parseInt(document.getElementById("number").value);
+function add(){//增加数量
+	var num=document.getElementById("number").value;
 	if(num<100){
 		document.getElementById("number").value=++num;
-		 window.location.href="${pageContext.request.contextPath }/cart_deleCart.action?gnum="
-			 +num+"&gid="+gid+"&uid="+uid;
+		/* window.location.href="${pageContext.request.contextPath }/cart_deleCart.action?gnum="
+			 +num+"&gid="+gid+"&uid="+uid;*/
 	}
 }
 function reduce(){//减少数量

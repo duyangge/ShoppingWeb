@@ -87,21 +87,29 @@ function change(){//切换验证码
 							<font id="register_title" >Sign up</font>
 						</div>
 						<div class="resign_input">
-							<div class="login">
-								<input type="text" class="text" placeholder="请输入用户名/手机号" name="username" id="usernames"><br>
-								<font class="mess" id="alter"></font>
+							<div class="resign_input_context_div">
+								<input autocomplete required maxlength="11" minlength="6" type="text" class="text" placeholder="请输入用户名/手机号" autofocus  name="username" id="usernames" ><br>
+								<div>
+									<font class="mess" id="usernamealter"></font>
+								</div>
 							</div>
 							<br>
-							<div class="login">
-								<input type="text" class="text" placeholder="输入邮箱" name="address" id="address">
+							<div class="resign_input_context_div">
+								<input required type="text" class="text" placeholder="输入邮箱" name="mail" autofocus id="address">
+								<div>
+									<font class="mess" id="emailalter"></font>
+								</div>
 							</div>
 							<br>
-							<div class="login">
-								<input class="textpass" type="password"  placeholder="设置密码" name="password1" id="pswordone">
+							<div class="resign_input_context_div">
+								<input required class="textpass" type="password"  placeholder="设置密码" name="password1" autofocus  id="pswordone">
 							</div>
 							<br>
-							<div class="login">
-								<input class="textpass" type="password"  placeholder="确认密码" name="password" id="pswordtwo">
+							<div class="resign_input_context_div">
+								<input required class="textpass" type="password"  placeholder="确认密码" name="password" autofocus id="pswordtwo">
+								<div>
+									<font class="mess" id="pwalter"></font>
+								</div>
 							</div>
 							<br>
 							<div>
@@ -126,4 +134,34 @@ function change(){//切换验证码
 </c:if>
 </body>
 <script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript" src="js/regiter.js"></script>
+<script type="text/javascript">
+/*   1.创建xmlHTTpRequest对象createxmlHttpRequest()
+ * 2.利用open方法创建于服务器的连接
+ 3.发送请求send
+ 4.校验状态onreadystatechange*/
+window.onload=function(){
+	 var users=document.getElementById("usernames");
+	 users.onblur=function(){//当文本框失去焦点是注册监听
+	 var xmlhttp=createXMLHttpRequest();//创建XMLHttpRequest对象
+	 xmlhttp.open("POST","${pageContext.request.contextPath}/user_checkUserNameExist.action",true);//与服务器进行连接
+	 xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");//post，需要设置请求头
+	 xmlhttp.send("username="+users.value);//发送请求,给出请求体
+	 xmlhttp.onreadystatechange=function(){//给xmlhttp的onreadystatechange的事件监听器
+	 if(xmlhttp.readyState==4 &&xmlhttp.status==200){
+			//服务器响应结束
+			var text=xmlhttp.responseText;
+			var mess=document.getElementById("usernamealter");
+			if(text.trim()=="1"){
+				mess.innerHTML="*该用户名已注册";
+			}else{
+				mess.innerHTML="";
+			}
+		}//status,readyState
+		}//onreadystatechange
+
+			}//onblur
+
+	 }//onload
+</script>
 </html>

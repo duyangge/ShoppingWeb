@@ -25,7 +25,7 @@
 					<!--使用循环变量(一行两列)  -->
 					<tr>
 						<c:forEach items="${sportBrand }" var="sportbrand" varStatus="status">
-							<th><img src="${sportbrand.imageSrc}"></th>
+							<th><a  href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2"><img src="${sportbrand.imageSrc}"></a></th>
 							<c:if test="${status.count % 2 == 0}"></tr><tr>
 							</c:if>	
 						</c:forEach>
@@ -33,7 +33,7 @@
 				</table>
 			</div>
 			<div class="mansheet_image">
-				<img  class="mansheet_image_big" src="${sportShowText.get(0).itemsShowImgSrc }" title="${sportShowText.get(0).itemShowTextIntro }"/>
+				<a href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2"><img  class="mansheet_image_big" src="${sportShowText.get(0).itemsShowImgSrc }" title="${sportShowText.get(0).itemShowTextIntro }"/></a>
 				<div class="mansheet_image_text_div">
 					<dl>
 						<dt>${sportShowText.get(0).itemShowTextType }</dt>

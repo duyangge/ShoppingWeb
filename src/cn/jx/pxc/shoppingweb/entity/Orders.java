@@ -18,14 +18,13 @@ public class Orders implements Serializable{
 	private Integer uid;//用户id(外键)
 	private Date date;//订单时间
 	private Integer gnum;//商品总数量
-	private Integer gid;//商品id(外键)，一个订单有多个商品，一个商品只能归于一个订单
 	private Double allMoney;//总金额
-	private User user;//订单与用户，一对多关系
 	private Integer orderStatus;//状态，付款与未付款
 	private Date createdTime;//创建时间
 	private String createdUser;//创建者
 	private Date modifiedTime;//修改时间
 	private String modifiedUser;//修改者
+	private User user;//订单与用户，一对多关系
 	private Set<OrdersDetail> ordersDetail;//订单详情，一对多
 	public Date getCreatedTime() {
 		return createdTime;
@@ -80,12 +79,6 @@ public class Orders implements Serializable{
 	}
 	public void setDate(Date date) {
 		this.date = date;
-	}
-	public Integer getGid() {
-		return gid;
-	}
-	public void setGid(Integer gid) {
-		this.gid = gid;
 	}
 	public Double getAllMoney() {
 		return allMoney;

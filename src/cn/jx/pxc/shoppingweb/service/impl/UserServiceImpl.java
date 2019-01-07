@@ -59,4 +59,13 @@ public class UserServiceImpl implements UserService{
 	public Boolean checkUserName(String username) throws Exception {
 		return userDao.findUserByUserName(username) != null;
 	}
+
+
+	/* (non-Javadoc)
+	 * @see cn.jx.pxc.shoppingweb.service.UserService#findUserByUserName(java.lang.String)
+	 */
+	@Override
+	public User findUserByUserName(String username) throws Exception {
+		return userDao.findUserByUserName(username);
+	}
 }

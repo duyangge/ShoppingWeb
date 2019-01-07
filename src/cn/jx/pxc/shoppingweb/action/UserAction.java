@@ -1,7 +1,7 @@
 package cn.jx.pxc.shoppingweb.action;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+import cn.jx.pxc.shoppingweb.Utils.Md5;
 import cn.jx.pxc.shoppingweb.entity.User;
 import cn.jx.pxc.shoppingweb.service.UserService;
 
@@ -38,8 +39,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	
 	private ActionContext con = ActionContext.getContext();
 	
-	//private HttpServletRequest reqeust =  ServletActionContext.getRequest();
-	
 	public void setCheckCode(String checkCode) {
 		this.checkCode = checkCode;
 	}
@@ -61,8 +60,10 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 				return "login";
 			}
 			//再判断用户是否存在
-			if (userService.login(user) != null) {
-				con.getSession().put("user", userService.login(user));
+			User userdao = userService.findUserByUserName(user.getUsername());
+			Md5 md5 = new Md5();
+			if (userdao != null && md5.checkpassword(user.getPassword(), userdao.getPassword())) {//新密码与旧密码比较
+				con.getSession().put("user", userdao);
 				return "loadMyCartNum";
 			} else {
 				 ServletActionContext.getRequest().setAttribute("loginerror", "用户名或密码错误");
@@ -81,6 +82,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	 */
 	public String loginout() {
 		con.getSession().remove("user");
+		con.getSession().remove("countAllCartItems");
+		con.getSession().remove("seacherName");
 		return "login";
 	}
 	
@@ -91,12 +94,18 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	 */
 	public String register(){
 		try {
+			Md5 md5 = new Md5();
+			user.setPassword(md5.EncoderByMd5(user.getPassword()));
+			user.setCreatedTime(new Date());
+			user.setCreatedUser(user.getUsername());
+			user.setModifiedUser(user.getUsername());
+			user.setModifiedTime(new Date());
 			String uid = userService.register(user).getUid().toString();
 			con.getSession().put("user", user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return SUCCESS;
+		return "loadMyCartNum";
 	}
 	
 	/**
@@ -108,14 +117,20 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		response.setContentType("text/html;charset=UTF-8"); 
 		try {
 			if (userService.checkUserName(user.getUsername())) {
-				response.getWriter().println("用户名已经存在"); 
-			}else {
-				response.getWriter().println("用户名格式正确"); 
+				response.getWriter().println("1"); 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return NONE;
 	}
 	
+	/**
+	 * 发送留言信息
+	 * @return
+	 */
+	public String sendMessage() {
+		return checkCode;
+		
+	}
 }

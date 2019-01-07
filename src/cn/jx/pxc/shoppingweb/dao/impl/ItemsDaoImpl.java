@@ -2,13 +2,11 @@ package cn.jx.pxc.shoppingweb.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import cn.jx.pxc.shoppingweb.dao.ItemsDao;
 import cn.jx.pxc.shoppingweb.entity.Items;
-import cn.jx.pxc.shoppingweb.entity.ItemsBrand;
-import cn.jx.pxc.shoppingweb.entity.ItemsShowText;
-import cn.jx.pxc.shoppingweb.entity.ItemsType;
 /**
  *<p> Title:  ItemsDaoImpl.java</p>
  *<p> Description:  商品类的dao实现类</p>
@@ -46,8 +44,23 @@ public class ItemsDaoImpl extends BaseDaoHibernate implements ItemsDao{
 	 * @see cn.jx.pxc.shoppingweb.dao.ItemsDao#selectItemsByName(java.lang.String)
 	 */
 	@Override
-	public List<Items> selectItemsByName(String itemsName) throws Exception {
-		return (List<Items>) this.getHibernateTemplate().find("from Items where instr(gname,?)>0", itemsName);
+	public List<Items> selectItemsByName(String itemsName,Integer currPage, Integer maxResult) throws Exception {
+		Query query = this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("from Items where instr(gname,?)>0");
+		query.setParameter(0, itemsName);
+		query.setFirstResult((currPage - 1) * maxResult);
+		query.setMaxResults(maxResult);
+		return query.list();
+	}
+
+
+	/* (non-Javadoc)
+	 * @see cn.jx.pxc.shoppingweb.dao.ItemsDao#sumCountSelectItems(java.lang.String)
+	 */
+	@Override
+	public Long sumCountSelectItems(String itemsName) throws Exception {
+		Query query=this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("select count(*) as countnum from Items where instr(gname,?)>0");
+		query.setString(0, itemsName);
+		return (Long) query.uniqueResult();
 	}
 
 

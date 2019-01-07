@@ -31,13 +31,14 @@ public interface OrdersDao {
 	 */
 	Orders checkShippingAddress(Integer uid) throws Exception;
 
-	/**
-	 * 查看订单信息
-	 * @param uid 用户id
-	 * @return 订单实体类对象集合
+	/**查看订单信息
+	 * @param uid 
+	 * @param currPage 当前页
+	 * @param maxResult 每页最大记录数
+	 * @return
 	 * @throws Exception
 	 */
-	List<Orders> lookOrders(Integer uid) throws Exception;
+	List<Orders> lookOrders(Integer uid,Integer currPage, Integer maxResult) throws Exception;
 	
 	/**
 	 * 通过商品id查询商品
@@ -77,5 +78,13 @@ public interface OrdersDao {
 	 * @throws Exception
 	 */
 	void deleteCartByDoOrder(Integer uid, Integer gid) throws Exception;
+	
+	
+	/**统计查询的商品数量
+	 * @param uid
+	 * @return
+	 * @throws Exception
+	 */
+	Long sumCountOrders(Integer uid) throws Exception;
 
 }

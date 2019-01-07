@@ -1,5 +1,9 @@
 @charset "UTF-8";
-.tablecart{
+.table_cart{
+	width:1100px;
+	border-left:none;
+	border-right:none;
+	border-buttom:none;
 	border-left:0px;
 	border-right:0px;
 	border: 0px solid white;
@@ -11,5 +15,23 @@
 .showMess{
 	font-size:16px;
 }
+#orders_content_div{
+	text-align:center;
+	margin-top:150px;
+}
+#orders_content_menu_div{
+	margin-top:50px;
+	text-align:left;
+}
 
+#cart_content_menu_function_div{
+	margin-top:50px;
+	 text-align:left;
+	 margin-left:10%; 
+	
+}
+#cart_content_menu_div{
+	float:right;
+	margin-right:10%;
+}
                

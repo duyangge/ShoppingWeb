@@ -2,6 +2,9 @@ package cn.jx.pxc.shoppingweb.Utils;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import org.springframework.stereotype.Component;
+
 import sun.misc.BASE64Encoder;
 
 /**
@@ -14,7 +17,7 @@ import sun.misc.BASE64Encoder;
  */
 public class Md5 {
 	
-	  /**利用MD5进行加密
+	/**利用MD5进行加密
 	 * @param str
 	 * @return
 	 * @throws NoSuchAlgorithmException

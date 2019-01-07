@@ -39,4 +39,12 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	Boolean checkUserName(String username) throws Exception;
+	
+	
+	/**检查是否存在该用户名
+	 * @param username
+	 * @return
+	 * @throws Exception
+	 */
+	User findUserByUserName(String username) throws Exception;
 }

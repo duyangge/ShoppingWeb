@@ -32,9 +32,18 @@ public interface ItemsService {
     
     /**通过商品名称查询商品
      * @param itemsName
+     * @param currPage
+     * @param maxResult
      * @return
      * @throws Exception
      */
-    List<Items> findItems(String itemsName) throws Exception;
+    List<Items> findItems(String itemsName, Integer currPage, Integer maxResult) throws Exception;
+    
+    /**统计查询的总记录数
+     * @param itemsName
+     * @return
+     * @throws Exception
+     */
+    Long sumCountSelectItems(String itemsName) throws Exception;
     
 }

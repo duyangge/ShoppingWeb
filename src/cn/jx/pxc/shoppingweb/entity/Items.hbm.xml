@@ -20,7 +20,7 @@
 		<property name="modifiedTime" column="modified_time"/>
 		
 		<set name="ordersDetail" cascade="save-update" lazy="true">
-			<key column="items_id" />
+			<key column="itemsId" />
 			<one-to-many class="cn.jx.pxc.shoppingweb.entity.OrdersDetail"/>
 		</set>
 	</class>

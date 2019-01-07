@@ -26,7 +26,7 @@
 					<tr>
 					
 						<c:forEach items="${manBrand}" var="brand" varStatus="status">
-							<th><img src="${brand.imageSrc}"></th>
+							<th><a href="${pageContext.request.contextPath }/items_inItemsList.action?tid=1"><img src="${brand.imageSrc}"></a></th>
 							<!--显示商标一行两列  -->
 							<c:if test="${status.count % 2 == 0}">
 									</tr>
@@ -37,7 +37,7 @@
 				</table>
 			</div>
 			<div class="mansheet_image">
-				<img  class="mansheet_image_big" src="${manShowText.get(0).itemsShowImgSrc }"/>
+				<a href="${pageContext.request.contextPath }/items_inItemsList.action?tid=1"><img  class="mansheet_image_big" src="${manShowText.get(0).itemsShowImgSrc }"/></a>
 				<div class="mansheet_image_text_div">
 					<dl>
 						<dt>${manShowText.get(0).itemShowTextType }</dt>

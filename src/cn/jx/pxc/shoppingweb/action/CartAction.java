@@ -22,6 +22,8 @@ import cn.jx.pxc.shoppingweb.entity.Cart;
 import cn.jx.pxc.shoppingweb.entity.Items;
 import cn.jx.pxc.shoppingweb.entity.User;
 import cn.jx.pxc.shoppingweb.service.CartService;
+import lombok.Data;
+import lombok.Setter;
 
 /**
  *<p> Title:  CartAction.java</p>
@@ -31,6 +33,7 @@ import cn.jx.pxc.shoppingweb.service.CartService;
  * @date      2019年1月3日下午7:03:04
  * @version 19.01.03
  */
+
 @Controller
 @Scope("prototype")
 @SuppressWarnings("all")
@@ -63,6 +66,9 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 		this.smallcounter = smallcounter;
 	}
 	
+	public ShowPage getShowPage() {
+		return showPage;
+	}
 	public void setShowPage(ShowPage showPage) {
 		this.showPage = showPage;
 	}
@@ -124,7 +130,6 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 		this.PagingProcess(cartService.statisticalCarts(((User)con.getSession().get("user")).getUid()).intValue());//总记录数
 		List<CartItems> cartlist = cartService.lookCart((User)con.getSession().get("user"), showPage.getCurrentpage(), showPage.getPageSize());//购物表
 		this.updateCartCounts();
-		//con.getSession().put("cartlist", cartlist);
 		ServletActionContext.getRequest().setAttribute("cartlist", cartlist);
 		return "lookCart";
 	}
@@ -152,8 +157,8 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 		showPage.setTotalpages((totalRecords % showPage.getPageSize() == 0) ? (totalRecords / showPage.getPageSize()) : ((totalRecords / showPage.getPageSize()) + 1));
 		if (showPage.getCurrentpage() == 0) showPage.setCurrentpage(1);
 		if (showPage.getCurrentpage() >= showPage.getTotalpages()) showPage.setCurrentpage(showPage.getTotalpages());
-		//con.getSession().put("showPage", showPage);
-
+		showPage.setPageSize(5);
+		ServletActionContext.getRequest().setAttribute("showPage", showPage);
 	}
 
 	/**
@@ -205,6 +210,7 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 	 */
 	public void updateCartCounts() throws Exception {
 		Long cartAllCounts = cartService.countAllCartItems(((User)con.getSession().get("user")).getUid());
+		//ServletActionContext.getRequest().setAttribute("countAllCartItems", cartAllCounts);
 		con.getSession().put("countAllCartItems", cartAllCounts);
 	}
 

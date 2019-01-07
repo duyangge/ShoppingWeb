@@ -10,49 +10,49 @@
 </head>
 <body>
 	<div class="content_left_div1">
-		<h3><a class="a_leftb" href="showlistServlet?tablename=goods">女鞋</a></h3>
+		<h3><a class="a_leftb" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=1">女鞋</a></h3>
 		<p>
-			<a class="a_left" href="showlistServlet?tablename=goods">美靴上新</a>
-			<a class="a_left" href="showlistServlet?tablename=goods">专柜同款</a>
+			<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=1">美靴上新</a>
+			<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=1">专柜同款</a>
 		</p>
 	</div>
 	<div class="content_left_div2">
-		<h3><a class="a_leftb" href="showlistServlet?tablename=goods">男鞋</a></h3>
+		<h3><a class="a_leftb" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=1">男鞋</a></h3>
 			<p>
-				<a class="a_left" href="showlistServlet?tablename=goods">时装男鞋</a>
-				<a class="a_left" href="showlistServlet?tablename=goods">专柜同款</a>
+				<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=1">时装男鞋</a>
+				<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=1">专柜同款</a>
 			</p>
 	</div>
 	<div class="content_left_div3">
-		<h3><a class="a_leftb" href="showlistServlet?tablename=goods">运动</a></h3>
+		<h3><a class="a_leftb" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=1">运动</a></h3>
 			<p>
-				<a class="a_left" href="showlistServlet?tablename=goods">新平上市</a>
-				<a class="a_left" href="showlistServlet?tablename=goods">运动鞋</a>
-				<a class="a_left" href="showlistServlet?tablename=goods">夹克</a>
+				<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=1">新平上市</a>
+				<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=1">运动鞋</a>
+				<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=1">夹克</a>
 			</p>
 	</div>
 	<div class="content_left_div4">
-		<h3><a class="a_leftb" href="showlistServlet?tablename=goods">户外</a></h3>
+		<h3><a class="a_leftb" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2">户外</a></h3>
 			<p>
-				<a class="a_left" href="showlistServlet?tablename=goods">抓绒衣裤</a>
-				<a class="a_left" href="showlistServlet?tablename=goods">冲锋衣</a>
-				<a class="a_left" href="showlistServlet?tablename=goods">越野鞋</a>
+				<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2">抓绒衣裤</a>
+				<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2">冲锋衣</a>
+				<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2">越野鞋</a>
 			</p>
 	</div>
 	<div class="content_left_div5">
-		<h3><a class="a_leftb" href="showlistServlet?tablename=goods">童鞋/</a><a class="a_leftb" href="showlistServlet?tablename=goods">童装</a></h3>
+		<h3><a class="a_leftb" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2">童鞋/</a><a class="a_leftb" href="showlistServlet?tablename=goods">童装</a></h3>
 			<p>
-				<a class="a_left" href="showlistServlet?tablename=goods">外套</a>
-				<a class="a_left" href="showlistServlet?tablename=goods">外套</a>
-				<a class="a_left" href="showlistServlet?tablename=goods">跑步鞋</a>
+				<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2">外套</a>
+				<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2">外套</a>
+				<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2">跑步鞋</a>
 			</p>
 	</div>
 	<div class="content_left_div6">
-		<h3><a class="a_leftb" href="showlistServlet?tablename=goods">箱包/</a><a class="a_leftb" href="showlistServlet?tablename=goods">配饰配饰</a></h3>
+		<h3><a class="a_leftb" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2">箱包/</a><a class="a_leftb" href="showlistServlet?tablename=goods">配饰配饰</a></h3>
 			<p>
-				<a class="a_left" href="showlistServlet?tablename=goods">女包</a>
-				<a class="a_left" href="showlistServlet?tablename=goods">男包</a>
-				<a class="a_left" href="showlistServlet?tablename=goods">装饰</a>
+				<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2">女包</a>
+				<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2">男包</a>
+				<a class="a_left" href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2">装饰</a>
 			</p>
 	</div>
 </body>

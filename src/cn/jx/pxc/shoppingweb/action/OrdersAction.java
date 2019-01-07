@@ -31,7 +31,7 @@ import cn.jx.pxc.shoppingweb.service.OrdersService;
  * @package  cn.jx.pxc.shoppingweb.action
  * @author    黄信胜
  * @date      2018年12月9日下午8:45:00
- * @version 1.0
+ * @version 18.12.09
  */
 @Controller
 @Scope("prototype")
@@ -58,6 +58,10 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
   
   private ActionContext con = ActionContext.getContext();
   
+  public Orders getModel() {
+	  	return orders;
+	  }
+  
   public void setItemsId(String itemsId) {
 	this.itemsId = itemsId;
   }
@@ -66,20 +70,48 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 	this.itemsNum = itemsNum;
   } 
   
-  public Orders getModel() {
-  	return orders;
+  public ShippingAddress getShippingAddress() {
+	return shippingAddress;
+  }
+
+  public void setShippingAddress(ShippingAddress shippingAddress) {
+	this.shippingAddress = shippingAddress;
   }
   
+  public ShowPage getShowPage() {
+	return showPage;
+  }
+
+  public void setShowPage(ShowPage showPage) {
+	this.showPage = showPage;
+  }
+
   /**
    * 查看订单
    * @return 返回字符串”lookorders“
- * @throws Exception 
+   * @throws Exception 
    */
   public String lookOrders() throws Exception {
-	  ServletActionContext.getRequest().setAttribute("ordersList", ordersService.lookOrders(((User)(con.getSession().get("user"))).getUid()));
+	  Integer uid = ((User)(con.getSession().get("user"))).getUid();
+	  this.PagingProcess(ordersService.sumCountOrders(uid).intValue());
+	  List<Orders> ordersList = ordersService.lookOrders(uid, showPage.getCurrentpage(), showPage.getPageSize());
+	  ServletActionContext.getRequest().setAttribute("ordersList", ordersList);
 	return "lookOrders";
   }
-/**
+  
+  /**
+	 * 分页处理
+	 * @param totalRecords 传入总页数
+	 */
+	public void PagingProcess(Integer totalRecords) {
+		showPage.setTotalpages((totalRecords % showPage.getPageSize() == 0) ? (totalRecords / showPage.getPageSize()) : ((totalRecords / showPage.getPageSize()) + 1));
+		if (showPage.getCurrentpage() == 0) showPage.setCurrentpage(1);
+		if (showPage.getCurrentpage() >= showPage.getTotalpages()) showPage.setCurrentpage(showPage.getTotalpages());
+		showPage.setPageSize(5);
+		ServletActionContext.getRequest().setAttribute("showPage", showPage);
+	}
+  
+  /**
    *添加订单
    * 1.下单时间，商品总数量，商品总金额，用户id，订单id
    * 2.确定下单时间
@@ -122,25 +154,30 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 		}
 	    
 	    /*将订单中的各个属性添加*/
+	      String uname = ((User)(con.getSession().get("user"))).getUsername();
+	      Integer uid = ((User)(con.getSession().get("user"))).getUid();
 		  orders.setAllMoney(itemsAllPrice);
 		  orders.setGnum(itemsAllNum);
 		  orders.setDate(new Date());
-		  orders.setUid(((User)(con.getSession().get("user"))).getUid());
+		  orders.setUid(uid);
 		  orders.setUser((User)(con.getSession().get("user")));
 		  orders.setOrderStatus(0);
+		  orders.setCreatedUser(uname);
+		  orders.setCreatedTime(new Date());
+		  orders.setModifiedTime(new Date());
+		  orders.setModifiedUser(uname);
 		  ordersService.addOrders(orders);
 		  
 		 /*将订单中的商品信息存入详细订单详情中*/ 
 		for (Integer itemsidmap : itemsIdMap) {
 			
 			/*下单同时，删除购物车中的下单物品 */
-			this.deleteCartByDoOrder(((User)(con.getSession().get("user"))).getUid(), itemsidmap);
+			this.deleteCartByDoOrder(uid, itemsidmap);
 		    this.saveOrdersDetailItems(orders.getRid(), itemsDetailMap.get(itemsidmap), itemsidmap);
 		}
 		
 		/*先保存订单，再判断是否填写地址，无，则跳转到填写地址页面，否则就跳转到我的订单页面*/
-		  if (!this.checkShippingAddress(((User)(con.getSession().get("user"))).getUid())) {
-			 //con.getSession().put("orders", orders);
+		  if (!this.checkShippingAddress(uid)){
 			  ServletActionContext.getRequest().setAttribute("orders", orders);
 			  return "writeaddress";
 		  }
@@ -154,102 +191,108 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
   
   /**
    * 保存订单详细信息
- * @param rid 订单号
- * @param number 商品数量
- * @param gid 商品id
- * @throws Exception 
- */
-public void saveOrdersDetailItems(Integer rid, Integer num, Integer gid) throws Exception {
-	OrdersDetail ordersDetail = new OrdersDetail ();//实例化多个对象
-	ordersDetail.setItems(ordersService.findItemsById(gid));
-	ordersDetail.setItems_id(gid);
-	ordersDetail.setOrders(orders);
-	ordersDetail.setItemsNum(num);
-	ordersDetail.setOrders_id(rid);
-	ordersDetail.setCreatedUser(((User)(con.getSession().get("user"))).getUsername());
-	ordersDetail.setCreatedTime(new Date());
-	ordersDetail.setModifiedTime(new Date());
-	ordersDetail.setModifiedUser(((User)(con.getSession().get("user"))).getUsername());
-	ordersService.saveOrdersDetailItems(ordersDetail);
-	
-  }
-  
-  /**
-   * 查看订单中的详细商品
-   * @return
+   * @param rid 订单号
+   * @param number 商品数量
+   * @param gid 商品id
    * @throws Exception 
    */
-  public String lookItemsDetail() throws Exception {
-	  List<OrdersDetail> list = ordersService.lookOrdersDetail(orders.getRid());
-	  	for (OrdersDetail ordersDetail : list) {
-			Items items = ordersService.findItemsById(ordersDetail.getItems_id());
-			ordersDetail.setItems(items);
-		}
-	  ServletActionContext.getRequest().setAttribute("ordersDetailList", ordersService.lookOrdersDetail(orders.getRid()));
-	 return "lookItemsDetail";
-  }
+	public void saveOrdersDetailItems(Integer rid, Integer num, Integer gid) throws Exception {
+		String uname = ((User)(con.getSession().get("user"))).getUsername();
+	    Integer uid = ((User)(con.getSession().get("user"))).getUid();
+		OrdersDetail ordersDetail = new OrdersDetail ();//实例化多个对象
+		ordersDetail.setItems(ordersService.findItemsById(gid));
+		//ordersDetail.setItemsId(gid);
+		ordersDetail.setOrders(orders);
+		ordersDetail.setItemsNum(num);
+		//ordersDetail.setOrdersId(rid);
+		ordersDetail.setCreatedUser(uname);
+		ordersDetail.setCreatedTime(new Date());
+		ordersDetail.setModifiedTime(new Date());
+		ordersDetail.setModifiedUser(uname);
+		ordersService.saveOrdersDetailItems(ordersDetail);
+	  }
+  
+	  /**
+	   * 查看订单中的详细商品
+	   * @return
+	   * @throws Exception 
+	   */
+	  public String lookItemsDetail() throws Exception {
+		  List<OrdersDetail> list = ordersService.lookOrdersDetail(orders.getRid());
+		  	for (OrdersDetail ordersDetail : list) {
+				Items items = ordersService.findItemsById(ordersDetail.getItems().getGid());
+				ordersDetail.setItems(items);
+			}
+		  ServletActionContext.getRequest().setAttribute("ordersDetailList", ordersService.lookOrdersDetail(orders.getRid()));
+		 return "lookItemsDetail";
+	  }
   
   
-  /**
-   * 检查是否填写收货地址
-   * @param uid 用户id
-   * @return true:存在该用户；false:不存在该用户
-   * @throws Exception 
-   */
-  public Boolean checkShippingAddress(Integer uid) throws Exception {
-	if (ordersService.checkShippingAddress(uid) != null) return true;
-	return false;
-  }
-  
- 
- /**
-  * 保存地址
-  * 1.保存地址后，提示是否选择付款
-  * 付款：1,修改订单信息中的状态
-  * 未付款:0，
-  * 2.回到查看订单页面 
-  *@return 
-  *@throws Exception 
-  */
-  public String saveShippingAddress() throws Exception {
-	  ordersService.saveShippingAddress(shippingAddress);
-	return "tryLookOrders";
-  }
-  
-  /**
-   * 更新收货信息
-   * @return
-   */
-  public String updateShippingAdress() {
-	return null;
+	  /**
+	   * 检查是否填写收货地址
+	   * @param uid 用户id
+	   * @return true:存在该用户；false:不存在该用户
+	   * @throws Exception 
+	   */
+	  public Boolean checkShippingAddress(Integer uid) throws Exception {
+		if (ordersService.checkShippingAddress(uid) != null) return true;
+		return false;
+	  }
 	  
-  }
-  
-  /**
-   * 下单后选择是否付款
-   * @return
-   */
-  public String payOrNot() {
-	return null;
+	 
+	 /**
+	  * 保存地址
+	  * 1.保存地址后，提示是否选择付款
+	  * 付款：1,修改订单信息中的状态
+	  * 未付款:0，
+	  * 2.回到查看订单页面 
+	  *@return 
+	  *@throws Exception 
+	  */
+	  public String saveShippingAddress() throws Exception {
+		  String uname = ((User)(con.getSession().get("user"))).getUsername();
+		  shippingAddress.setCreatedUser(uname);
+		  shippingAddress.setCreatedTime(new Date());
+		  shippingAddress.setModifiedUser(uname);
+		  shippingAddress.setModifiedTime(new Date());
+		  ordersService.saveShippingAddress(shippingAddress);
+		  return "tryLookOrders";
+	  }
 	  
-  }
-  
-  /**
-   * 删除订单（未付款）
-   * @return
-   */
-  public String delOrders() {
-	return null;
-  }
- 
-  
-/**添加订单的同时，删除下单中购物车的商品
- * @param uid
- * @param gid
- * @throws Exception
- */
-public void deleteCartByDoOrder(Integer uid, Integer gid) throws Exception {
-	  ordersService.deleteCartByDoOrder(uid, gid);
-}
+	  /**
+	   * 修改收货信息
+	   * @return
+	   */
+	  public String updateShippingAdress() {
+		return null;
+		  
+	  }
+	  
+	  /**
+	   * 下单后选择是否付款
+	   * @return
+	   */
+	  public String payOrNot() {
+		return null;
+		  
+	  }
+	  
+	  /**
+	   * 删除订单（未付款）
+	   * @return
+	   */
+	  public String delOrders() {
+		return null;
+	  }
+	 
+	  
+	/**添加订单的同时，删除下单中购物车的商品
+	 * @param uid
+	 * @param gid
+	 * @throws Exception
+	 */
+	public void deleteCartByDoOrder(Integer uid, Integer gid) throws Exception {
+		  ordersService.deleteCartByDoOrder(uid, gid);
+	}
   
 }

@@ -11,6 +11,8 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+import cn.jx.pxc.shoppingweb.Intermediate.ShowPage;
+import cn.jx.pxc.shoppingweb.Utils.Pagination;
 import cn.jx.pxc.shoppingweb.entity.Items;
 import cn.jx.pxc.shoppingweb.service.ItemsService;
 /**
@@ -26,6 +28,9 @@ import cn.jx.pxc.shoppingweb.service.ItemsService;
 @SuppressWarnings("all")
 public class ItemsAction extends ActionSupport implements ModelDriven<Items>{
 	
+	@Autowired
+	private ShowPage showPage;
+	
 	private Items items = new Items();
 	
 	@Autowired
@@ -33,6 +38,14 @@ public class ItemsAction extends ActionSupport implements ModelDriven<Items>{
 	
 	private ActionContext con = ActionContext.getContext();
 	
+	public ShowPage getShowPage() {
+		return showPage;
+	}
+
+	public void setShowPage(ShowPage showPage) {
+		this.showPage = showPage;
+	}
+
 	@Override
 	public Items getModel() {
 		return items;
@@ -54,25 +67,52 @@ public class ItemsAction extends ActionSupport implements ModelDriven<Items>{
 	 * @throws Exception 
 	 */
 	public String getDetailItems() throws Exception{
-		//con.getSession().put("detailItems", itemsService.getDetailItems(items.getGid()));
 		ServletActionContext.getRequest().setAttribute("detailItems", itemsService.getDetailItems(items.getGid()));
 		return "detailItems";
 	}
 	
-	
-	/**通过查询商品名称
+	/**
+	 * 分页处理
 	 * @return
 	 */
-	public String findItems() {
+	public String findItemsPage() {
 		try {
-			System.out.println(items.getGname());
-			List<Items> findItemsList = itemsService.findItems(items.getGname());
-			//con.getSession().put("findItemsList", findItemsList);
+			this.PagingProcess(itemsService.sumCountSelectItems(con.getSession().get("seacherName").toString()).intValue());
+			List<Items> findItemsList = itemsService.findItems(con.getSession().get("seacherName").toString(),showPage.getCurrentpage(),showPage.getPageSize());
 			ServletActionContext.getRequest().setAttribute("findItemsList", findItemsList);
 			return "findItems";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	/**通过查询商品名称
+	 * @return
+	 */
+	public String findItems() {
+		try {
+			//如何保存查询条件
+			this.PagingProcess(itemsService.sumCountSelectItems(items.getGname()).intValue());
+			List<Items> findItemsList = itemsService.findItems(items.getGname(),showPage.getCurrentpage(),showPage.getPageSize());
+			ServletActionContext.getRequest().setAttribute("findItemsList", findItemsList);
+			con.getSession().put("seacherName", items.getGname());
+			return "findItems";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * 分页处理
+	 * @param totalRecords 传入总页数
+	 */
+	public void PagingProcess(Integer totalRecords) {
+		showPage.setTotalpages((totalRecords % showPage.getPageSize() == 0) ? (totalRecords / showPage.getPageSize()) : ((totalRecords / showPage.getPageSize()) + 1));
+		if (showPage.getCurrentpage() == 0) showPage.setCurrentpage(1);
+		if (showPage.getCurrentpage() >= showPage.getTotalpages()) showPage.setCurrentpage(showPage.getTotalpages());
+		//showPage.setPageSize(3);
+		ServletActionContext.getRequest().setAttribute("showPage", showPage);
 	}
 }

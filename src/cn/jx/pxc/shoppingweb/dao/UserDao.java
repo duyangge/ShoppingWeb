@@ -36,5 +36,8 @@ public interface UserDao {
 	 * @throws Exception
 	 */
 	User findUserByUserName(String username) throws Exception;
+	
+	
+	
 		
 }

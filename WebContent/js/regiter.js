@@ -16,18 +16,25 @@
  function checkForm(){
 		var username=document.getElementById("usernames").value;
 		if(username==""){
-			alert("提示\n\n用户名不能为空");
+			document.getElementById("usernamealter").innerHTML="*用户名不能为空！"
 			username.focus();
 			return false;
 		}
+		alert(username.length);
+		if(username.length < 3 ){
+			document.getElementById("usernamealter").innerHTML="*用户名的长度在3~11之间！"
+			username.focus();
+			return false;
+		}
+		
 		var address=document.getElementById("address").value;
 		var myreg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
 		if(address==""){
-			alert("提示\n\n邮箱不能为空");
+			document.getElementById("emailalter").innerHTML="*邮箱不能为空";
 			return false;
 		}
 		if(!myreg.test(address)){
-			alert("提示\n\n请输入有效的E_mail!");
+			document.getElementById("emailalter").innerHTML="*请输入有效的E_mail!";
 			myreg.focus();
 			return false;
 		}
@@ -35,17 +42,17 @@
 		var pswordtwo=document.getElementById("pswordtwo").value;
 		var psreg=/^[a-zA-Z0-9]{6,16}$/;
 		if(pswordone==""){
-			alert("提示\n\n密码不能为空");
+			document.getElementById("pwalter").innerHTML="*密码不能为空";
 			pswordone.focus();
 			return false;
 		}
 		if(!psreg.test(pswordone)){
-			alert("提示\n\n密码的长度应为6~16");
+			document.getElementById("pwalter").innerHTML="*密码的长度应为6~16";
 			pswordone.focus();
 			return false;
 		}
 		if(pswordone!=pswordtwo){
-			alert("提示\n\n两次输入的密码不一致");
+			document.getElementById("pwalter").innerHTML="*两次输入的密码不一致";
 			pswordtwo.focus();
 			return false;
 		}else{
@@ -53,6 +60,169 @@
 			return;
 		}
 	}
+ 
+ /*1.对用户名进行验证*/
+/* username.onblur = function(){
+   if(this.validity.valueMissing){
+     this.nextElementSibling.innerHTML = '用户名不能为空';
+     this.nextElementSibling.className = 'msg-error';
+     this.setCustomValidity('用户名不能为空');
+   }else if(this.validity.tooShort){
+     this.nextElementSibling.innerHTML = '用户名不能少于6位';
+     this.nextElementSibling.className = 'msg-error';
+     this.setCustomValidity('用户名不能少于6位');
+   }else {
+     this.nextElementSibling.innerHTML = '用户名格式正确';
+     this.nextElementSibling.className = 'msg-success';
+     this.setCustomValidity('');
+     var data =document.getElementById("username").value;
+     if(!data){   //用户没有输入任何内容
+       return;
+     }
+     *//**发起异步GET请求，询问服务器用户名是否已经存在**//*
+     $.ajax({
+   	 url: "${pageContext.request.contextPath}/user/checkUsername.do",
+   	 data: "username="+$("#username").val(),
+   	 type: "get",
+   	 dataType: "json",
+   	 success:function(obj){
+   		 $("#usernamespan").html(obj.message);
+   		 if(obj.state==0){
+   			 $("#usernamespan").attr("class","msg-error");
+   		 }else{
+   			 $("#usernamespan").attr("class","msg-success");
+   		 }
+   	 }
+     });
+   }
+ }
+
+ username.onfocus = function(){
+   this.nextElementSibling.innerHTML = '用户名长度在6到9位之间';
+   this.nextElementSibling.className = 'msg-default';
+ }
+ password.onfocus = function(){
+   this.nextElementSibling.innerHTML = '密码长度在6到12位之间';
+   this.nextElementSibling.className = 'msg-default';
+ }
+ password.onblur = function(){
+   if(this.validity.valueMissing){
+     this.nextElementSibling.innerHTML = '密码不能为空';
+     this.nextElementSibling.className = 'msg-error';
+     this.setCustomValidity('密码不能为空');
+   }else if(this.validity.tooShort){
+     this.nextElementSibling.innerHTML = '密码长度在尽量别少于6位';
+     this.nextElementSibling.className = 'msg-error';
+     this.setCustomValidity('密码长度尽量别少于6位');
+   }else {
+     this.nextElementSibling.innerHTML = '密码格式正确';
+     this.nextElementSibling.className = 'msg-success';
+     this.setCustomValidity('');
+   }
+ }
+ 
+
+ passwordconfirm.onfocus = function(){
+   this.nextElementSibling.innerHTML = '密码长度在6到12位之间';
+   this.nextElementSibling.className = 'msg-default';
+ }
+ passwordconfirm.onblur = function(){
+   if(this.validity.valueMissing){
+     this.nextElementSibling.innerHTML = '密码不能为空';
+     this.nextElementSibling.className = 'msg-error';
+     this.setCustomValidity('密码不能为空');
+   }else if(this.value.trim() != $("#password").val().trim()){
+     this.nextElementSibling.innerHTML = '前后密码不一致';
+     this.nextElementSibling.className = 'msg-error';
+     this.setCustomValidity('前后密码不一致');
+   }else {
+     this.nextElementSibling.innerHTML = '密码格式正确';
+     this.nextElementSibling.className = 'msg-success';
+     this.setCustomValidity('');
+   }
+ }
+ 
+ 3.对邮箱地址进行验证
+ email.onblur = function(){
+   if(this.validity.valueMissing){
+     this.nextElementSibling.innerHTML = '邮箱不能为空';
+     this.nextElementSibling.className = 'msg-error';
+     this.setCustomValidity('邮箱不能为空');
+   }else if(this.validity.typeMismatch){
+     this.nextElementSibling.innerHTML = '邮箱格式不正确';
+     this.nextElementSibling.className = 'msg-error';
+     this.setCustomValidity('邮箱格式不正确');
+   }else {
+     this.nextElementSibling.innerHTML = '邮箱格式正确';
+     this.nextElementSibling.className = 'msg-success';
+     this.setCustomValidity('');
+     var data =document.getElementById("email").value;
+     if(!data){   //用户没有输入任何内容
+       return;
+     }
+     *//**发起异步GET请求，询问服务器用户名是否已经存在**//*
+      $.ajax({
+   	 url: "${pageContext.request.contextPath}/user/checkEmail.do",
+   	 data: "email="+$("#email").val(),
+   	 type: "get",
+   	 dataType: "json",
+   	 success:function(obj){
+   		 $("#emailspan").html(obj.message);
+   		 if(obj.state==0){
+   			 $("#emailspan").attr("class","msg-error");
+   		 }else{
+   			 $("#emailspan").attr("class","msg-success");
+   		 }
+   	 }
+     });
+   }
+ }
+ email.onfocus = function(){
+   this.nextElementSibling.innerHTML = '请输入合法的邮箱地址';
+   this.nextElementSibling.className = 'msg-default';
+ }
+ 3.对手机号进行验证
+ phone.onblur = function(){
+   if(this.validity.valueMissing){
+     this.nextElementSibling.innerHTML = '手机号不能为空';
+     this.nextElementSibling.className = 'msg-error';
+     this.setCustomValidity('手机号不能为空');
+   }else if(this.validity.patternMismatch){
+     this.nextElementSibling.innerHTML = '手机号格式不正确';
+     this.nextElementSibling.className = 'msg-error';
+     this.setCustomValidity('手机号格式不正确');
+   }else {
+     this.nextElementSibling.innerHTML = '手机号格式正确';
+     this.nextElementSibling.className = 'msg-success';
+     this.setCustomValidity('');
+     var data =document.getElementById("phone").value;
+     if(!data){   //用户没有输入任何内容
+       return;
+     }
+     *//**发起异步GET请求，询问服务器用户名是否已经存在**//*
+     $.ajax({
+   	 url: "${pageContext.request.contextPath}/user/checkPhone.do",
+   	 data: "phone="+$("#phone").val(),
+   	 type: "get",
+   	 dataType: "json",
+   	 success:function(obj){
+   		 $("#phonespan").html(obj.message);
+   		 if(obj.state==0){
+   			 
+   			 $("#phonespan").attr("class","msg-error");
+   		 }else{
+   			 $("#phonespan").attr("class","msg-success");
+   		 }
+   	 }
+     });
+     
+   }
+ }
+ phone.onfocus = function(){
+   this.nextElementSibling.innerHTML = '请输入合法的手机号';
+   this.nextElementSibling.className = 'msg-default';
+ }*/
+ 
  /*   1.创建xmlHTTpRequest对象createxmlHttpRequest()
 	 * 2.利用open方法创建于服务器的连接
 	 3.发送请求send

@@ -27,10 +27,9 @@ function SeacherGood(){
 		<div class="header">
 			<!-- logo -->			 	
 			<div class="logo">
-				<div class="logo_top"><a href="user_loginout.action">退出</a></div>
 				<c:if test="${ empty user}">
 					<div class="logo_top">
-						<a href="resign.jsp">注册</a>&nbsp;
+						<a href="login.jsp">注册</a>&nbsp;
 						<span>|</span>
 					</div>
 					<div class="logo_top">
@@ -40,11 +39,12 @@ function SeacherGood(){
 				</c:if>
 				<c:if test="${not empty user}">
 					<div class="logo_top">
-							<font color="#ff8000"><c:out value="欢迎你回来,${user.username}"/></font>
+							<font color="#ff8000"><c:out value="欢迎你回来,${user.username}"/></font>&nbsp;&nbsp;
+							|&nbsp;<a href="user_loginout.action">退出</a>
 					</div>
 				</c:if>
 				<div>
-					<a href="mansheetshow.jsp" class="logo_top_left">时尚商城</a>
+					<a href="sum.jsp" class="logo_top_left">时尚商城</a>
 					<a href="sum.jsp" class="logo_top_left">首页</a>
 				</div>
 			</div>
@@ -59,7 +59,7 @@ function SeacherGood(){
 			<div class="logo_car">
 					<a href="${pageContext.request.contextPath }/cart_lookCart.action" class="shoppingcar_logo">
 					<img class="" src="images/background/shoppingcar.png"/>
-					<font class="logo_car_buttle">我的购物车
+					<font class="logo_car_buttle" >我的购物车
 						<c:if test="${not empty user }">
 							(<font size="3px" color="black">${countAllCartItems }</font>)
 						</c:if>
@@ -74,7 +74,7 @@ function SeacherGood(){
 					<li><a href="#" id="list">儿童馆</a></li>
 					<li><a href="#" id="list">个人中心</a></li>
 					<li><a href="#" id="list">积分兑换</a></li>
-					<li><a href="connectionus.jsp" id="list">联系我们</a></li>
+					<li><a href="connectionUs.jsp" id="list">联系我们</a></li>
 				</ul>
 			</div>
 	</div>

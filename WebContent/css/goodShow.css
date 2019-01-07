@@ -98,3 +98,15 @@
 .sheetimage_text_a{
 	text-decoration:none;
 }
+.find_good_content_show{
+	height:800px;
+	width:100%;
+}
+#findItems_content_page_div{
+	margin-top:100px;
+}
+#findItems_content_items_div{
+	width:260px;
+	
+	
+}
