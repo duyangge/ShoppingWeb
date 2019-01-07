@@ -18,6 +18,17 @@
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="assets/css/admin.css">
+  <script type="text/javascript">
+function SeacherUser(){
+	var text=document.getElementById("text_seacher").value;
+	if(text==""){
+		return;
+	}else{
+		window.location.href="${pageContext.request.contextPath}/user_lookUserByUser.action?username="+text;
+		return;
+	}
+}
+</script>
 </head>
 <body>
 <!--导入头部  -->
@@ -49,9 +60,9 @@
       <div class="am-u-md-3 am-cf">
         <div class="am-fr">
           <div class="am-input-group am-input-group-sm">
-            <input type="text" class="am-form-field">
+            <input type="text" class="am-form-field" name="username" id="text_seacher">
                 <span class="am-input-group-btn">
-                  <button class="am-btn am-btn-default" type="button">搜索</button>
+                  <button class="am-btn am-btn-default" type="button" onclick="SeacherUser();" >搜索</button>
                 </span>
           </div>
         </div>
@@ -80,7 +91,7 @@
          <!--  <tbody> -->
           	<!--使用foreach循环  管理留言-->
           	<c:forEach items="${allUsers}" var="user">
-          		 <tr>
+          	 <tr>
               <td><input type="checkbox" /></td>
               <td>${user.uid}</td>
               <td>${user.username}</td>
@@ -103,13 +114,13 @@
         <!--   </tbody> -->
         </table>
           <div class="am-cf">
-			  共${fn:length(allUsers)}条记录  当前页 ${showPage.currentpage}/${showPage.totalpages} 
+			  共${fn:length(users)}条记录  当前页 ${showPage.currentpage}/${showPage.totalpages} 
 			  <!--总记录数  -->
 			  <div class="am-fr">
 			    <ul class="am-pagination">
 			    <!--foreach循环  -->
-			    <li class="am-disabled"><a href="#">«</a></li>
-			    <c:forEach begin="0" end="${showPage.totalpages}" varStatus="status">
+			   <!--  <li class="am-disabled"><a href="#">«</a></li> -->
+			    <c:forEach begin="1" end="${showPage.totalpages}" varStatus="status">
 			        <li class="am-active"><a href="${pageContext.request.contextPath }/user_lookAllUser.action?showPage.currentpage=${status.count}">${status.count}</a></li>
 			    </c:forEach>
 			      <li><a href="#">»</a></li>

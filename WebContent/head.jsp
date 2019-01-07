@@ -40,6 +40,7 @@ function SeacherGood(){
 				<c:if test="${not empty user}">
 					<div class="logo_top">
 							<font color="#ff8000"><c:out value="欢迎你回来,${user.username}"/></font>&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath }/orders_lookOrders.action">我的订单</a>
 							|&nbsp;<a href="user_loginout.action">退出</a>
 					</div>
 				</c:if>

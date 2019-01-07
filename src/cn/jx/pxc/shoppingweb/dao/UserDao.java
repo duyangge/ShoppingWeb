@@ -102,4 +102,12 @@ public interface UserDao {
 	 */
 	List<User> findAllUsersByPages(String username, Integer currpage, Integer maxResult) throws Exception;
 	
+	
+	/**
+	 * @param username
+	 * @return
+	 * @throws Exception
+	 */
+	List<User> findUserByUserNameWithPage(String username) throws Exception;
+	
 }

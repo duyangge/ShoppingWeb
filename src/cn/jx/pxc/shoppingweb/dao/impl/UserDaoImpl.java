@@ -130,15 +130,25 @@ public class UserDaoImpl extends BaseDaoHibernate implements UserDao{
 	@Override
 	public List<User> findAllUsersByPages(String username, Integer currpage, Integer maxResult) throws Exception {
 		String sql=null;
-		if(username != null || username.equals("")) {
-			sql="from User where instr(username,"+username+")>0";
-		}else {
+		if(username == null || username.equals("")) {
 			sql="from User";
+		}else {
+			sql="from User where instr(username,'"+username+"')>0";
 		}
 		Query query = this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(sql);
 		query.setFirstResult((currpage - 1) * maxResult);
 		query.setMaxResults(maxResult);
 		return query.list();
+	}
+
+	/* (non-Javadoc)
+	 * @see cn.jx.pxc.shoppingweb.dao.UserDao#findUserByUserNameWithPage(java.lang.String)
+	 */
+	@Override
+	public List<User> findUserByUserNameWithPage(String username) throws Exception {
+			Query query = this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("from User where instr(username,?)>0");
+			query.setParameter(0, username);
+			return query.list();
 	}
 
 

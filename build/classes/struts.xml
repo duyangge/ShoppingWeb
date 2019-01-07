@@ -43,7 +43,7 @@
 			<result name="lookAllUsers">/admin-aduser.jsp</result>
 			<result name="loadMyCartNum" type="redirectAction">cart_countAllCartItems</result>
 			<result name="sendMessage">/mySendMessage.jsp</result>
-			<allowed-methods>login,register,loginout,checkUserNameExist,sendMessage,lookAllUser,deleteUser,updateUser,lookAllUserMessasge,updateUserMessage,deleteUserMessage,showUserInfo,adminAddUser</allowed-methods>
+			<allowed-methods>login,register,loginout,checkUserNameExist,sendMessage,lookAllUser,deleteUser,updateUser,lookAllUserMessasge,updateUserMessage,deleteUserMessage,showUserInfo,adminAddUser,lookUserByUser</allowed-methods>
 		</action>
 		
 		<!--验证码  -->

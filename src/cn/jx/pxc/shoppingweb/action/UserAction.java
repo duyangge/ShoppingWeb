@@ -220,7 +220,26 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 			List<User> users = userService.findAllUser();
 			this.PagingProcess(users.size());
 			List<User> allUsers = userService.findAllUsersByPages("", showPage.getCurrentpage(), showPage.getPageSize());
-			ServletActionContext.getRequest().setAttribute("allUsers",allUsers );
+			ServletActionContext.getRequest().setAttribute("allUsers",allUsers);
+			ServletActionContext.getRequest().setAttribute("users", users);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "lookAllUsers";
+	}
+	
+	
+	/**
+	 * 通过查询用户名
+	 * @return
+	 */
+	public String lookUserByUser() {
+		try {
+			List<User> users = userService.findUserByUserNameWithPage(user.getUsername());
+			this.PagingProcess(users.size());
+			List<User> allUsers = userService.findAllUsersByPages(user.getUsername(), showPage.getCurrentpage(), showPage.getPageSize());
+			ServletActionContext.getRequest().setAttribute("allUsers",allUsers);
+			ServletActionContext.getRequest().setAttribute("users", users);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -235,7 +254,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		showPage.setTotalpages((totalRecords % showPage.getPageSize() == 0) ? (totalRecords / showPage.getPageSize()) : ((totalRecords / showPage.getPageSize()) + 1));
 		if (showPage.getCurrentpage() == 0) showPage.setCurrentpage(1);
 		if (showPage.getCurrentpage() >= showPage.getTotalpages()) showPage.setCurrentpage(showPage.getTotalpages());
-		showPage.setPageSize(2);
+		showPage.setPageSize(3);
 		ServletActionContext.getRequest().setAttribute("showPage", showPage);
 	}
 	

@@ -46,11 +46,16 @@ function change(){//切换验证码
 									<c:out value="${loginerror}"/>
 								</c:if>
 							</font>
-							<c:remove var="mess"/>
+							<div>
+								<font id="login_alter_uname" color="red"></font>
+							</div>
 						</div>
 						<br>
 						<div class="login">
 							<input class="textpass" id="password" type="password"  placeholder="输入密码"  name="password">
+							<div>
+								<font id="login_alter_pw" color="red"></font>
+							</div>
 						</div>
 						<br>
 						<div class="validcode">

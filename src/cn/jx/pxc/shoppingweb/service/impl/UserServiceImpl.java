@@ -156,4 +156,13 @@ public class UserServiceImpl implements UserService{
 		
 		return userDao.findAllUsersByPages(username, currpage, maxResult);
 	}
+
+
+	/* (non-Javadoc)
+	 * @see cn.jx.pxc.shoppingweb.service.UserService#findUserByUserNameWithPage(java.lang.String)
+	 */
+	@Override
+	public List<User> findUserByUserNameWithPage(String username) throws Exception {
+		return userDao.findUserByUserNameWithPage(username);
+	}
 }
