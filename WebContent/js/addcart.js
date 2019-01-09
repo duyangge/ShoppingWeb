@@ -6,7 +6,7 @@ function instantbuy(){
 			var gid=document.getElementById("gid").value;//
 			/*var unitprice=document.getElementById("unitprice").value;//
 			var allMoney=unitprice*gnum;//
-*/			window.location.href="${pageContext.request.contextPath}/orders_addOrders.action?itemsId="+gid+"&itemsNum="+gnum; 
+*/			window.location.href="${pageContext.request.contextPath}/orders_addOrders.action?itemsId="+gid+"&itemsNum="+gnum+"&rightNow="+1; 
 		}else {
 			return;
 			

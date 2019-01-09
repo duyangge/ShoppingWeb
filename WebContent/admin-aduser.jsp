@@ -28,6 +28,35 @@ function SeacherUser(){
 		return;
 	}
 }
+function selectDelete() {//提交复选框选中的商品id与对应的数量
+	var usersId = "";
+	var temp = "";
+	var a = document.getElementsByName("checkbox_usersId");
+	for ( var i = 0; i < a.length; i++) {
+		if (a[i].checked) {
+			temp = a[i].value;
+			usersId = usersId + "," +temp;
+		}
+	}
+	if(usersId == "" || usersId.length == 0){
+		alert("请勾选需要删除的用户!");
+		return;
+	}
+	window.location.href="${pageContext.request.contextPath }/user_deleteUser?userIds="+usersId;
+	}
+function allSelect(){
+	var allSelect = document.getElementById("all_chekc_select");
+	var a = document.getElementsByName("checkbox_usersId");
+		if (allSelect.checked) {
+			for( var i = 0; i < a.length; i++){
+				a[i].checked=true;
+			}
+		}else{
+			for( var i = 0; i < a.length; i++){
+				a[i].checked=false;
+			}
+		}
+}
 </script>
 </head>
 <body>
@@ -51,7 +80,7 @@ function SeacherUser(){
           <div class="am-btn-toolbar am-fl">
             <div class="am-btn-group am-btn-group-xs">
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span><a href="admin-adduser.jsp">新增</a></button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span><a href="#">删除</a></button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span><a href="#" onclick="selectDelete();">删除</a></button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span><a href="#">编辑</a></button>
             </div>
           </div>
@@ -75,7 +104,7 @@ function SeacherUser(){
           <table class="am-table am-table-striped am-table-hover table-main">
             <thead>
               <tr>
-                <th class="table-check"><input type="checkbox" />
+                <th class="table-check"><input type="checkbox" name="all_check" id="all_chekc_select" onchange="allSelect();"/>
                 </th>
                 <th class="table-id">ID</th>
                 <th class="table-title">用户名</th>
@@ -92,7 +121,7 @@ function SeacherUser(){
           	<!--使用foreach循环  管理留言-->
           	<c:forEach items="${allUsers}" var="user">
           	 <tr>
-              <td><input type="checkbox" /></td>
+              <td><input type="checkbox" name="checkbox_usersId" value="${user.uid}" id="users_id"/></td>
               <td>${user.uid}</td>
               <td>${user.username}</td>
               <td>${user.password}</td>
@@ -105,7 +134,7 @@ function SeacherUser(){
                 <div class="am-btn-toolbar">
                   <div class="am-btn-group am-btn-group-xs">
                     <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span><a href="${pageContext.request.contextPath }/user_showUserInfo?uid=${user.uid}">编辑</a></button>
-                    <button class="am-btn am-btn-default am-btn-xs am-text-danger"><span class="am-icon-trash-o"></span><a href="${pageContext.request.contextPath }/user_deleteUser?uid=${user.uid}">删除</a> </button>
+                    <button class="am-btn am-btn-default am-btn-xs am-text-danger"><span class="am-icon-trash-o"></span><a href="${pageContext.request.contextPath }/user_deleteUser?usersId=${user.uid}">删除</a> </button>
                   </div>
                 </div>
               </td>

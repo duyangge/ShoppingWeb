@@ -1,7 +1,10 @@
 package cn.jx.pxc.shoppingweb.action;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
@@ -27,14 +30,16 @@ import cn.jx.pxc.shoppingweb.service.UserService;
  * @package  cn.jx.pxc.shoppingweb.action
  * @author    黄信胜
  * @date      2018年12月23日下午12:22:37
- * @version 1.0
+ * @version 18.12.23
  */
 @Controller
 @Scope("prototype")
 @SuppressWarnings("all")
 public class UserAction extends ActionSupport implements ModelDriven<User>{
 	
-	private Integer[] userIds;
+	private static final String usersId = null;
+
+	private String userIds;
 	
 	private String checkCode;//接收的验证码内容
 	
@@ -66,20 +71,20 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		this.userMessage = userMessage;
 	}
 	
-	public Integer[] getUserIds() {
-		return userIds;
-	}
-
-	public void setUserIds(Integer[] userIds) {
-		this.userIds = userIds;
-	}
-	
 	public ShowPage getShowPage() {
 		return showPage;
 	}
 
 	public void setShowPage(ShowPage showPage) {
 		this.showPage = showPage;
+	}
+	
+	public String getUserIds() {
+		return userIds;
+	}
+
+	public void setUserIds(String userIds) {
+		this.userIds = userIds;
 	}
 
 	/**
@@ -160,7 +165,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 			user.setModifiedUser(user.getUsername());
 			user.setModifiedTime(new Date());
 			String uid = userService.register(user).getUid().toString();
-			con.getSession().put("user", user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -264,8 +268,14 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	 */
 	public String deleteUser() {
 		try {
-			User u = userService.findUserById(user.getUid());
-			userService.deleteUser(u);
+			 String[] getDelUsersId = userIds.split(",");//接收删除用户id总字符串
+			for (int i = 0; i < getDelUsersId.length; i++) {
+				if(!getDelUsersId[i].equals("")) {
+					 Integer userId = Integer.parseInt(getDelUsersId[i]);
+					 User u = userService.findUserById(userId);
+					 userService.deleteUser(u);
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -336,7 +346,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		try {
 			userService.deleteUserMesssage(userMessage);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "lookAllUserMessage";

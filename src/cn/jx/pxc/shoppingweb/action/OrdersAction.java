@@ -42,6 +42,8 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
   
   private String itemsNum;//选中的商品id对应的商品数量
   
+  private Integer rightNow;//立即下单有值
+  
   @Autowired
   private ShowPage showPage;//分页实体类
   
@@ -85,8 +87,17 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
   public void setShowPage(ShowPage showPage) {
 	this.showPage = showPage;
   }
+  
+  
+  public Integer getRightNow() {
+	return rightNow;
+ }
 
-  /**
+ public void setRightNow(Integer rightNow) {
+	this.rightNow = rightNow;
+ }
+
+/**
    * 查看订单及其详情
    * @return 返回字符串”lookorders“
    * @throws Exception 
@@ -178,8 +189,10 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 		 /*将订单中的商品信息存入详细订单详情中*/ 
 		for (Integer itemsidmap : itemsIdMap) {
 			
-			/*下单同时，删除购物车中的下单物品 */
-			this.deleteCartByDoOrder(uid, itemsidmap);
+			if(rightNow != null) {//立即下单
+				/*下单同时，删除购物车中的下单物品 */
+				this.deleteCartByDoOrder(uid, itemsidmap);
+			}
 		    this.saveOrdersDetailItems(orders.getRid(), itemsDetailMap.get(itemsidmap), itemsidmap);
 		}
 		

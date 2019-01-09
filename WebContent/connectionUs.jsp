@@ -6,9 +6,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>联系我们</title>
 <link href="css/connectionUs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+function selectQuestionType(){
+	var type = document.getElementsByName("questionType");
+	for ( var i = 0; i < type.length; i++) {
+		if (type[i].selected) {
+		document.getElementById("questionType_hidden_input").value=type[i].value;
+		alert(document.getElementById("questionType_hidden_input").value);
+		}
+	}
+}
+
+</script>
 </head>
 <body>
-	
 <div class="Content-Main">
     <div class="Content-Main1">
         <h1>用户反馈</h1>
@@ -30,13 +41,14 @@
         </label>
         <label>
             <span>Subject:</span>
-            <select name="questionType" class="select1">
+            <select name="questionType" class="select1" onclick="selectQuestionType();">
                 <option value="1" >Job Inquiry</option>
                 <option value="2" selected="selected">General Question</option>
             </select>
         </label>
         <label>
-            <input type="button" class="button" value="Send" onclick="return sendMessage()">
+        	<input type="hidden" id="questionType_hidden_input" name="userMessage.questionType"/>
+             <input type="button" class="button" value="Send" onclick="return sendMessage()">
         </label>
     </form>
 </div>

@@ -70,8 +70,8 @@ function SeacherGood(){
 			<div class="logo_list">
 				<ul class="navigation">
 					<li><a href="sum.jsp" class="sum" style="color:white">全部商品分类</a></li>
-					<li><a href="#" id="list">运动馆</a></li>
-					<li><a href="#" id="list">鞋靴馆</a></li>
+					<li><a href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2" id="list">运动馆</a></li>
+					<li><a href="${pageContext.request.contextPath }/items_inItemsList.action?tid=1" id="list">鞋靴馆</a></li>
 					<li><a href="#" id="list">儿童馆</a></li>
 					<li><a href="#" id="list">个人中心</a></li>
 					<li><a href="#" id="list">积分兑换</a></li>

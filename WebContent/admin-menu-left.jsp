@@ -35,8 +35,8 @@
 
     <div class="am-panel am-panel-default admin-sidebar-panel">
       <div class="am-panel-bd">
-        <p><span class="am-icon-tag"></span> wiki</p>
-        <p>Welcome to the Amaze</p>
+        <p><span class="am-icon-tag"></span> ctwfc</p>
+        <p>Welcome to the admin</p>
       </div>
     </div>
   </div>
