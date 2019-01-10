@@ -56,4 +56,17 @@ public class TestUserDaoImpl {
 		userService.updateUser(u);
 	}
 	
+	/**
+	 * 测试用户留言
+	 * @throws Exception 
+	 */
+	@Test
+	public void TestDeleteUser() throws Exception {
+		ApplicationContext context  = new ClassPathXmlApplicationContext("applicationContext.xml");
+		UserService userService  =  context.getBean(UserService.class);
+		User user = new User();
+		user.setUid(32);
+		userService.deleteUser(user);
+	}
+	
 }

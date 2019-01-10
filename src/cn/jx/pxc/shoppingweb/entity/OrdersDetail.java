@@ -27,10 +27,6 @@ public class OrdersDetail implements Serializable{
 	private String modifiedUser;//修改者
 	private Orders orders;//关联的订单对象 ，多对一
 	private Items items;//关联的商品对象，一对一
-	
-	/**
-	 * 
-	 */
 	public OrdersDetail() {
 		super();
 		// TODO Auto-generated constructor stub

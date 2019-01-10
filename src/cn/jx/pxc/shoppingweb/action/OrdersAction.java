@@ -2,6 +2,7 @@ package cn.jx.pxc.shoppingweb.action;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -108,7 +109,6 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 	  List<Orders> ordersList = ordersService.lookOrders(uid, showPage.getCurrentpage(), showPage.getPageSize());
 	  for (Orders orders : ordersList) {
 		List<OrdersDetail> ordersDetail = ordersService.lookOrdersDetail(orders.getRid());
-		//orders.setOrdersDetail(ordersDetail);
 		for (OrdersDetail ordersDetail2 : ordersDetail) {
 			Items items = ordersService.findItemsById(ordersDetail2.getItems().getGid());
 			ordersDetail2.setItems(items);
@@ -117,7 +117,6 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 	  ServletActionContext.getRequest().setAttribute("ordersList", ordersList);
 	return "lookOrders";
   }
-  
   /**
 	 * 分页处理
 	 * @param totalRecords 传入总页数
@@ -189,7 +188,7 @@ public class OrdersAction extends ActionSupport implements ModelDriven<Orders>{
 		 /*将订单中的商品信息存入详细订单详情中*/ 
 		for (Integer itemsidmap : itemsIdMap) {
 			
-			if(rightNow != null) {//立即下单
+			if(rightNow == null) {//立即下单
 				/*下单同时，删除购物车中的下单物品 */
 				this.deleteCartByDoOrder(uid, itemsidmap);
 			}

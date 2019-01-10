@@ -1,10 +1,7 @@
 package cn.jx.pxc.shoppingweb.action;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +17,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 import cn.jx.pxc.shoppingweb.Intermediate.ShowPage;
 import cn.jx.pxc.shoppingweb.Utils.Md5;
+import cn.jx.pxc.shoppingweb.entity.ShippingAddress;
 import cn.jx.pxc.shoppingweb.entity.User;
 import cn.jx.pxc.shoppingweb.entity.UserMessage;
 import cn.jx.pxc.shoppingweb.service.UserService;
@@ -54,8 +52,20 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	
 	private User user = new User();
 	
+	@Autowired
+	private ShippingAddress shippingAddress;
+	
 	private ActionContext con = ActionContext.getContext();
 	
+	
+	public ShippingAddress getShippingAddress() {
+		return shippingAddress;
+	}
+
+	public void setShippingAddress(ShippingAddress shippingAddress) {
+		this.shippingAddress = shippingAddress;
+	}
+
 	public void setCheckCode(String checkCode) {
 		this.checkCode = checkCode;
 	}
@@ -258,7 +268,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		showPage.setTotalpages((totalRecords % showPage.getPageSize() == 0) ? (totalRecords / showPage.getPageSize()) : ((totalRecords / showPage.getPageSize()) + 1));
 		if (showPage.getCurrentpage() == 0) showPage.setCurrentpage(1);
 		if (showPage.getCurrentpage() >= showPage.getTotalpages()) showPage.setCurrentpage(showPage.getTotalpages());
-		showPage.setPageSize(3);
+		showPage.setPageSize(5);
 		ServletActionContext.getRequest().setAttribute("showPage", showPage);
 	}
 	
@@ -309,6 +319,23 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		return "admin";
 	}
 	
+	/**修改用户信息
+	 * @return
+	 */
+	public String updateUserByUser() {
+		try {
+			String uname = ((User)(con.getSession().get("user"))).getUsername();
+			Md5 md5 = new Md5();
+			user.setModifiedUser(uname);
+			user.setModifiedTime(new Date());
+			user.setPassword(md5.EncoderByMd5(user.getPassword()));
+			userService.updateUser(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "login";
+	}
+	
 	/**
 	 * 查看所有的用户留言信息
 	 * @return
@@ -350,5 +377,38 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		}
 		return "lookAllUserMessage";
 		
+	}
+	
+	/**
+	 * 查看收货地址
+	 * @return
+	 */
+	public String findShippingAddress() {
+		User u = ((User)(con.getSession().get("user")));
+		try {
+			List<ShippingAddress> addressList = userService.findShippingAddressByUid(u.getUid());
+			ServletActionContext.getRequest().setAttribute("shippingAddress", addressList.get(0));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "lookAddress";
+	}
+	
+	
+	/**
+	 * 修改收货地址
+	 * @return
+	 */
+	public String updateShippingAddress() {
+		try {
+			User u = ((User)(con.getSession().get("user")));
+			shippingAddress.setModifiedTime(new Date());
+			shippingAddress.setModifiedUser(u.getUsername());
+			shippingAddress.setUid(u.getUid());
+			userService.updateShippingAddress(shippingAddress);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "updateAddress";
 	}
 }

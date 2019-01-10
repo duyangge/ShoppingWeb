@@ -1,3 +1,7 @@
+#all_addCart_div{
+	height:800px;
+	width:100%;
+}
 
 .content{
 	margin:30px;
@@ -11,9 +15,7 @@
 	width:400px;
 	height:265px;
 }
-.content_right{
-	
-}
+
 #addcartbutton{
 	width:85px;
 	height:30px;

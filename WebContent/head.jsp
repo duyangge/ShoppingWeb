@@ -73,7 +73,7 @@ function SeacherGood(){
 					<li><a href="${pageContext.request.contextPath }/items_inItemsList.action?tid=2" id="list">运动馆</a></li>
 					<li><a href="${pageContext.request.contextPath }/items_inItemsList.action?tid=1" id="list">鞋靴馆</a></li>
 					<li><a href="#" id="list">儿童馆</a></li>
-					<li><a href="#" id="list">个人中心</a></li>
+					<li><a href="personage.jsp" id="list">个人中心</a></li>
 					<li><a href="#" id="list">积分兑换</a></li>
 					<li><a href="connectionUs.jsp" id="list">联系我们</a></li>
 				</ul>

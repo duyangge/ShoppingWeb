@@ -2,6 +2,7 @@ package cn.jx.pxc.shoppingweb.service;
 
 import java.util.List;
 
+import cn.jx.pxc.shoppingweb.entity.ShippingAddress;
 import cn.jx.pxc.shoppingweb.entity.User;
 import cn.jx.pxc.shoppingweb.entity.UserMessage;
 
@@ -116,4 +117,20 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	List<User> findUserByUserNameWithPage(String username) throws Exception;
+	
+	/**
+	 * 查看用户的收货地址
+	 * @param uid
+	 * @return
+	 * @throws Exception
+	 */
+	List<ShippingAddress> findShippingAddressByUid(Integer uid) throws Exception;
+	
+	
+	/**
+	 * 修改收货地址
+	 * @param shippingAddress
+	 * @throws Exception
+	 */
+	void updateShippingAddress(ShippingAddress shippingAddress) throws Exception;
 }

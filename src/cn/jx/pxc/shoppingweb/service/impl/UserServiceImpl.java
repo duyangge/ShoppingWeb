@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.jx.pxc.shoppingweb.dao.UserDao;
+import cn.jx.pxc.shoppingweb.entity.ShippingAddress;
 import cn.jx.pxc.shoppingweb.entity.User;
 import cn.jx.pxc.shoppingweb.entity.UserMessage;
 import cn.jx.pxc.shoppingweb.service.UserService;
@@ -164,5 +165,25 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<User> findUserByUserNameWithPage(String username) throws Exception {
 		return userDao.findUserByUserNameWithPage(username);
+	}
+
+
+	/* (non-Javadoc)
+	 * @see cn.jx.pxc.shoppingweb.service.UserService#findShippingAddressByUid(java.lang.Integer)
+	 */
+	@Override
+	public List<ShippingAddress> findShippingAddressByUid(Integer uid) throws Exception {
+		// TODO Auto-generated method stub
+		return userDao.findShippingAddressByUid(uid);
+	}
+
+
+	/* (non-Javadoc)
+	 * @see cn.jx.pxc.shoppingweb.service.UserService#updateShippingAddress(cn.jx.pxc.shoppingweb.entity.ShippingAddress)
+	 */
+	@Override
+	public void updateShippingAddress(ShippingAddress shippingAddress) throws Exception {
+		// TODO Auto-generated method stub
+		userDao.updateShippingAddress(shippingAddress);
 	}
 }

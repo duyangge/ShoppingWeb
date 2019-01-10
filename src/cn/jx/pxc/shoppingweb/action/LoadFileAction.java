@@ -17,7 +17,7 @@ import cn.jx.pxc.shoppingweb.service.LoadFileService;
  * @package   cn.jx.pxc.shoppingweb.action
  * @author    黄信胜
  * @date      2018年12月23日下午5:01:15
- * @version 1.0
+ * @version 18.12.23
  */
 @Controller
 @Scope("prototype")

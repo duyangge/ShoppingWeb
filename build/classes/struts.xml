@@ -43,7 +43,12 @@
 			<result name="lookAllUsers">/admin-aduser.jsp</result>
 			<result name="loadMyCartNum" type="redirectAction">cart_countAllCartItems</result>
 			<result name="sendMessage">/sendMessageSuccess.jsp</result>
-			<allowed-methods>login,register,loginout,checkUserNameExist,sendMessage,lookAllUser,deleteUser,updateUser,lookAllUserMessasge,updateUserMessage,deleteUserMessage,showUserInfo,adminAddUser,lookUserByUser</allowed-methods>
+			<result name="lookAllUserMessage">/admin-adusermessage.jsp</result>
+			<result name="lookAddress">/user-adorderaddress.jsp</result>
+			<result name="updateAddress" type="redirectAction">user_findShippingAddress</result>
+			<allowed-methods>login,register,loginout,checkUserNameExist,sendMessage,lookAllUser,deleteUser,updateUser,lookAllUserMessasge,updateUserMessage,deleteUserMessage,showUserInfo,adminAddUser,
+			lookUserByUser,findShippingAddress,updateShippingAddress,lookUserByUser,updateUserByUser
+			</allowed-methods>
 		</action>
 		
 		<!--验证码  -->
@@ -63,7 +68,7 @@
 		<action name="cart_*" class="cartAction" method="{1}">
 			<interceptor-ref name="loginStack"></interceptor-ref>
 			<result name="addCart">/addCart.jsp</result>
-			<result name="lookCart">/mycart.jsp</result>
+			<result name="lookCart">/showCart.jsp</result>
 			<result name="addLookCart" type="redirectAction">cart_lookCart</result>
 			<result name="loadHome" type="redirectAction">loadFile_loadAll</result>
 			<allowed-methods>countAllCartItems,checkExistItems,saveCart,addCart,lookCart,deleCart,addCartNum,decCartNum,selSumCart,decSumCart</allowed-methods>

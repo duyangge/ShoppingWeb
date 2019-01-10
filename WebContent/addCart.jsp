@@ -9,15 +9,21 @@
 <link href="css/addcart.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath }/cart_addCart.action" method="post">
+	<div style="margin-buttom:200px;">
+		<%-- <jsp:include page="head.jsp"/> --%>
+	</div>
+	
+	<div style="margin-top: 100px;">
+		<form action="${pageContext.request.contextPath }/cart_addCart.action" method="post">
 	<!--通过获取物品id得到物品信息  -->
+		<div id="all_addCart_div">
 		<div class="content">
 			<div class="content_left">
 				<img src="${detailItems.imgsrc}" class="imgshow"/>
 			</div>
 			<div class="content_right">
-					<div>
-						<table  cellspacing="0" class="showmess">
+					<div id="content_right_top_div">
+						<table  cellspacing="0" class="showmess" border="0">
 								<tr>
 									<td><font id="goodintroduce_e">${detailItems.gintroduce}</font></td>
 								</tr>
@@ -69,7 +75,10 @@
 			<a href="ShowListItems.jsp" class="continueshopping">继续购物</a>
 			<a href="${pageContext.request.contextPath }/user_loginout.action">退出</a>
 		</div>
-	</form>
+		</div>
+		</form>
+	</div>
+	
 </body>
 <script type="text/javascript" src="js/addcart.js">
 </script> 

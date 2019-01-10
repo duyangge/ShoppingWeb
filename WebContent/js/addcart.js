@@ -31,7 +31,8 @@ function pitchon() {//提交复选框选中的商品id与对应的数量
 		return;
 	}
 	window.location.href="${pageContext.request.contextPath }/orders_addOrders?itemsNum="+itemsNum+"&itemsId="+itemsId;
-	}
+}
+
 function allSelect(){
 	var a = document.getElementsByName("gidlist");
 	for ( var i = 0; i < a.length; i++) {

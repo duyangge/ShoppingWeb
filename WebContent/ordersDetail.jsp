@@ -32,13 +32,6 @@
 		</c:forEach>
 	</table>
  	<div style="margin-top:5%;">
-	<%--	<div align="center">
-			<a href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${1}">首页</a>
-			<a href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${showPage.getCurrentpage()-1}">上一页</a>&nbsp;
-			<span>当前${ showPage.getCurrentpage()}/${showPage.getTotalpages() }页</span>&nbsp;
-			<a href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${showPage.getCurrentpage()+1}">下一页</a>
-			<a  href="${pageContext.request.contextPath }/cart_lookCart.action?showPage.currentpage=${showPage.getTotalpages()}">尾页</a>
-		</div>--%>
 		<div  style="float:left; margin-left:5%; ">
 			<a href="${pageContext.request.contextPath }/orders_lookOrders.action">我的订单</a>
 			<a href="${pageContext.request.contextPath }/user_loginout.action">退出</a>&nbsp;&nbsp;

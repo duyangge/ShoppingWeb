@@ -156,7 +156,7 @@ public class CartAction extends ActionSupport implements ModelDriven<Cart>{
 		showPage.setTotalpages((totalRecords % showPage.getPageSize() == 0) ? (totalRecords / showPage.getPageSize()) : ((totalRecords / showPage.getPageSize()) + 1));
 		if (showPage.getCurrentpage() == 0) showPage.setCurrentpage(1);
 		if (showPage.getCurrentpage() >= showPage.getTotalpages()) showPage.setCurrentpage(showPage.getTotalpages());
-		showPage.setPageSize(5);
+		showPage.setPageSize(3);
 		ServletActionContext.getRequest().setAttribute("showPage", showPage);
 	}
 

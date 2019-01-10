@@ -53,7 +53,7 @@
 			<a href="javaScript:allSelect();">全选</a>&nbsp;
 			<a href="javaScript:pitchon();">下单</a>&nbsp;
 			<a href="${pageContext.request.contextPath }/orders_lookOrders.action">我的订单</a>
-			<input type="submit" value="删除" border="0" style="color: blue; border:0px;background: white;font-size:15px;text-decoration: underline;">
+			<input type="submit" value="删除" border="0" style="color: blue; border:0px;background: white;font-size:15px;text-decoration:none;">
 		</div>
 		<div id="cart_content_menu_div">
 		<a href="JavaScript:history.go(-1)">返回上一级</a>

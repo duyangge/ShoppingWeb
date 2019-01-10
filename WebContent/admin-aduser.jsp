@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="assets/css/admin.css">
   <script type="text/javascript">
+  
 function SeacherUser(){
 	var text=document.getElementById("text_seacher").value;
 	if(text==""){
@@ -28,6 +29,7 @@ function SeacherUser(){
 		return;
 	}
 }
+
 function selectDelete() {//提交复选框选中的商品id与对应的数量
 	var usersId = "";
 	var temp = "";
@@ -43,7 +45,8 @@ function selectDelete() {//提交复选框选中的商品id与对应的数量
 		return;
 	}
 	window.location.href="${pageContext.request.contextPath }/user_deleteUser?userIds="+usersId;
-	}
+}
+	
 function allSelect(){
 	var allSelect = document.getElementById("all_chekc_select");
 	var a = document.getElementsByName("checkbox_usersId");
@@ -80,7 +83,7 @@ function allSelect(){
           <div class="am-btn-toolbar am-fl">
             <div class="am-btn-group am-btn-group-xs">
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span><a href="admin-adduser.jsp">新增</a></button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span><a href="#" onclick="selectDelete();">删除</a></button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span><a href="#" onclick="selectDelete()">删除</a></button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span><a href="#">编辑</a></button>
             </div>
           </div>
@@ -134,8 +137,8 @@ function allSelect(){
                 <div class="am-btn-toolbar">
                   <div class="am-btn-group am-btn-group-xs">
                     <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span><a href="${pageContext.request.contextPath }/user_showUserInfo?uid=${user.uid}">编辑</a></button>
-                    <button class="am-btn am-btn-default am-btn-xs am-text-danger"><span class="am-icon-trash-o"></span><a href="${pageContext.request.contextPath }/user_deleteUser?usersId=${user.uid}">删除</a> </button>
-                  </div>
+                    <button class="am-btn am-btn-default am-btn-xs am-text-danger"><span class="am-icon-trash-o"></span><a href="#" onclick="selectDelete();">删除</a> </button>
+                  </div><!--${pageContext.request.contextPath }/user_deleteUser?usersId=${user.uid}  -->
                 </div>
               </td>
             </tr>
@@ -157,7 +160,6 @@ function allSelect(){
 			  </div>
 			</div>
           <hr />
-          <!-- <p>注：。。。。。</p> -->
         </form>
       </div>
 

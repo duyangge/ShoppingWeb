@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import cn.jx.pxc.shoppingweb.dao.UserDao;
+import cn.jx.pxc.shoppingweb.entity.ShippingAddress;
 import cn.jx.pxc.shoppingweb.entity.User;
 import cn.jx.pxc.shoppingweb.entity.UserMessage;
 
@@ -79,8 +80,9 @@ public class UserDaoImpl extends BaseDaoHibernate implements UserDao{
 	 */
 	@Override
 	public void deleteUser(User user) throws Exception {
+		/*User u= this.getHibernateTemplate().getSessionFactory().getCurrentSession().get(User.class, user.getUid());
+		this.getHibernateTemplate().getSessionFactory().getCurrentSession().delete(u);*/
 		this.getHibernateTemplate().delete(user);
-		
 	}
 
 	/* (non-Javadoc)
@@ -149,6 +151,23 @@ public class UserDaoImpl extends BaseDaoHibernate implements UserDao{
 			Query query = this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("from User where instr(username,?)>0");
 			query.setParameter(0, username);
 			return query.list();
+	}
+
+	/* (non-Javadoc)
+	 * @see cn.jx.pxc.shoppingweb.dao.UserDao#findShippingAddressByUid(java.lang.Integer)
+	 */
+	@Override
+	public List<ShippingAddress> findShippingAddressByUid(Integer uid) throws Exception {
+		return (List<ShippingAddress>) this.getHibernateTemplate().find("from ShippingAddress where uid=?", uid);
+	}
+
+	/* (non-Javadoc)
+	 * @see cn.jx.pxc.shoppingweb.dao.UserDao#updateShippingAddress(cn.jx.pxc.shoppingweb.entity.ShippingAddress)
+	 */
+	@Override
+	public void updateShippingAddress(ShippingAddress shippingAddress) throws Exception {
+		this.getHibernateTemplate().update(shippingAddress);
+		
 	}
 
 
